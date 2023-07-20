@@ -1,0 +1,58 @@
+version: '3.8'
+# lancer avec : docker compose -f docker-compose.dev.yml --env-file .env up
+services:
+  backend:
+    container_name: backend
+    restart: on-failure
+    build:
+      context: ./backend
+      target: ${TARGET:-development}
+      args:
+        - JDK_IMAGE=11.0.19_7-jdk-jammy
+        - JRE_VERSION=11-jre-jammy
+        - APP_NAME=ww2-german-submarines
+    volumes:
+      - ./backend:/app
+      - ./backend/.m2:/root/.m2
+    ports:
+      - ${BACKEND_PORT:-8080}:8080
+      - '35729:35729'
+      - '5005:5005'
+
+  frontend:
+    container_name: frontend
+    restart: on-failure
+    build:
+      context: ./frontend
+      args:
+        - NODE_VERSION=16.20.1-slim
+        - NG_VERSION=15
+    volumes:
+      - ./frontend:/app
+    ports:
+      - ${BACKEND_PORT:-4200}:4200
+
+  db:
+    container_name: mysql
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
+      MYSQL_USER: ${MYSQL_USER:-admin}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-pwd}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-mysqldb}
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      #- ./init-db:/docker-entrypoint-initdb.d
+    ports:
+      - ${MYSQL_PORT:-3306}:3306
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: ${ADMINER_DEFAULT_SERVER:-mysql}
+    ports:
+      - ${ADMINER_PORT:-8080}:8080
+
+volumes:
+  mysql-data:
