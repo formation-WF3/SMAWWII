@@ -1,5 +1,3 @@
-# README.md
-
 # Projet WW2 German Submarines
 
 ### Backend
@@ -47,7 +45,7 @@ Création de différents éléments :
 ### Création d’une branche
 
 - Mise à jour du dépôt local : `git fetch origin`
-- Création de la branche de développement : `git checkout -b RI-XXX origin/develop` (où RI-XXX est la référence de la JIRA associée)
+- Création de la branche de développement : `git checkout -b WW2GS-XXX origin/develop` (où WW2GS-XXX est la référence de la JIRA associée)
 
 ### Commit sur la branche
 
@@ -55,10 +53,10 @@ Création de différents éléments :
 - Ecriture du message du commit :
 
 ```
-RI-XXX : titre du commit explicite
+WW2GS-XXX : titre du commit explicite
 * liste de détails éventuels
 ```
 
-Il faut envoyer les commits sur le dépôt régulièrement : `git push origin RI-XXX`
+Il faut envoyer les commits sur le dépôt régulièrement : `git push origin WW2GS-XXX`
 
-- Si le commit précédemment envoyé a été modifié, il faut forcer le push : `git push -f origin RI-XXX`
+- Si le commit précédemment envoyé a été modifié, il faut forcer le push : `git push -f origin WW2GS-XXX`

@@ -15,16 +15,16 @@ services:
         - APP_NAME=ww2-german-submarines
     environment:
       MYSQL_CONNECTION_STRING: ${MYSQL_CONNECTION_STRING}
-      MYSQL_USER: ${MYSQL_USER:-admin}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-pwd}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-mysqldb}
-    volumes:
-      - ./backend:/app
-      - ./backend/.m2:/root/.m2
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - ${BACKEND_PORT:-8080}:8080
       - '35729:35729'
       - '5005:5005'
+    volumes:
+      - ./backend:/app
+      - ./backend/.m2:/root/.m2
 
   frontend:
     container_name: frontend
@@ -35,7 +35,7 @@ services:
         - NODE_VERSION=16.20.1-slim
         - NG_VERSION=15
     ports:
-      - ${BACKEND_PORT:-4200}:4200
+      - ${FRONTEND_PORT:-4200}:4200
     volumes:
       - ./frontend:/app
 
@@ -43,12 +43,12 @@ services:
     container_name: mysql
     image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
-      MYSQL_USER: ${MYSQL_USER:-admin}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-pwd}
-      MYSQL_DATABASE: ${MYSQL_DATABASE:-mysqldb}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
-      - ${MYSQL_PORT:-3306}:3306
+      - ${MYSQL_PORT}:3306
     volumes:
       - ./mysql-data:/var/lib/mysql
       #- ./init-db:/docker-entrypoint-initdb.d
@@ -57,9 +57,9 @@ services:
     container_name: adminer
     image: adminer
     environment:
-      ADMINER_DEFAULT_SERVER: ${ADMINER_DEFAULT_SERVER:-mysql}
+      ADMINER_DEFAULT_SERVER: ${ADMINER_DEFAULT_SERVER}
     ports:
-      - ${ADMINER_PORT:-8080}:8080
+      - ${ADMINER_PORT}:8080
 
 volumes:
   mysql-data:
