@@ -18,6 +18,6 @@ public class ArticleDto {
     private LocalDateTime dateModification;
     private boolean actif;
     private String imageSrc;
-//    private String categorieNom;
+    private String categorieNom;
 //    private String utilisateurNom;
 }

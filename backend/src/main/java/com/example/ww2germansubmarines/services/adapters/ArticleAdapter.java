@@ -18,7 +18,7 @@ public class ArticleAdapter {
                 .dateModification(model.getDateModification())
                 .actif(model.isActif())
                 .imageSrc(model.getImageSrc())
-//                .categorieNom(model.getCategorie().getNom())
+                .categorieNom(model.getCategorie().getNom())
 //                .utilisateurNom(model.getUtilisateur().getNomUtilisateur())
                 .build();
     }

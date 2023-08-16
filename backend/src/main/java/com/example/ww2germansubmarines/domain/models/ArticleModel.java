@@ -40,9 +40,9 @@ public class ArticleModel {
     @Column(name = "image_src", length = 50)
     private String imageSrc;
 
-//    @ManyToOne
-//    @JoinColumn(name = "categorie_id")
-//    private CategorieModel categorie;
+    @ManyToOne
+    @JoinColumn(name = "categorie_id")
+    private CategorieModel categorie;
 
 //    @ManyToOne
 //    @JoinColumn(name = "utilisateur_id", nullable = false)
