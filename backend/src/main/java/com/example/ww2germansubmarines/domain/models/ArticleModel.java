@@ -44,8 +44,8 @@ public class ArticleModel {
     @JoinColumn(name = "categorie_id")
     private CategorieModel categorie;
 
-//    @ManyToOne
-//    @JoinColumn(name = "utilisateur_id", nullable = false)
-//    private UtilisateurModel utilisateur;
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id", nullable = false)
+    private UtilisateurModel utilisateur;
 
 }

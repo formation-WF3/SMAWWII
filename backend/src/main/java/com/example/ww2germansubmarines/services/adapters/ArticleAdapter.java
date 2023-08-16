@@ -19,7 +19,7 @@ public class ArticleAdapter {
                 .actif(model.isActif())
                 .imageSrc(model.getImageSrc())
                 .categorieNom(model.getCategorie().getNom())
-//                .utilisateurNom(model.getUtilisateur().getNomUtilisateur())
+                .utilisateurNom(model.getUtilisateur().getNomUtilisateur())
                 .build();
     }
 }

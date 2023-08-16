@@ -1,6 +1,5 @@
 package com.example.ww2germansubmarines.rest.dtos;
 
-
 import lombok.*;
 
 @NoArgsConstructor

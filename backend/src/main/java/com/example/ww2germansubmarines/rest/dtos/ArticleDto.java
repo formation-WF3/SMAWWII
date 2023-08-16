@@ -2,7 +2,6 @@ package com.example.ww2germansubmarines.rest.dtos;
 
 import lombok.*;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -19,5 +18,5 @@ public class ArticleDto {
     private boolean actif;
     private String imageSrc;
     private String categorieNom;
-//    private String utilisateurNom;
+    private String utilisateurNom;
 }
