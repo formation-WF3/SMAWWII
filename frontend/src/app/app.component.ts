@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend-ww2-german-submarines';
+  titre = 'World War 2 German Submarines';
 }
