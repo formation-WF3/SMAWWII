@@ -8,7 +8,7 @@ Maven, Spring 2.7.13, Java 11.0.19, et les dépendances Spring Web, MySQL Driver
 
 Spring Security sera ajouté probablement par la suite.
 
-### Backend
+### Frontend
 
 Généré avec Angular CLI 15.
 

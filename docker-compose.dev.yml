@@ -41,7 +41,7 @@ services:
 
   db:
     container_name: mysql
-    image: mariadb
+    image: mariadb:11.1-rc
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}

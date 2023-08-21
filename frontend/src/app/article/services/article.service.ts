@@ -15,4 +15,5 @@ export class ArticleService {
   getAll(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(`${this.API_URL}/articles`);
   }
+
 }

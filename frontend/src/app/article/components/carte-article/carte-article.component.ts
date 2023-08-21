@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Article} from "../../../shared/models/dtos/Article";
+import {ArticleService} from "../../services/article.service";
 
 @Component({
   selector: 'app-carte-article',
@@ -10,5 +11,6 @@ export class CarteArticleComponent {
   titre: string = 'Carte d\'un article';
 
   @Input()
-  article?: Article;
+  article!: Article;
+
 }

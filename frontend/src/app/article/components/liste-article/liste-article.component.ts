@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Article} from "../../../shared/models/dtos/Article";
 import {ArticleService} from "../../services/article.service";
 
+
 @Component({
   selector: 'app-liste-article',
   templateUrl: './liste-article.component.html',
@@ -18,8 +19,7 @@ export class ListeArticleComponent implements OnInit {
 
   ngOnInit() {
     this.articleService.getAll().subscribe(
-      articles => this.articles = articles,
-
+      articles => this.articles = articles
     );
   }
 }
