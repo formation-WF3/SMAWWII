@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../../shared/models/dtos/Article";
 
@@ -13,8 +13,7 @@ export class DetailArticleComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private articleService: ArticleService,
-    private router: Router
+    private articleService: ArticleService
   ) {
   }
 
