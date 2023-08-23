@@ -1,17 +1,15 @@
-<article class="article">
-  <header>
-    <img src="" alt="image">
+<article class="article card">
+  <img src="./assets/images/articles/{{ article.imageSrc }}" class="card-img-top" alt="{{ article.imageSrc }}">
 
-    <h3>{{ article.titre}}</h3>
+  <div class="card-body">
+    <h4 class="card-title">{{ article.titre}}</h4>
 
-    <ul>
+    <ul class="card-text">
       <li>{{ article.utilisateurNom }}</li>
 
-      <li>{{ article.dateCreation }}</li>
+      <li>{{ article.dateCreation | date: 'dd MMMM yyyy' }}</li>
     </ul>
-  </header>
 
-  <section>
-    <p>{{ article.texte }}</p>
-  </section>
+    <p class="card-text">{{ article.texte }}</p>
+  </div>
 </article>

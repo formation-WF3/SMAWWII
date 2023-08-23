@@ -3,3 +3,68 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
+/* Base de styles généraux */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: Poppins, serif;
+  width: 100%;
+}
+
+::after, ::before {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  font-family: Poppins, sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+.alert {
+  border-radius: 8px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Bitter, serif;
+  //font-weight: bold;
+}
+/*
+h1 {
+  font-size: 2.2em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1em;
+}
+*/
+/* Variables des couleurs */
+:root {
+  --bleu-oxford: #03224C;
+  --bleu-airsup: #6B9AAF;
+  --bleu-poudre: #B0C4DE;
+  --gris-sombre: #2D2F33;
+  --gris-foncé: #6D707B;
+  --gris-clair: #DCDCDC;
+  --orange-jaune: #FAC86E;
+}

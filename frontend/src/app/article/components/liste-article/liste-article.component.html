@@ -1,7 +1,9 @@
-<div class="liste-articles">
+<div class="liste-articles container">
 
   <h2>{{ titre }}</h2>
 
-  <app-carte-article *ngFor="let article of articles" [article]="article"></app-carte-article>
+  <div class="row">
+    <app-carte-article class="col-lg-6 col-sm-12" *ngFor="let article of articles" [article]="article"></app-carte-article>
+  </div>
 
 </div>

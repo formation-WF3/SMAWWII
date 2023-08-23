@@ -16,14 +16,18 @@ public class ArticleService {
 
     private ArticleAdapter articleAdapter;
 
-
-
     public List<ArticleDto> getAll() {
         List<ArticleDto> articleDtos = new ArrayList<>();
         articleRepository.findAll().forEach(
                 model -> articleDtos.add(articleAdapter.toDto(model))
         );
         return articleDtos;
+    }
+
+    public ArticleDto getById(long id) {
+        return articleRepository.findById(id)
+                .map(a -> articleAdapter.toDto(a))
+                .orElseThrow(() -> new RuntimeException("Article non trouvé !"));
     }
 
 }
