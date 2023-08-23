@@ -13,6 +13,7 @@ public class ArticleAdapter {
         return ArticleDto.builder()
                 .id(model.getId())
                 .titre(model.getTitre())
+                .descriptionCourte(model.getDescriptionCourte())
                 .texte(model.getTexte())
                 .dateCreation(model.getDateCreation())
                 .dateModification(model.getDateModification())

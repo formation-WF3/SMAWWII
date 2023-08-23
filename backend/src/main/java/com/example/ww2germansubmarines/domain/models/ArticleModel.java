@@ -23,6 +23,9 @@ public class ArticleModel {
     @Column(length = 50, nullable = false)
     private String titre;
 
+    @Column(name = "description_courte", nullable = false)
+    private String descriptionCourte;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String texte;
 
