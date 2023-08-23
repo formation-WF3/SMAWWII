@@ -9,7 +9,7 @@ import {ArticleService} from "../../services/article.service";
   styleUrls: ['./liste-article.component.scss']
 })
 export class ListeArticleComponent implements OnInit {
-  titre: string = 'Liste des articles';
+  titre: string = 'Les articles';
   articles: Article[] = [];
 
   constructor(

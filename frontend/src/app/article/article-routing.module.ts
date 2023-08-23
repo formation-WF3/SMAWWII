@@ -1,13 +1,20 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ArticleComponent} from "./pages/article/article.component";
+import {PageArticleComponent} from "./pages/page-article/page-article.component";
 import {ListeArticleComponent} from "./components/liste-article/liste-article.component";
+import {DetailArticleComponent} from "./components/detail-article/detail-article.component";
 
 const routes: Routes = [
   {
-    path: '', component: ArticleComponent,
+    path: '', component: PageArticleComponent,
     children: [
       {path: '', component: ListeArticleComponent, outlet: 'sidebar-non-contenu'}
+    ]
+  },
+  {
+    path: ':id', component: PageArticleComponent,
+    children: [
+      {path: '', component: DetailArticleComponent, outlet: 'sidebar-non-contenu'}
     ]
   },
   {path: '**', redirectTo: ''}
