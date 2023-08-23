@@ -39,25 +39,8 @@ a {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Bitter, serif;
-  //font-weight: bold;
-}
-/*
-h1 {
-  font-size: 2.2em;
 }
 
-h2 {
-  font-size: 1.8em;
-}
-
-h3 {
-  font-size: 1.4em;
-}
-
-h4 {
-  font-size: 1em;
-}
-*/
 /* Variables des couleurs */
 :root {
   --bleu-oxford: #03224C;
@@ -66,5 +49,7 @@ h4 {
   --gris-sombre: #2D2F33;
   --gris-foncé: #6D707B;
   --gris-clair: #DCDCDC;
+  --gris-platine: #E6E6EA;
+  --blanc-fantome: #F4F4F8;
   --orange-jaune: #FAC86E;
 }
