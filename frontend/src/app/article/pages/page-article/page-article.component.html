@@ -1,7 +1,9 @@
-<div class="articles">
+<div class="row flex-column flex-md-row justify-content-center">
 
-    <router-outlet name="sidebar-non-contenu"></router-outlet>
+  <div class="col-lg-8">
+      <router-outlet name="contenu"></router-outlet>
+  </div>
+
+  <div class="sidebar col-lg-4 align-self-center bg-primary">Sidebar</div>
 
 </div>
-
-<div class="sidebar">Sidebar</div>

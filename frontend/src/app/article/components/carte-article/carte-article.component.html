@@ -1,8 +1,13 @@
-<article class="article card">
-  <img src="./assets/images/articles/{{ article.imageSrc }}" class="card-img-top" alt="{{ article.imageSrc }}">
+<article class="card">
+
+  <a [routerLink]="['/articles', article.id]">
+    <img src="./assets/images/articles/{{ article.imageSrc }}" class="card-img-top" alt="{{ article.imageSrc }}">
+  </a>
 
   <div class="card-body">
-    <h4 class="card-title">{{ article.titre}}</h4>
+    <a [routerLink]="['/articles', article.id]">
+      <h5 class="card-title">{{ article.titre}}</h5>
+    </a>
 
     <ul class="card-text">
       <li>{{ article.utilisateurNom }}</li>
@@ -10,6 +15,7 @@
       <li>{{ article.dateCreation | date: 'dd MMMM yyyy' }}</li>
     </ul>
 
-    <p class="card-text">{{ article.texte }}</p>
+    <p class="card-text">{{ article.descriptionCourte }}</p>
   </div>
+
 </article>

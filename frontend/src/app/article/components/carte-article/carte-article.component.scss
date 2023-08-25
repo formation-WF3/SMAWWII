@@ -1,14 +1,7 @@
-article {
-  margin-bottom: 1.6rem;
+.card-img-top {
+  height: 135px !important;
 }
 
-img {
-  //height: 150px;
-}
-
-ul {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding-right: 2rem;
+.card ul {
+  margin-bottom: 0.4rem;
 }

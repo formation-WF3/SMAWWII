@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class ArticleDto {
     private long id;
     private String titre;
+    private String descriptionCourte;
     private String texte;
     private LocalDateTime dateCreation;
     private LocalDateTime dateModification;
