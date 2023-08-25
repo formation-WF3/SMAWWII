@@ -52,3 +52,30 @@ body {
   --blanc-fantome: #F4F4F8;
   --orange-jaune: #FAC86E;
 }
+
+.text-justify {
+  text-align: justify !important;
+}
+
+.titre-section {
+  margin-bottom: 30px;
+  padding-left: 80px;
+}
+
+@media screen and (max-width: 767px) {
+  .titre-section {
+    margin-bottom: 20px;
+    padding-left: 0;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .titre-section {
+    margin-bottom: 10px;
+    padding-left: 0;
+    font-size: 1.4rem;
+    text-align: center;
+  }
+}

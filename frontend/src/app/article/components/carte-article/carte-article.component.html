@@ -4,18 +4,19 @@
     <img src="./assets/images/articles/{{ article.imageSrc }}" class="card-img-top" alt="{{ article.imageSrc }}">
   </a>
 
-  <div class="card-body">
+  <div class="card-header">
     <a [routerLink]="['/articles', article.id]">
-      <h5 class="card-title">{{ article.titre}}</h5>
+      <h3 class="card-title fs-5">{{ article.titre}}</h3>
     </a>
 
-    <ul class="card-text">
-      <li>{{ article.utilisateurNom }}</li>
-
-      <li>{{ article.dateCreation | date: 'dd MMMM yyyy' }}</li>
+    <ul class="list-unstyled d-flex justify-content-between px-3">
+      <li class="list-inline-item">{{ article.utilisateurNom }}</li>
+      <li class="list-inline-item">{{ article.dateCreation | date: 'dd MMMM yyyy' }}</li>
     </ul>
+  </div>
 
-    <p class="card-text">{{ article.descriptionCourte }}</p>
+  <div class="card-body">
+    <p class="card-text text-justify">{{ article.descriptionCourte }}</p>
   </div>
 
 </article>
