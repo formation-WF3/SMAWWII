@@ -8,13 +8,13 @@ const routes: Routes = [
   {
     path: '', component: PageArticleComponent,
     children: [
-      {path: '', component: ListeArticleComponent, outlet: 'sidebar-non-contenu'}
+      {path: '', component: ListeArticleComponent, outlet: 'contenu'}
     ]
   },
   {
     path: ':id', component: PageArticleComponent,
     children: [
-      {path: '', component: DetailArticleComponent, outlet: 'sidebar-non-contenu'}
+      {path: '', component: DetailArticleComponent, outlet: 'contenu'}
     ]
   },
   {path: '**', redirectTo: ''}

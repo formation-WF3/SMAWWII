@@ -1,12 +1,5 @@
-.liste-articles {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-h2 {
-  align-self: start;
-  margin-bottom: 30px;
-  padding-left: 80px;
-  text-align: start;
+@media screen and (max-width: 757px) {
+  .cartes-article {
+    flex-direction: column;
+  }
 }
