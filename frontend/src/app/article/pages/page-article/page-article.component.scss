@@ -1,4 +1,18 @@
 .sidebar {
+  height: 500px;
   min-width: 360px;
   max-width: 400px;
+}
+
+.test {
+  height: 800px;
+}
+
+@media screen and (max-width: 1078px) {
+  .test {
+    justify-content: center;
+  }
+  .section-article {
+    width: 100%;
+  }
 }
