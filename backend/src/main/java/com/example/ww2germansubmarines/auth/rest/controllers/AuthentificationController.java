@@ -1,9 +1,9 @@
 package com.example.ww2germansubmarines.auth.rest.controllers;
 
-import com.example.ww2germansubmarines.auth.rest.dtos.RequeteConnexion;
-import com.example.ww2germansubmarines.auth.rest.dtos.RequeteEnregistrement;
-import com.example.ww2germansubmarines.auth.rest.dtos.JwtReponseAuthentification;
-import com.example.ww2germansubmarines.auth.services.AuthentificationService;
+import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
+import com.example.ww2germansubmarines.auth.rest.dtos.EnregistrementRequete;
+import com.example.ww2germansubmarines.auth.rest.dtos.ConnexionRequete;
+import com.example.ww2germansubmarines.auth.services.AuthenticationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,18 +12,18 @@ import javax.validation.Valid;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/auth")
-public class AuthenticationController {
+@RequestMapping("/auth")
+public class AuthentificationController {
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/signup")
-    public ResponseEntity<JwtAuthenticationResponse> signup(@Valid @RequestBody SignUpRequest request) {
-        return ResponseEntity.ok(authenticationService.signup(request));
+    @PostMapping("/enregistrement")
+    public ResponseEntity<JwtAuthenticationResponse> enregistrement(@Valid @RequestBody EnregistrementRequete requete) {
+        return ResponseEntity.ok(authenticationService.enregistrement(requete));
     }
 
-    @PostMapping("/signin")
-    public ResponseEntity<JwtAuthenticationResponse> signin(@Valid @RequestBody SignInRequest request) {
-        return ResponseEntity.ok(authenticationService.signin(request));
+    @PostMapping("/connexion")
+    public ResponseEntity<JwtAuthenticationResponse> connexion(@Valid @RequestBody ConnexionRequete requete) {
+        return ResponseEntity.ok(authenticationService.connexion(requete));
     }
 
 }

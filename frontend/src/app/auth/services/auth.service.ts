@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   enregistrementUtilisateur(valeursForm: ChargementRequeteEnregistrement): Observable<Utilisateur> {
-    return this.httpClient.post(`${this.API_URL}/signup`, valeursForm);
+    return this.httpClient.post(`${this.API_URL}/enregistrement`, valeursForm);
   }
 
 }

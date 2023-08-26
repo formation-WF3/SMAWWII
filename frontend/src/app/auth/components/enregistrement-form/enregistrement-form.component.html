@@ -20,8 +20,8 @@
 
           <div *ngIf="soumis && f['nomUtilisateur'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
             <span *ngIf="f['nomUtilisateur'].errors['required']">Entrez votre nom d'utilisateur</span>
-            <span *ngIf="f['nomUtilisateur'].errors['minLength']">Minimum 4 caractères</span>
-            <span *ngIf="f['nomUtilisateur'].errors['maxLength']">Maximum 30 caractères</span>
+            <span *ngIf="f['nomUtilisateur'].errors['minlength']">Minimum 4 caractères</span>
+            <span *ngIf="f['nomUtilisateur'].errors['maxlength']">Maximum 30 caractères</span>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
 
       <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label for="confirmeMotDePasse">Confirme mot de passe</label>
+          <label for="confirmeMotDePasse">Confirmation du mot de passe</label>
           <input id="confirmeMotDePasse"
             type="password"
             class="form-control"

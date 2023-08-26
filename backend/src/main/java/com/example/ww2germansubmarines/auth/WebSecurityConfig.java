@@ -1,6 +1,6 @@
 package com.example.ww2germansubmarines.auth;
 
-import com.example.ww2germansubmarines.auth.filters.JwtFiltreAuthentification;
+import com.example.ww2germansubmarines.auth.filters.JwtAuthentificationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
