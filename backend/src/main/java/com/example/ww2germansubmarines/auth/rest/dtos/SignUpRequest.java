@@ -22,7 +22,6 @@ public class SignUpRequest {
     private String password;
 
     @NotBlank(message = "Une adresse email est requise")
-    @Size(max = 60, message = "Ne doit pas dépasser 60 caractères")
     @Email
     private String email;
 }

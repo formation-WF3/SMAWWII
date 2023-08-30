@@ -31,7 +31,7 @@ public class UtilisateurModel implements UserDetails {
     @Column(name="mot_de_passe", nullable = false)
     private String motDePasse;
 
-    @Column(length = 60, nullable = false)
+    @Column(nullable = false)
     private String email;
 
     @Column(name = "email_verifiee", unique = true, nullable = false)

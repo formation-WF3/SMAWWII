@@ -5,7 +5,7 @@ import {Article} from "../../shared/models/dtos/Article";
 
 @Injectable()
 export class ArticleService {
-  API_URL: string = 'http://localhost:8080';
+  API_URL: string = 'http://localhost:8080/api';
 
   constructor(
     private httpClient: HttpClient
