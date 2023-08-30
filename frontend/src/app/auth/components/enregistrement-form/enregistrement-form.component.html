@@ -3,12 +3,12 @@
 
   <div class="card-body">
 
-    <form novalidate (ngSubmit)="enregistrementDonneesForm()" [formGroup]="formEnregistrement">
+    <form novalidate (ngSubmit)="enregistrementUtilisateurForm()" [formGroup]="formEnregistrement">
 
       <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label>Nom d'utilisateur</label>
-          <input
+          <label for="nomUtilisateur">Nom d'utilisateur</label>
+          <input id="nomUtilisateur"
             type="text"
             class="form-control"
             placeholder="Nom d'utilisateur"
@@ -20,17 +20,17 @@
 
           <div *ngIf="soumis && f['nomUtilisateur'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
             <span *ngIf="f['nomUtilisateur'].errors['required']">Entrez votre nom d'utilisateur</span>
-            <span *ngIf="f['nomUtilisateur'].errors['minlength']">Minimum 4 caractères</span>
-            <span *ngIf="f['nomUtilisateur'].errors['maxlength']">Maximum 30 caractères</span>
+            <span *ngIf="f['nomUtilisateur'].errors['minLength']">Minimum 4 caractères</span>
+            <span *ngIf="f['nomUtilisateur'].errors['maxLength']">Maximum 30 caractères</span>
           </div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label>Mot de passe</label>
-          <input
-            type="text"
+          <label for="motDePasse">Mot de passe</label>
+          <input id="motDePasse"
+            type="password"
             class="form-control"
             placeholder="Mot de passe"
             formControlName="motDePasse"
@@ -40,16 +40,16 @@
           ><!-- is-invalid : class Bootstrap -->
           <div *ngIf="soumis && f['motDePasse'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
             <span *ngIf="f['motDePasse'].errors['required']">Entrez votre mot de passe</span>
-            <span *ngIf="f['motDePasse'].errors['motDePasseInvalide']">Le mot de passe doit être composé d'au moins 8 caractères, d'au moins une lettre majuscule, d'au mois une lettre minuscule, et d'au moins un chiffre</span>
+            <span *ngIf="f['motDePasse'].errors['motDePasseInvalide']">Le mot de passe doit être composé d'au moins 8 caractères, d'au moins une lettre majuscule, d'au moins une lettre minuscule, et d'au moins un chiffre</span>
           </div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label>Confirme mot de passe</label>
-          <input
-            type="text"
+          <label for="confirmeMotDePasse">Confirme mot de passe</label>
+          <input id="confirmeMotDePasse"
+            type="password"
             class="form-control"
             placeholder="Confirmer votre mot de passe"
             formControlName="confirmeMotDePasse"
@@ -66,11 +66,11 @@
 
       <div class="form-row">
         <div class="col-md-6 mb-3">
-          <label>Adresse Email</label>
-          <input
+          <label for="email">Adresse Email</label>
+          <input id="email"
             type="email"
             class="form-control"
-            placeholder="Adresse Email"
+            placeholder="adresse@email.fr"
             formControlName="email"
             [ngClass]="{
               'is-invalid': soumis && f['email'].errors
@@ -78,19 +78,20 @@
           ><!-- is-invalid : class Bootstrap -->
           <div *ngIf="soumis && f['email'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
             <span *ngIf="f['email'].errors['required']">Entrez votre adresse Email</span>
-            <span *ngIf="f['email'].errors['email']">L'adresse Email est invalide</span>
+            <span *ngIf="f['email'].errors['email']">Email invalide</span>
+            <span *ngIf="f['email'].errors['emailInvalide']">L'adresse Email est invalide</span>
           </div>
         </div>
       </div>
 
       <div class="form-group text-right">
-        <button type="submit" class="btn btn-primary">Register</button>
-        <button
-          type="button"
-          class="btn btn-info float-end"
-          (click)="reinitialisationForm()"
-        >
+        <button type="submit" [disabled]="chargement" class="btn btn-primary">
+          <span *ngIf="chargement" class="spinner-border spinner-border-sm mr-1"></span>
           Enregistrer
+        </button>
+        <button type="button" class="btn btn-info float-end"
+                (click)="reinitialisationForm()">
+          Effacer
         </button>
       </div>
     </form>

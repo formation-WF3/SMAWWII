@@ -15,6 +15,7 @@
 	<description>WW2 German Submarines project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<io.jsonwebtoken.version>0.11.2</io.jsonwebtoken.version>
 	</properties>
 	<dependencies>
 		<dependency>

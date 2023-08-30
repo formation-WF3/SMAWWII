@@ -4,7 +4,7 @@ import {EnregistrementFormComponent} from "./components/enregistrement-form/enre
 
 const routes: Routes = [
   {path: 'enregistrement', component: EnregistrementFormComponent},
-  {path: '', redirectTo: 'enregistrement'},
+  {path: '', redirectTo: 'enregistrement', pathMatch: 'full'},
   {path: '**', redirectTo: ''}
 ];
 
