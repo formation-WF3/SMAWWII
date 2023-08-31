@@ -5,7 +5,7 @@ export class Validation {
 
   private static readonly EMAIL_PATTERN = '^[a-z0-9][a-z0-9._-]+@[a-z0-9._-]{2,}\\.[a-z]{2,4}$';
 
-  static champsIdentiquesValidator(valeurChamps: string, confirmeValeurChamps: string): ValidatorFn {
+  static champsIdentiquesValidateur(valeurChamps: string, confirmeValeurChamps: string): ValidatorFn {
     return (controls: AbstractControl) => {
       const control = controls.get(valeurChamps);
       const checkControl = controls.get(confirmeValeurChamps);
@@ -23,7 +23,7 @@ export class Validation {
     };
   }
 
-  static patternMotDePasseValidator(motDePasse: string): ValidatorFn {
+  static patternMotDePasseValidateur(motDePasse: string): ValidatorFn {
     return (formControl: AbstractControl) => {
       const control = formControl.get(motDePasse);
 
@@ -42,7 +42,7 @@ export class Validation {
     };
   }
 
-  static patternEmailValidator(email: string): ValidatorFn {
+  static patternEmailValidateur(email: string): ValidatorFn {
     return (formControl: AbstractControl) => {
       const control = formControl.get(email);
 

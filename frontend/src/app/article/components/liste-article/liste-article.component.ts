@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Article} from "../../../shared/models/dtos/Article";
+import {Article} from "../../../en-partage/models/dtos/Article";
 import {ArticleService} from "../../services/article.service";
 
 

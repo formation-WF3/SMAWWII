@@ -41,6 +41,7 @@ services:
 
   db:
     container_name: mysql-ww2gs
+    restart: on-failure
     image: mariadb:11.1-rc
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -55,6 +56,7 @@ services:
 
   adminer:
     container_name: adminer-ww2gs
+    restart: on-failure
     image: adminer
     environment:
       ADMINER_DEFAULT_SERVER: ${ADMINER_DEFAULT_SERVER}

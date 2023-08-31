@@ -3,7 +3,6 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "
 import {Validation} from "../../../validators/validation.validator";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
-import {SignupRequestPayload} from "../../models/signup-request-payload";
 
 
 @Component({
@@ -20,11 +19,6 @@ export class EnregistrementFormComponent implements OnInit {
   });
   soumis = false;
   chargement = false;
-  signupRequestPayload: SignupRequestPayload = {
-    username: '',
-    password: '',
-    email: ''
-  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,16 +30,16 @@ export class EnregistrementFormComponent implements OnInit {
   ngOnInit() {
     this.formEnregistrement = this.formBuilder.group({
       nomUtilisateur: ['',
-        Validators.required,
+        [Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(30)
+        Validators.maxLength(30)]
       ],
       motDePasse: ['', Validators.required],
       confirmeMotDePasse: ['', Validators.required],
-      email: ['',Validators.required]
+      email: ['', Validators.required]
     }, {
-      validators: [Validation.patternMotDePasseValidator('motDePasse'), Validation.champsIdentiquesValidator(
-        'motDePasse', 'confirmeMotDePasse'), Validation.patternEmailValidator('email')]
+      validators: [Validation.patternMotDePasseValidateur('motDePasse'), Validation.champsIdentiquesValidateur(
+        'motDePasse', 'confirmeMotDePasse'), Validation.patternEmailValidateur('email')]
     });
   }
 
@@ -60,23 +54,16 @@ export class EnregistrementFormComponent implements OnInit {
       return;
     }
 
-    this.signupRequestPayload.username = this.formEnregistrement.value['nomUtilisateur'];
-    this.signupRequestPayload.password = this.formEnregistrement.value['motDePasse'];
-    this.signupRequestPayload.email = this.formEnregistrement.value['email'];
-
-    this.authService.enregistrementUtilisateur(this.signupRequestPayload).subscribe(
-      data => {
-
+    this.authService.enregistrementUtilisateur({...this.formEnregistrement.value}).subscribe({
+      next: data => {
         this.reinitialisationForm();
         this.router.navigate(['/articles']);
       },
-      error => {
+      error: error => {
         console.error("L'enregistrement a échoué !")
         this.chargement = false;
       }
-    );
-
-    console.log(this.formEnregistrement.value);
+  });
   }
 
   reinitialisationForm(): void {

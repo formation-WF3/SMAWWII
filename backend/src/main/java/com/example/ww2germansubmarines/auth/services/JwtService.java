@@ -3,9 +3,9 @@ package com.example.ww2germansubmarines.auth.services;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public interface JwtService {
-    String extractUserName(String token);
+    String extraireNomUtilisateur(String token);
 
-    String generateToken(UserDetails userDetails);
+    String genererToken(UserDetails userDetails);
 
-    boolean isTokenValid(String token, UserDetails userDetails);
+    boolean isTokenValide(String token, UserDetails userDetails);
 }

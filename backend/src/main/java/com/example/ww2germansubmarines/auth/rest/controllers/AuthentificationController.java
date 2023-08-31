@@ -1,15 +1,12 @@
 package com.example.ww2germansubmarines.auth.rest.controllers;
 
-import com.example.ww2germansubmarines.auth.rest.dtos.SignInRequest;
-import com.example.ww2germansubmarines.auth.rest.dtos.SignUpRequest;
-import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
-import com.example.ww2germansubmarines.auth.services.AuthenticationService;
+import com.example.ww2germansubmarines.auth.rest.dtos.RequeteConnexion;
+import com.example.ww2germansubmarines.auth.rest.dtos.RequeteEnregistrement;
+import com.example.ww2germansubmarines.auth.rest.dtos.JwtReponseAuthentification;
+import com.example.ww2germansubmarines.auth.services.AuthentificationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,4 +25,5 @@ public class AuthenticationController {
     public ResponseEntity<JwtAuthenticationResponse> signin(@Valid @RequestBody SignInRequest request) {
         return ResponseEntity.ok(authenticationService.signin(request));
     }
+
 }

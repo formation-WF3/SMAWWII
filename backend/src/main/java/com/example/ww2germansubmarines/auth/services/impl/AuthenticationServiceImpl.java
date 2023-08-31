@@ -1,9 +1,9 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
-import com.example.ww2germansubmarines.auth.rest.dtos.SignInRequest;
-import com.example.ww2germansubmarines.auth.rest.dtos.SignUpRequest;
-import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
-import com.example.ww2germansubmarines.auth.services.AuthenticationService;
+import com.example.ww2germansubmarines.auth.rest.dtos.RequeteConnexion;
+import com.example.ww2germansubmarines.auth.rest.dtos.RequeteEnregistrement;
+import com.example.ww2germansubmarines.auth.rest.dtos.JwtReponseAuthentification;
+import com.example.ww2germansubmarines.auth.services.AuthentificationService;
 import com.example.ww2germansubmarines.auth.services.JwtService;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
 import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
@@ -23,38 +23,58 @@ import java.time.LocalDateTime;
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final RoleService roleService;
-    private final RoleAdapter roleAdapter;
     private final UtilisateurRepository utilisateurRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public JwtAuthenticationResponse signup(SignUpRequest request) {
-        UtilisateurModel utilisateurModel = UtilisateurModel.builder()
-                .nomUtilisateur(request.getUsername())
-                .motDePasse(passwordEncoder.encode(request.getPassword()))
-                .email(request.getEmail())
-                .emailVerifiee(false)
-                .cleActivation(null)
-                .dateActivation(null)
-                .dateEnregistrement(LocalDateTime.now())
-                .actif(true)
-                .role(roleAdapter.toModel(roleService.getByNom(RoleEnum.MEMBRE.name())))
-                .build();
-        utilisateurRepository.save(utilisateurModel);
-        var jwt = jwtService.generateToken(utilisateurModel);
-        return JwtAuthenticationResponse.builder().token(jwt).build();
+    public JwtReponseAuthentification enregistrement(RequeteEnregistrement requete) {
+        verifierEligibilite(requete);
+        UtilisateurModel nouveauMembre = creerNouveauMembre(requete);
+        var jwt = jwtService.genererToken(nouveauMembre);
+        return JwtReponseAuthentification.builder().token(jwt).build();
     }
 
     @Override
-    public JwtAuthenticationResponse signin(SignInRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UtilisateurModel utilisateurModel = utilisateurRepository.findByNomUtilisateur(request.getUsername())
+    public JwtReponseAuthentification connexion(RequeteConnexion requete) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requete.getNomUtilisateur(), requete.getMotDePasse()));
+        UtilisateurModel utilisateurModel = utilisateurRepository.findByNomUtilisateur(requete.getNomUtilisateur())
                 .orElseThrow(() -> new IllegalArgumentException("Le nom d'utilisateur ou le mot de passe, est invalide !"));
 
-        var jwt = jwtService.generateToken(utilisateurModel);
+        var jwt = jwtService.genererToken(utilisateurModel);
 
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
+
+    private UtilisateurModel creerNouveauMembre(RequeteEnregistrement requete) {
+        RoleModel roleMembre = roleService.getByNom(RoleEnum.MEMBRE);
+
+        UtilisateurModel utilisateurModel = UtilisateurModel.builder()
+                .nomUtilisateur(requete.getNomUtilisateur())
+                .motDePasse(passwordEncoder.encode(requete.getMotDePasse()))
+                .email(requete.getEmail())
+                .emailVerifiee(false)
+                .dateEnregistrement(LocalDateTime.now())
+                .actif(true)
+                .role(roleMembre)
+                .build();
+
+        return utilisateurRepository.save(utilisateurModel);
+    }
+
+    private void verifierEligibilite(RequeteEnregistrement requete) {
+        if (utilisateurRepository.existsByNomUtilisateur(requete.getNomUtilisateur())) {
+            throw new RuntimeException("L'utilisateur existe déjà");
+        }
+
+        if (utilisateurRepository.existsByEmail(requete.getEmail())) {
+            throw new RuntimeException("L'adresse Email existe déjà");
+        }
+
+        if (!StringUtils.equals(requete.getMotDePasse(), requete.getConfirmeMotDePasse())) {
+            throw new RuntimeException("Les mots de passe ne correspondent pas");
+        }
+    }
+    
 }

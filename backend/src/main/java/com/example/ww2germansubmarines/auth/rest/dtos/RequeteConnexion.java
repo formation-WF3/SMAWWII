@@ -11,12 +11,12 @@ import javax.validation.constraints.Size;
 @Setter
 @ToString
 @Builder
-public class SignInRequest {
+public class RequeteConnexion {
     @NotBlank(message = "Le nom d'utilisateur est requis")
     @Size(min = 4, max = 30, message = "Doit être de 4 à 30 caractères")
-    private String username;
+    private String nomUtilisateur;
 
     @NotBlank(message = "Le mot de passe est requis")
     @Size(min = 8, max = 20, message = "Doit être de 8 à 20 caractères")
-    private String password;
+    private String motDePasse;
 }

@@ -21,18 +21,18 @@ public class JwtServiceImpl implements JwtService {
     @Value("${token.signing.key}")
     private String jwtSigningKey;
     @Override
-    public String extractUserName(String token) {
+    public String extraireNomUtilisateur(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
     @Override
-    public String generateToken(UserDetails userDetails) {
+    public String genererToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
 
     @Override
-    public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String userName = extractUserName(token);
+    public boolean isTokenValide(String token, UserDetails userDetails) {
+        final String userName = extraireNomUtilisateur(token);
         return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
