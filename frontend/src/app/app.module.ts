@@ -9,6 +9,9 @@ import * as fr from '@angular/common/locales/fr';
 import {HttpClientModule} from "@angular/common/http";
 import {ArticleModule} from "./article/article.module";
 import {registerLocaleData} from "@angular/common";
+import {ReactiveFormsModule} from "@angular/forms";
+import {AuthModule} from "./auth/auth.module";
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import {registerLocaleData} from "@angular/common";
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ArticleModule
+    ArticleModule,
+    AuthModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' }

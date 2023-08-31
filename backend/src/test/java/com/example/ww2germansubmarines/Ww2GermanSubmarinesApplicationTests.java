@@ -8,6 +8,7 @@ class Ww2GermanSubmarinesApplicationTests {
 
 	@Test
 	void contextLoads() {
+		// ...
 	}
 
 }

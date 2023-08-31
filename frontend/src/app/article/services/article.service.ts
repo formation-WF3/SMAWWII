@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Article} from "../../shared/models/dtos/Article";
+import {Article} from "../../en-partage/models/dtos/Article";
 
 @Injectable()
 export class ArticleService {
-  API_URL: string = 'http://localhost:8080';
+  API_URL: string = 'http://localhost:8080/api';
 
   constructor(
     private httpClient: HttpClient

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../../../shared/models/dtos/Article";
+import {Article} from "../../../en-partage/models/dtos/Article";
 
 @Component({
   selector: 'app-detail-article',
@@ -18,6 +18,15 @@ export class DetailArticleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(params => {
+      const id = params.get('id') as string;
+      if (id) {
+        this.articleService.getById(+id).subscribe(
+          article => this.article = article
+        );
+      }
+    });
+
     this.activatedRoute.paramMap.subscribe(params => {
       const id = params.get('id') as string;
       if (id) {
