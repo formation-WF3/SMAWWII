@@ -1,6 +1,6 @@
 package com.example.ww2germansubmarines.auth;
 
-import com.example.ww2germansubmarines.auth.filters.JwtAuthentificationFilter;
+import com.example.ww2germansubmarines.auth.filters.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +22,8 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-public class ConfigurationSecurite {
-    private final JwtFiltreAuthentification jwtAuthenticationFilter;
+public class WebSecurityConfig {
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
 
     private final String[] routesAutorisees = {"/auth/**", "/articles/**"};
