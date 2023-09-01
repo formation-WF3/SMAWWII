@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Setter
 @ToString
 @Builder
-public class RequeteEnregistrement {
+public class EnregistrementRequete {
     @NotBlank(message = "Un nom d'utilisateur est requis")
     @Size(min = 4, max = 30, message = "Doit faire de 4 à 30 caractères")
     private String nomUtilisateur;
