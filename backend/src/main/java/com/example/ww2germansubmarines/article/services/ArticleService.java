@@ -3,7 +3,10 @@ package com.example.ww2germansubmarines.article.services;
 import com.example.ww2germansubmarines.article.domain.repositories.ArticleRepository;
 import com.example.ww2germansubmarines.article.rest.dtos.ArticleDto;
 import com.example.ww2germansubmarines.article.adapters.ArticleAdapter;
+import com.example.ww2germansubmarines.core.exceptions.RaisonEnum;
+import com.example.ww2germansubmarines.core.exceptions.Ww2gsException;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +32,7 @@ public class ArticleService {
     public ArticleDto getById(long id) {
         return articleRepository.findById(id)
                 .map(a -> articleAdapter.toDto(a))
-                .orElseThrow(() -> new RuntimeException("Article non trouvé !"));
+                .orElseThrow(() -> new Ww2gsException(RaisonEnum.ARTICLE_NON_TROUVE, HttpStatus.NOT_FOUND));
     }
 
 }
