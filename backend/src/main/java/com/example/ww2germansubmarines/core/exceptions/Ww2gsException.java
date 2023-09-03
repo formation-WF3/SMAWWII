@@ -11,4 +11,5 @@ public class Ww2gsException extends RuntimeException {
         super(raison.getMessage());
         this.httpStatus = httpStatus;
     }
+
 }

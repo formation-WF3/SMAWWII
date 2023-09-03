@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.security.sasl.AuthenticationException;
+
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -20,6 +22,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(ErreurReponse.builder().message(ex.getMessage()).build());
     }
 
+    @ExceptionHandler(value = AuthenticationException.class)
+    public ResponseEntity<ErreurReponse> handleAuthenticationException(AuthenticationException ex) {
+        logger.error(ex.getMessage());
+        return ResponseEntity
+                .status(403)
+                .body(ErreurReponse.builder().message(ex.getMessage()).build());
+    }
+
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErreurReponse> handleException(Exception ex) {
         logger.error(ex.getMessage());
@@ -27,4 +37,5 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .status(200)
                 .body(ErreurReponse.builder().message(ex.getMessage()).build());
     }
+
 }

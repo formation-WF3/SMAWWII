@@ -8,7 +8,8 @@ import lombok.Getter;
 @Getter
 public enum RaisonEnum {
 
-    ARTICLE_NON_TROUVE("Article non trouvé !");
+    ARTICLE_NON_TROUVE("Article non trouvé !"),
+    AUTHENTIFICATION_INVALIDE("Le nom d'utilisateur ou le mot de passe, est invalide !");
 
     private final String message;
 

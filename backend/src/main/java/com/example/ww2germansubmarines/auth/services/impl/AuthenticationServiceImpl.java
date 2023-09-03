@@ -1,17 +1,20 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
-import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
 import com.example.ww2germansubmarines.auth.rest.dtos.ConnexionRequete;
 import com.example.ww2germansubmarines.auth.rest.dtos.EnregistrementRequete;
+import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
 import com.example.ww2germansubmarines.auth.services.AuthenticationService;
 import com.example.ww2germansubmarines.auth.services.JwtService;
+import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.models.RoleModel;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
-import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.repositories.UtilisateurRepository;
+import com.example.ww2germansubmarines.core.exceptions.RaisonEnum;
+import com.example.ww2germansubmarines.core.exceptions.Ww2gsException;
 import com.example.ww2germansubmarines.core.services.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,17 +36,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JwtAuthenticationResponse enregistrement(EnregistrementRequete requete) {
         verifierEligibilite(requete);
         UtilisateurModel nouveauMembre = creerNouveauMembre(requete);
-        var jwt = jwtService.generateToken(nouveauMembre);
+        String jwt = jwtService.generateToken(nouveauMembre);
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
     @Override
     public JwtAuthenticationResponse connexion(ConnexionRequete requete) {
+        UtilisateurModel utilisateur = utilisateurRepository.findByNomUtilisateur(requete.getNomUtilisateur())
+                .orElseThrow(() -> new Ww2gsException(RaisonEnum.AUTHENTIFICATION_INVALIDE, HttpStatus.FORBIDDEN));
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requete.getNomUtilisateur(), requete.getMotDePasse()));
-        UtilisateurModel utilisateurModel = utilisateurRepository.findByNomUtilisateur(requete.getNomUtilisateur())
-                .orElseThrow(() -> new IllegalArgumentException("Le nom d'utilisateur ou le mot de passe, est invalide !"));
+//                .orElseThrow(() -> new IllegalArgumentException("Le nom d'utilisateur ou le mot de passe, est invalide !"));
 
-        var jwt = jwtService.generateToken(utilisateurModel);
+        String jwt = jwtService.generateToken(utilisateur);
 
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }

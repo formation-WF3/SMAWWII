@@ -3,6 +3,7 @@ package com.example.ww2germansubmarines.auth.rest.dtos;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @NoArgsConstructor
@@ -17,6 +18,6 @@ public class ConnexionRequete {
     private String nomUtilisateur;
 
     @NotBlank(message = "Le mot de passe est requis")
-    @Size(min = 8, max = 20, message = "Doit être de 8 à 20 caractères")
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$", message = "Le mot de passe doit être composé d'au moins 8 caractères, d'au moins une lettre majuscule, d'au moins une lettre minuscule, et d'au moins un chiffre")
     private String motDePasse;
 }
