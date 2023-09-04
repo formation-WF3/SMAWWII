@@ -1,13 +1,13 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
-import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
 import com.example.ww2germansubmarines.auth.rest.dtos.ConnexionRequete;
 import com.example.ww2germansubmarines.auth.rest.dtos.EnregistrementRequete;
+import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
 import com.example.ww2germansubmarines.auth.services.AuthenticationService;
 import com.example.ww2germansubmarines.auth.services.JwtService;
+import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.models.RoleModel;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
-import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.repositories.UtilisateurRepository;
 import com.example.ww2germansubmarines.core.services.RoleService;
 import lombok.RequiredArgsConstructor;
@@ -39,9 +39,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtAuthenticationResponse connexion(ConnexionRequete requete) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requete.getNomUtilisateur(), requete.getMotDePasse()));
         UtilisateurModel utilisateurModel = utilisateurRepository.findByNomUtilisateur(requete.getNomUtilisateur())
                 .orElseThrow(() -> new IllegalArgumentException("Le nom d'utilisateur ou le mot de passe, est invalide !"));
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requete.getNomUtilisateur(), requete.getMotDePasse()));
 
         var jwt = jwtService.generateToken(utilisateurModel);
 
