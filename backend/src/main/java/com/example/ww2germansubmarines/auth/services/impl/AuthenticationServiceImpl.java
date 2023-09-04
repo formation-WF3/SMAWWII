@@ -1,5 +1,6 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
+import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
 import com.example.ww2germansubmarines.auth.rest.dtos.ConnexionRequete;
 import com.example.ww2germansubmarines.auth.rest.dtos.EnregistrementRequete;
 import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
@@ -8,6 +9,7 @@ import com.example.ww2germansubmarines.auth.services.JwtService;
 import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.models.RoleModel;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
+import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.repositories.UtilisateurRepository;
 import com.example.ww2germansubmarines.core.exceptions.RaisonEnum;
 import com.example.ww2germansubmarines.core.exceptions.Ww2gsException;
@@ -35,19 +37,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public JwtAuthenticationResponse enregistrement(EnregistrementRequete requete) {
         verifierEligibilite(requete);
+
         UtilisateurModel nouveauMembre = creerNouveauMembre(requete);
+
         String jwt = jwtService.generateToken(nouveauMembre);
+
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
     @Override
     public JwtAuthenticationResponse connexion(ConnexionRequete requete) {
-        UtilisateurModel utilisateur = utilisateurRepository.findByNomUtilisateur(requete.getNomUtilisateur())
-                .orElseThrow(() -> new Ww2gsException(RaisonEnum.AUTHENTIFICATION_INVALIDE, HttpStatus.FORBIDDEN));
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requete.getNomUtilisateur(), requete.getMotDePasse()));
-//                .orElseThrow(() -> new IllegalArgumentException("Le nom d'utilisateur ou le mot de passe, est invalide !"));
+        UtilisateurModel utilisateurModel = verifierUtilisateur(requete.getNomUtilisateur());
 
-        String jwt = jwtService.generateToken(utilisateur);
+        verifierMotDePasse(requete.getMotDePasse(), utilisateurModel.getMotDePasse());
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(requete.getNomUtilisateur(), requete.getMotDePasse()));
+
+        String jwt = jwtService.generateToken(utilisateurModel);
 
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
@@ -81,5 +87,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new RuntimeException("Les mots de passe ne correspondent pas");
         }
     }
-    
+
+    private UtilisateurModel verifierUtilisateur(String nomUtilisateur) {
+        return utilisateurRepository.findByNomUtilisateur(nomUtilisateur)
+                .orElseThrow(() -> new Ww2gsException(RaisonEnum.IDENTIFICATION_INCORRECTE, HttpStatus.UNAUTHORIZED));
+    }
+
+    private void verifierMotDePasse(String motDePasse, String motDePasseHash) {
+        if (!passwordEncoder.matches(motDePasse, motDePasseHash)) {
+            throw new Ww2gsException(RaisonEnum.CORRESPONDANCE_INCORRECTE, HttpStatus.FORBIDDEN);
+        }
+    }
+
 }
