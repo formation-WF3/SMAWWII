@@ -2,8 +2,8 @@ package com.example.ww2germansubmarines.auth.filters;
 
 import com.example.ww2germansubmarines.auth.services.JwtService;
 import lombok.NonNull;
-import org.apache.commons.lang3.StringUtils;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,7 +21,7 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 @Component
-public class JwtFiltreAuthentification extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UserDetailsService userDetailsService;
 
