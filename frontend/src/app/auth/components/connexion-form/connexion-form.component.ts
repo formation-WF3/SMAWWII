@@ -16,6 +16,7 @@ export class ConnexionFormComponent implements OnInit {
     motDePasse: ''
   };
   error = false;
+  errorMessage?: String;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,7 +40,7 @@ export class ConnexionFormComponent implements OnInit {
     };
 
     this.authService.connexionUtilisateur(connexionChargementRequete).subscribe(
-      connecte => {
+    (connecte) => {
         if (connecte) {
           this.router.navigate(['/articles']);
         } else {

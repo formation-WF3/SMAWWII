@@ -6,5 +6,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  titre = 'Sous-marins allemands WWII';
+  titreSite = 'Sous-marins allemands WWII';
 }
