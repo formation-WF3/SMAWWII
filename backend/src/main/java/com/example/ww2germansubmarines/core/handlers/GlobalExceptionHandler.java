@@ -20,6 +20,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(ErreurReponse.builder().message(ex.getMessage()).build());
     }
 
+//    @ExceptionHandler(value = BadCredentialsException.class)
+//    public ResponseEntity<ErreurReponse> handleBadCredentialsException(BadCredentialsException ex) {
+//        logger.error(ex.getMessage());
+//        throw new Ww2gsException(RaisonEnum.IDENTIFICATION_INCORRECTE, HttpStatus.FORBIDDEN);
+//    }
+
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseEntity<ErreurReponse> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return ResponseEntity
+                .status(401)
+                .body(ErreurReponse.builder().message(ex.getMessage()).build());
+    }
+
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErreurReponse> handleException(Exception ex) {
         logger.error(ex.getMessage());

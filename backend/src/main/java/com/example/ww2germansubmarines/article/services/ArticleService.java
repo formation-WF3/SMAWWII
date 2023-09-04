@@ -1,8 +1,8 @@
 package com.example.ww2germansubmarines.article.services;
 
+import com.example.ww2germansubmarines.article.adapters.ArticleAdapter;
 import com.example.ww2germansubmarines.article.domain.repositories.ArticleRepository;
 import com.example.ww2germansubmarines.article.rest.dtos.ArticleDto;
-import com.example.ww2germansubmarines.article.adapters.ArticleAdapter;
 import com.example.ww2germansubmarines.core.exceptions.RaisonEnum;
 import com.example.ww2germansubmarines.core.exceptions.Ww2gsException;
 import lombok.AllArgsConstructor;

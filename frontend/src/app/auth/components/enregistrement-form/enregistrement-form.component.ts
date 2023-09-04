@@ -27,6 +27,10 @@ export class EnregistrementFormComponent implements OnInit {
   ) {
   }
 
+  get f(): { [key: string]: AbstractControl } {
+    return this.formEnregistrement.controls;
+  }
+
   ngOnInit() {
     this.formEnregistrement = this.formBuilder.group({
       nomUtilisateur: ['',
@@ -41,10 +45,6 @@ export class EnregistrementFormComponent implements OnInit {
       validators: [Validation.patternMotDePasseValidateur('motDePasse'), Validation.champsIdentiquesValidateur(
         'motDePasse', 'confirmeMotDePasse'), Validation.patternEmailValidateur('email')]
     });
-  }
-
-  get f(): { [key: string]: AbstractControl } {
-    return this.formEnregistrement.controls;
   }
 
   enregistrementUtilisateurForm(): void {
@@ -63,7 +63,7 @@ export class EnregistrementFormComponent implements OnInit {
         console.error("L'enregistrement a échoué !")
         this.chargement = false;
       }
-  });
+    });
   }
 
   reinitialisationForm(): void {
