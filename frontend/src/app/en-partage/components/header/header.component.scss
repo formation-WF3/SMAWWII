@@ -1,0 +1,19 @@
+header {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--orange-jaune);
+}
+
+.titre {
+  color: var(--bleu-oxford);
+}
+
+.liens-auth > li:first-child {
+  color: var(--gris-sombre)
+}
+
+.liens-auth > li:last-child {
+  color: var(--gris-platine)
+}

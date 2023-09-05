@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {RequetesInterceptor} from "./interceptors/requetes-interceptor.service";
+import {RequetesHttpInterceptor} from "./interceptors/requetes-http-interceptor.service";
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import {RequetesInterceptor} from "./interceptors/requetes-interceptor.service";
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
-      useClass: RequetesInterceptor,
+      useClass: RequetesHttpInterceptor,
       multi: true
     }
   ],
