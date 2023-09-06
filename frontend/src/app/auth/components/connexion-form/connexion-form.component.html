@@ -3,7 +3,7 @@
 
   <div class="card-body">
 
-    <div *ngIf="errorMessage" class="col-md-6 mb-3 alert alert-danger">{{ errorMessage }}</div>
+    <div *ngIf="erreurMessage" class="mb-3 alert alert-danger">{{ erreurMessage }}</div>
 
     <form #formConnexion="ngForm" (ngSubmit)="connexionUtilisateurForm(formConnexion)" novalidate>
 

@@ -3,6 +3,8 @@
 
   <div class="card-body">
 
+    <div *ngIf="erreurMessage" class="mb-3 alert alert-danger">{{ erreurMessage }}</div>
+
     <form (ngSubmit)="enregistrementUtilisateurForm()" [formGroup]="formEnregistrement" novalidate>
 
       <div class="form-row">

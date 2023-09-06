@@ -9,23 +9,23 @@ export class RequetesHttpInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const requeteModifiee = req.clone();
+    // const requeteModifiee = req.clone();
     console.log("aller, ou aller-retour ?");
-    return next.handle(requeteModifiee)
+    return next.handle(req)
       .pipe(
         retry(1),
-        catchError((error: HttpErrorResponse) => {
-          let errorMessage = '';
-          if (error.error instanceof ErrorEvent) {
+        catchError((erreur: HttpErrorResponse) => {
+          let messageErreur = '';
+          if (erreur.error instanceof ErrorEvent) {
             // client-side error
             // errorMessage = `Erreur: ${error.error.message}`;
           } else {
             // server-side error
             // errorMessage = `Status: ${error.status}\nMessage: ${error.message}`;
-            errorMessage = `Status: ${error.status}\nMessage: ${error.error.message}`;
+            messageErreur = `Status: ${erreur.status}, Message: ${erreur.error.message}`;
           }
-          console.log(errorMessage)
-          return throwError(errorMessage);
+          // console.log(errorMessage)
+          return throwError(() => messageErreur);
         })
       )
   }

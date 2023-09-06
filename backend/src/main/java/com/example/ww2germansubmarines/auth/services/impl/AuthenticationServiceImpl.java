@@ -1,6 +1,5 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
-import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
 import com.example.ww2germansubmarines.auth.rest.dtos.ConnexionRequete;
 import com.example.ww2germansubmarines.auth.rest.dtos.EnregistrementRequete;
 import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
@@ -9,7 +8,6 @@ import com.example.ww2germansubmarines.auth.services.JwtService;
 import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.models.RoleModel;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
-import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
 import com.example.ww2germansubmarines.core.domain.repositories.UtilisateurRepository;
 import com.example.ww2germansubmarines.core.exceptions.RaisonEnum;
 import com.example.ww2germansubmarines.core.exceptions.Ww2gsException;
@@ -76,15 +74,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private void verifierEligibilite(EnregistrementRequete requete) {
         if (utilisateurRepository.existsByNomUtilisateur(requete.getNomUtilisateur())) {
-            throw new RuntimeException("L'utilisateur existe déjà");
+            throw new Ww2gsException(RaisonEnum.UTILISATEUR_DEJA_EXISTANT, HttpStatus.CONFLICT);
         }
 
         if (utilisateurRepository.existsByEmail(requete.getEmail())) {
-            throw new RuntimeException("L'adresse Email existe déjà");
+            throw new Ww2gsException(RaisonEnum.EMAIL_DEJA_EXISTANTE, HttpStatus.CONFLICT);
         }
 
         if (!StringUtils.equals(requete.getMotDePasse(), requete.getConfirmeMotDePasse())) {
-            throw new RuntimeException("Les mots de passe ne correspondent pas");
+            throw new Ww2gsException(RaisonEnum.CORRESPONDANCE_MOTS_DE_PASSE_INCORRECTE, HttpStatus.CONFLICT);
         }
     }
 
@@ -95,7 +93,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private void verifierMotDePasse(String motDePasse, String motDePasseHash) {
         if (!passwordEncoder.matches(motDePasse, motDePasseHash)) {
-            throw new Ww2gsException(RaisonEnum.CORRESPONDANCE_INCORRECTE, HttpStatus.FORBIDDEN);
+            throw new Ww2gsException(RaisonEnum.AUTHENTIFICATION_INCORRECTE, HttpStatus.FORBIDDEN);
         }
     }
 

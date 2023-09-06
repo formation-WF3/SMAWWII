@@ -15,8 +15,8 @@ export class ConnexionFormComponent implements OnInit {
     nomUtilisateur: '',
     motDePasse: ''
   };
-  error = false;
-  errorMessage?: String;
+  erreur = false;
+  erreurMessage?: String;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,7 +29,7 @@ export class ConnexionFormComponent implements OnInit {
     this.activatedRoute.queryParamMap.pipe(filter(
       params => params.has('error'))
     ).subscribe(params => {
-      this.error = true;
+      this.erreur = true;
     });
   }
 
@@ -39,17 +39,19 @@ export class ConnexionFormComponent implements OnInit {
       motDePasse: form.value.motDePasse
     };
 
-    this.authService.connexionUtilisateur(connexionChargementRequete).subscribe(
-    (connecte) => {
-        if (connecte) {
-          this.router.navigate(['/articles']);
-        } else {
-          this.router.navigate(['/connexion'], {
-            queryParams: {
-              error: true
-            }
-          });
-        }
+    this.authService.connexionUtilisateur(connexionChargementRequete).subscribe({
+        next: (connecte) => {
+          if (connecte) {
+            this.router.navigate(['/articles']);
+          } else {
+            this.router.navigate(['/connexion'], {
+              queryParams: {
+                erreur: true
+              }
+            });
+          }
+        },
+        error: (error) => (this.erreurMessage = error)
       }
     );
   }

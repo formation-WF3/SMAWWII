@@ -19,6 +19,7 @@ export class EnregistrementFormComponent implements OnInit {
   });
   soumis = false;
   chargement = false;
+  erreurMessage?: String;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,8 +60,8 @@ export class EnregistrementFormComponent implements OnInit {
         this.reinitialisationForm();
         this.router.navigate(['/articles']);
       },
-      error: error => {
-        console.error("L'enregistrement a échoué !")
+      error: (error) => {
+        this.erreurMessage = error;
         this.chargement = false;
       }
     });
