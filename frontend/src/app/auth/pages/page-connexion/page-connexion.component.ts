@@ -6,11 +6,11 @@ import {NgForm} from "@angular/forms";
 import {filter} from "rxjs";
 
 @Component({
-  selector: 'app-connexion-form',
-  templateUrl: './connexion-form.component.html',
-  styleUrls: ['./connexion-form.component.scss']
+  selector: 'app-page-connexion',
+  templateUrl: './page-connexion.component.html',
+  styleUrls: ['./page-connexion.component.scss']
 })
-export class ConnexionFormComponent implements OnInit {
+export class PageConnexionComponent implements OnInit {
   utilisateur = {
     nomUtilisateur: '',
     motDePasse: ''

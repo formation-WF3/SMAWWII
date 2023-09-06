@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EnregistrementFormComponent} from "./components/enregistrement-form/enregistrement-form.component";
-import {ConnexionFormComponent} from "./components/connexion-form/connexion-form.component";
+import {PageEnregistrementComponent} from "./pages/page-enregistrement/page-enregistrement.component";
+import {PageConnexionComponent} from "./pages/page-connexion/page-connexion.component";
 
 const routes: Routes = [
-  {path: 'enregistrement', component: EnregistrementFormComponent},
-  {path: 'connexion', component: ConnexionFormComponent},
+  {path: 'enregistrement', component: PageEnregistrementComponent},
+  {path: 'connexion', component: PageConnexionComponent},
   {path: '', redirectTo: 'enregistrement', pathMatch: 'full'},
   {path: '**', redirectTo: ''}
 ];
