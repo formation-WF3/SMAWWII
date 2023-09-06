@@ -3,18 +3,21 @@ import {CommonModule} from '@angular/common';
 
 import {AuthRoutingModule} from './auth-routing.module';
 import {EnregistrementFormComponent} from "./components/enregistrement-form/enregistrement-form.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./services/auth.service";
+import {ConnexionFormComponent} from './components/connexion-form/connexion-form.component';
 
 
 @NgModule({
   declarations: [
-    EnregistrementFormComponent
+    EnregistrementFormComponent,
+    ConnexionFormComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     AuthService

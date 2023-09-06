@@ -1,0 +1,18 @@
+<header [style.background-image]="'url(assets/images/type-XB.png)'" class="section-header">
+
+  <div class="row justify-content-between h-100">
+    <div class="d-flex flex-column justify-content-between col-sm-9 pt-2">
+      <div class="titre ms-3">
+        <h1>{{ titre }}</h1>
+      </div>
+
+      <ul class="liens-auth d-flex gap-4 ms-3 mb-2 ps-0">
+        <li><a [routerLink]="['/auth/connexion']" class="nav-link" routerLinkActive="active">Se connecter</a></li>
+
+        <li><a [routerLink]="['/auth/enregistrement']" class="nav-link" routerLinkActive="active">S'inscrire</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+</header>

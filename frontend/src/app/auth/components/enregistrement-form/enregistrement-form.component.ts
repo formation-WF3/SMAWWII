@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Validation} from "../../../validators/validation.validator";
+import {Validation} from "../../../core/validators/validation.validator";
 import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
 
@@ -19,12 +19,17 @@ export class EnregistrementFormComponent implements OnInit {
   });
   soumis = false;
   chargement = false;
+  erreurMessage?: String;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
+  }
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.formEnregistrement.controls;
   }
 
   ngOnInit() {
@@ -43,10 +48,6 @@ export class EnregistrementFormComponent implements OnInit {
     });
   }
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.formEnregistrement.controls;
-  }
-
   enregistrementUtilisateurForm(): void {
     this.soumis = true;
 
@@ -59,11 +60,11 @@ export class EnregistrementFormComponent implements OnInit {
         this.reinitialisationForm();
         this.router.navigate(['/articles']);
       },
-      error: error => {
-        console.error("L'enregistrement a échoué !")
+      error: (error) => {
+        this.erreurMessage = error;
         this.chargement = false;
       }
-  });
+    });
   }
 
   reinitialisationForm(): void {

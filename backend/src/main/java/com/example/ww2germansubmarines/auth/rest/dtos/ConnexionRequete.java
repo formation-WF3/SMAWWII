@@ -17,6 +17,6 @@ public class ConnexionRequete {
     private String nomUtilisateur;
 
     @NotBlank(message = "Le mot de passe est requis")
-    @Size(min = 8, max = 20, message = "Doit être de 8 à 20 caractères")
+    @Size(min = 8, message = "Doit être de 8 caractères minimum")
     private String motDePasse;
 }

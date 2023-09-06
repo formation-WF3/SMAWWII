@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.security.sasl.AuthenticationException;
+
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -17,6 +19,27 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         logger.error(ex.getMessage());
         return ResponseEntity
                 .status(ex.getHttpStatus())
+                .body(ErreurReponse.builder().message(ex.getMessage()).build());
+    }
+
+    @ExceptionHandler(value = AuthenticationException.class)
+    public ResponseEntity<ErreurReponse> handleAuthenticationException(AuthenticationException ex) {
+        logger.error(ex.getMessage());
+        return ResponseEntity
+                .status(403)
+                .body(ErreurReponse.builder().message(ex.getMessage()).build());
+    }
+
+//    @ExceptionHandler(value = BadCredentialsException.class)
+//    public ResponseEntity<ErreurReponse> handleBadCredentialsException(BadCredentialsException ex) {
+//        logger.error(ex.getMessage());
+//        throw new Ww2gsException(RaisonEnum.IDENTIFICATION_INCORRECTE, HttpStatus.FORBIDDEN);
+//    }
+
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseEntity<ErreurReponse> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return ResponseEntity
+                .status(401)
                 .body(ErreurReponse.builder().message(ex.getMessage()).build());
     }
 

@@ -6,11 +6,12 @@ import {AppComponent} from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import * as fr from '@angular/common/locales/fr';
 
+import {CoreModule} from "./core/core.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ArticleModule} from "./article/article.module";
 import {registerLocaleData} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
 import {AuthModule} from "./auth/auth.module";
+import {EnPartageModule} from "./en-partage/en-partage.module";
 
 
 @NgModule({
@@ -21,12 +22,14 @@ import {AuthModule} from "./auth/auth.module";
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    CoreModule,
+    EnPartageModule,
     HttpClientModule,
     ArticleModule,
     AuthModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR' }
+    {provide: LOCALE_ID, useValue: 'fr-FR'}
   ],
   bootstrap: [AppComponent]
 })
