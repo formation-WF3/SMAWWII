@@ -9,5 +9,4 @@ import {Article} from "../../../en-partage/models/dtos/Article";
 export class CarteArticleComponent {
   @Input()
   article!: Article;
-
 }

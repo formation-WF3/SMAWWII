@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -10,15 +10,24 @@ export class HeaderComponent implements OnInit {
   @Input()
   titre?: string;
 
+  loggedIn = false;
+  nomUtilisateur = '';
+  token = '';
+
   constructor(
-    private router: Router
+    private authService: AuthService
   ) {
   }
 
   ngOnInit() {
-  }
-
-  goToConnexion() {
-    this.router.navigate(['/auth/connexion']);
+    // Permet de vérifier, lors d'un raffraichissement, si un utilisateur est connecté
+    this.loggedIn = this.authService.isLogged();
+    this.authService.loggedIn$.subscribe(loggedIn => {
+      this.loggedIn = loggedIn;
+      if (this.loggedIn) {
+        this.nomUtilisateur = this.authService.getNomUtilisateur();
+        this.token = this.authService.getToken();
+      }
+    });
   }
 }

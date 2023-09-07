@@ -40,8 +40,10 @@ export class PageConnexionComponent implements OnInit {
     };
 
     this.authService.connexionUtilisateur(connexionChargementRequete).subscribe({
-        next: (connecte) => {
-          if (connecte) {
+        next: (token) => {
+          if (token) {
+            this.authService.UtilisateurEnLocalstorage(form.value.nomUtilisateur);
+            this.authService.tokenEnLocalstorage(token);
             this.router.navigate(['/articles']);
           } else {
             this.router.navigate(['/connexion'], {
