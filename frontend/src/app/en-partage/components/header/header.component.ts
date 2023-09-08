@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
     this.authService.loggedIn$.subscribe(loggedIn => {
       this.loggedIn = loggedIn;
       if (this.loggedIn) {
-        this.nomUtilisateur = this.authService.getNomUtilisateur();
         this.token = this.authService.getToken();
       }
     });

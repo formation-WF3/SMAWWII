@@ -1,15 +1,15 @@
 <article class="flex-column">
 
   <header>
-    <h2 class="titre-section">{{ article.titre }}</h2>
+    <h2 class="titre-section">{{ article?.titre }}</h2>
 
     <p class="mb-1">
-      Créé par {{ article.utilisateurNom }}, le <time>{{ article.dateCreation | date: 'dd MMMM yyyy à HH:mm' }}</time>
+      Créé par {{ article?.utilisateurNom }}, le <time>{{ article?.dateCreation | date: 'dd MMMM yyyy à HH:mm' }}</time>
     </p>
 
-    <img src="./assets/images/articles/{{ article.imageSrc }}" alt="{{ article.imageSrc }}">
+    <img alt="{{ article?.imageSrc }}" src="./assets/images/articles/{{ article?.imageSrc }}">
   </header>
 
-  <p>{{ article.texte }}</p>
+  <p>{{ article?.texte }}</p>
 
 </article>

@@ -26,16 +26,18 @@ public class WebSecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
 
-    private final String[] routesAutorisees = {"/auth/**", "/articles/**"};
+    private final String[] accessiblesATous = {"/auth/**", "/articles/**"};
+    private final String[] accessiblesAuxMembres = {};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request
-                        .antMatchers(routesAutorisees).permitAll()
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
+        http.csrf(AbstractHttpConfigurer::disable);
+
+        http.authorizeHttpRequests(request -> request
+                .antMatchers(accessiblesATous).permitAll().anyRequest().authenticated()
+        );
+
+        http.sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

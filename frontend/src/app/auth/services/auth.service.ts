@@ -28,13 +28,9 @@ export class AuthService {
     return this.httpClient.post(`${this.API_URL}/connexion`, valeursForm);
   }
 
-  tokenEnLocalstorage(token: Token) {
+  sauvegarderToken(token: Token) {
     localStorage.setItem('token', JSON.stringify(token));
     this.logger.next(true);
-  }
-
-  UtilisateurEnLocalstorage(nomUtilisateur: string) {
-    localStorage.setItem('utilisateur', nomUtilisateur);
   }
 
   isLogged(): boolean {
@@ -45,7 +41,4 @@ export class AuthService {
     return localStorage.getItem('token') as string;
   }
 
-  getNomUtilisateur(): string {
-    return localStorage.getItem('utilisateur') as string;
-  }
 }

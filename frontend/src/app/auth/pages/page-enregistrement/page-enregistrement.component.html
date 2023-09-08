@@ -58,7 +58,7 @@
               class="form-control"
               formControlName="confirmeMotDePasse"
               id="confirmeMotDePasse"
-              placeholder="Confirmer votre mot de passe"
+              placeholder="Confirmation du mot de passe"
               type="password"
             ><!-- is-invalid : class Bootstrap -->
             <div *ngIf="soumis && f['confirmeMotDePasse'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
@@ -82,7 +82,6 @@
             ><!-- is-invalid : class Bootstrap -->
             <div *ngIf="soumis && f['email'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
               <span *ngIf="f['email'].errors?.['required']">Entrez votre adresse Email</span>
-              <span *ngIf="f['email'].errors?.['email']">Email invalide</span>
               <span *ngIf="f['email'].errors?.['emailInvalide']">L'adresse Email est invalide</span>
             </div>
           </div>
