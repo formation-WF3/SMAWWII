@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Utilisateur} from "../../models/utilisateur";
 import {EnregistrementChargementRequete} from "../models/enregistrement-chargement-requete";
 import {ConnexionChargementRequete} from "../models/connexion-chargement-requete";
-import {Token} from "@angular/compiler";
+import {JwtAuthReponse} from "../models/JwtAuthReponse";
 
 @Injectable()
 export class AuthService {
@@ -20,16 +19,16 @@ export class AuthService {
     return this.logger.asObservable();
   }
 
-  enregistrementUtilisateur(valeursForm: EnregistrementChargementRequete): Observable<Utilisateur> {
+  enregistrementUtilisateur(valeursForm: EnregistrementChargementRequete): Observable<JwtAuthReponse> {
     return this.httpClient.post(`${this.API_URL}/enregistrement`, valeursForm);
   }
 
-  connexionUtilisateur(valeursForm: ConnexionChargementRequete): Observable<any> {
+  connexionUtilisateur(valeursForm: ConnexionChargementRequete): Observable<JwtAuthReponse> {
     return this.httpClient.post(`${this.API_URL}/connexion`, valeursForm);
   }
 
-  sauvegarderToken(token: Token) {
-    localStorage.setItem('token', JSON.stringify(token));
+  sauvegarderToken(token: string) {
+    localStorage.setItem('token', token);
     this.logger.next(true);
   }
 

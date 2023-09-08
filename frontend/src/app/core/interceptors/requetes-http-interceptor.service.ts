@@ -3,21 +3,23 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {catchError, Observable, retry, throwError} from 'rxjs';
 import {formatDate} from "@angular/common";
 import {AuthService} from "../../auth/services/auth.service";
+import {JwtAuthReponse} from "../../auth/models/JwtAuthReponse";
 
 @Injectable()
 export class RequetesHttpInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService: AuthService,
+    private authService: AuthService
   ) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const requeteModifiee = req.clone();
-    const token = this.authService.getToken();
-    if (token) {
-      console.log(token);
-      requeteModifiee.headers.set("Authorization", "Bearer " + token)
+    let jwtAuthReponse: JwtAuthReponse = {};
+    jwtAuthReponse.token = this.authService.getToken();
+    if (jwtAuthReponse.token) {
+      console.log(jwtAuthReponse.token);
+      requeteModifiee.headers.set("Authorization", "Bearer " + jwtAuthReponse.token)
     }
     return next.handle(requeteModifiee).pipe(
       retry(1),
