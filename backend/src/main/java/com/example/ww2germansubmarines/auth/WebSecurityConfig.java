@@ -23,18 +23,18 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+    private final static String[] ACCES_LIBRES = {"/auth/**", "/articles/**"};
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
-
-    private final String[] accessiblesATous = {"/auth/**", "/articles/**"};
-    private final String[] accessiblesAuxMembres = {};
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
 
         http.authorizeHttpRequests(request -> request
-                .antMatchers(accessiblesATous).permitAll().anyRequest().authenticated()
+                .antMatchers(ACCES_LIBRES).permitAll()
+                .anyRequest().authenticated()
         );
 
         http.sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))

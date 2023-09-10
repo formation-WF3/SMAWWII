@@ -3,7 +3,8 @@ import {Observable, Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {EnregistrementChargementRequete} from "../models/enregistrement-chargement-requete";
 import {ConnexionChargementRequete} from "../models/connexion-chargement-requete";
-import {JwtAuthReponse} from "../models/JwtAuthReponse";
+import {JwtAuthReponse} from "../models/jwtAuthReponse";
+import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
@@ -38,6 +39,14 @@ export class AuthService {
 
   getToken(): string {
     return localStorage.getItem('token') as string;
+  }
+
+  decodeToken(token: string): string|null {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
   }
 
 }

@@ -3,7 +3,6 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {catchError, Observable, retry, throwError} from 'rxjs';
 import {formatDate} from "@angular/common";
 import {AuthService} from "../../auth/services/auth.service";
-import {JwtAuthReponse} from "../../auth/models/JwtAuthReponse";
 
 @Injectable()
 export class RequetesHttpInterceptor implements HttpInterceptor {
@@ -14,14 +13,17 @@ export class RequetesHttpInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const requeteModifiee = req.clone();
-    let jwtAuthReponse: JwtAuthReponse = {};
-    jwtAuthReponse.token = this.authService.getToken();
-    if (jwtAuthReponse.token) {
-      console.log(jwtAuthReponse.token);
-      requeteModifiee.headers.set("Authorization", "Bearer " + jwtAuthReponse.token)
+    if (req.url.endsWith('/auth/connexion')) {
+      return next.handle(req);
     }
-    return next.handle(requeteModifiee).pipe(
+
+    const token = this.authService.getToken();
+
+    if (token) {
+      req = this.ajouterToken(req, token);
+    }
+
+    return next.handle(req).pipe(
       retry(1),
       catchError((erreur: HttpErrorResponse) => {
         let messageErreur = formatDate(new Date, 'dd/MM/yyyy HH:mm', 'fr') + `, ${erreur.error.message}`;

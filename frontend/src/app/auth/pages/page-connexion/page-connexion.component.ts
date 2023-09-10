@@ -4,7 +4,6 @@ import {AuthService} from "../../services/auth.service";
 import {ConnexionChargementRequete} from "../../models/connexion-chargement-requete";
 import {NgForm} from "@angular/forms";
 import {filter} from "rxjs";
-import {JwtAuthReponse} from "../../models/JwtAuthReponse";
 
 @Component({
   selector: 'app-page-connexion',
@@ -17,13 +16,12 @@ export class PageConnexionComponent implements OnInit {
     motDePasse: ''
   };
   erreur = false;
-  jwtAuthReponse?: JwtAuthReponse;
   erreurMessage?: String;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {
   }
 
@@ -44,7 +42,11 @@ export class PageConnexionComponent implements OnInit {
     this.authService.connexionUtilisateur(connexionChargementRequete).subscribe({
         next: (jwtAuthReponse) => {
           if (jwtAuthReponse.token) {
+            let tokenDecode = this.authService.decodeToken(jwtAuthReponse.token);
+            console.log(tokenDecode);
+
             this.authService.sauvegarderToken(jwtAuthReponse.token);
+
             this.router.navigate(['/articles']);
           } else {
             this.router.navigate(['/connexion'], {
