@@ -6,11 +6,11 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-enregistrement-form',
-  templateUrl: './enregistrement-form.component.html',
-  styleUrls: ['./enregistrement-form.component.scss']
+  selector: 'app-page-enregistrement',
+  templateUrl: './page-enregistrement.component.html',
+  styleUrls: ['./page-enregistrement.component.scss']
 })
-export class EnregistrementFormComponent implements OnInit {
+export class PageEnregistrementComponent implements OnInit {
   formEnregistrement: FormGroup = new FormGroup({
     nomUtilisateur: new FormControl(''),
     motDePasse: new FormControl(''),

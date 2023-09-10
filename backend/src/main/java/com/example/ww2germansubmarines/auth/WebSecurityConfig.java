@@ -23,19 +23,21 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+    private final static String[] ACCES_LIBRES = {"/auth/**", "/articles/**"};
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
 
-    private final String[] routesAutorisees = {"/auth/**", "/articles/**"};
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(request -> request
-                        .antMatchers(routesAutorisees).permitAll()
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
+        http.csrf(AbstractHttpConfigurer::disable);
+
+        http.authorizeHttpRequests(request -> request
+                .antMatchers(ACCES_LIBRES).permitAll()
+                .anyRequest().authenticated()
+        );
+
+        http.sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

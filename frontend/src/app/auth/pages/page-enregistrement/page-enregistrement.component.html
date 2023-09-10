@@ -1,0 +1,104 @@
+<div class="section-enregistrement row justify-content-center pt-5">
+
+  <div class="card col-md-6 px-0">
+    <div class="card-header text-white bg-info">Enregistrement</div>
+
+    <div class="card-body">
+
+      <div *ngIf="erreurMessage" class="mb-3 alert alert-danger">{{ erreurMessage }}</div>
+
+      <form (ngSubmit)="enregistrementUtilisateurForm()" [formGroup]="formEnregistrement" novalidate>
+
+        <div class="form-row">
+          <div class="col-md-6 col-sm-9 mb-3">
+            <label for="nomUtilisateur">Nom d'utilisateur</label>
+            <input [ngClass]="{
+                'is-invalid': soumis && f['nomUtilisateur'].errors
+              }"
+              class="form-control"
+              formControlName="nomUtilisateur"
+              id="nomUtilisateur"
+              placeholder="Nom d'utilisateur"
+              type="text"
+            ><!-- is-invalid : class Bootstrap -->
+
+            <div *ngIf="soumis && f['nomUtilisateur'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
+              <span *ngIf="f['nomUtilisateur'].errors?.['required']">Entrez votre nom d'utilisateur</span>
+              <span *ngIf="f['nomUtilisateur'].errors?.['minlength']">Minimum 4 caractères</span>
+              <span *ngIf="f['nomUtilisateur'].errors?.['maxlength']">Maximum 30 caractères</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 col-sm-9 mb-3">
+            <label for="motDePasse">Mot de passe</label>
+            <input [ngClass]="{
+                'is-invalid': soumis && f['motDePasse'].errors
+              }"
+              class="form-control"
+              formControlName="motDePasse"
+              id="motDePasse"
+              placeholder="Mot de passe"
+              type="password"
+            ><!-- is-invalid : class Bootstrap -->
+            <div *ngIf="soumis && f['motDePasse'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
+              <span *ngIf="f['motDePasse'].errors?.['required']">Entrez votre mot de passe</span>
+              <span *ngIf="f['motDePasse'].errors?.['motDePasseInvalide']">Le mot de passe doit être composé d'au moins 8 caractères, d'au moins une lettre majuscule, d'au moins une lettre minuscule, et d'au moins un chiffre</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 col-sm-9 mb-3">
+            <label for="confirmeMotDePasse">Confirmation du mot de passe</label>
+            <input [ngClass]="{
+                'is-invalid': soumis && f['confirmeMotDePasse'].errors
+              }"
+              class="form-control"
+              formControlName="confirmeMotDePasse"
+              id="confirmeMotDePasse"
+              placeholder="Confirmation du mot de passe"
+              type="password"
+            ><!-- is-invalid : class Bootstrap -->
+            <div *ngIf="soumis && f['confirmeMotDePasse'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
+              <span *ngIf="f['confirmeMotDePasse'].errors?.['required']">Confirmez votre mot de passe</span>
+              <span *ngIf="f['confirmeMotDePasse'].errors?.['nonIdentiques']">Les mots de passe ne correspondent pas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6 col-sm-9 mb-3">
+            <label for="email">Adresse Email</label>
+            <input [ngClass]="{
+                'is-invalid': soumis && f['email'].errors
+              }"
+              class="form-control"
+              formControlName="email"
+              id="email"
+              placeholder="adresse@email.fr"
+              type="email"
+            ><!-- is-invalid : class Bootstrap -->
+            <div *ngIf="soumis && f['email'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
+              <span *ngIf="f['email'].errors?.['required']">Entrez votre adresse Email</span>
+              <span *ngIf="f['email'].errors?.['emailInvalide']">L'adresse Email est invalide</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group text-right">
+          <button [disabled]="chargement" class="btn btn-primary" type="submit">
+            <span *ngIf="chargement" class="spinner-border spinner-border-sm mr-1"></span>
+            S'inscrire
+          </button>
+
+          <button (click)="reinitialisationForm()" class="btn btn-info float-end" type="button">
+            Effacer
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

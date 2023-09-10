@@ -26,14 +26,5 @@ export class DetailArticleComponent implements OnInit {
         );
       }
     });
-
-    this.activatedRoute.paramMap.subscribe(params => {
-      const id = params.get('id') as string;
-      if (id) {
-        this.articleService.getById(+id).subscribe(
-          article => this.article = article
-        );
-      }
-    });
   }
 }

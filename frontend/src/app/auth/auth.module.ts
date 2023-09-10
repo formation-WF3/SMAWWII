@@ -2,16 +2,16 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {AuthRoutingModule} from './auth-routing.module';
-import {EnregistrementFormComponent} from "./components/enregistrement-form/enregistrement-form.component";
+import {PageEnregistrementComponent} from "./pages/page-enregistrement/page-enregistrement.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./services/auth.service";
-import {ConnexionFormComponent} from './components/connexion-form/connexion-form.component';
+import {PageConnexionComponent} from './pages/page-connexion/page-connexion.component';
 
 
 @NgModule({
   declarations: [
-    EnregistrementFormComponent,
-    ConnexionFormComponent
+    PageEnregistrementComponent,
+    PageConnexionComponent
   ],
   imports: [
     CommonModule,

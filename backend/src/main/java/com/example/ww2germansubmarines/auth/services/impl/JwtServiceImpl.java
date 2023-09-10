@@ -1,11 +1,15 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
 import com.example.ww2germansubmarines.auth.services.JwtService;
+import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
+import com.example.ww2germansubmarines.core.rest.dtos.UtilisateurDto;
+import com.example.ww2germansubmarines.core.services.adapters.UtilisateurAdapter;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -16,10 +20,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+@RequiredArgsConstructor
 @Service
 public class JwtServiceImpl implements JwtService {
+    private final UtilisateurAdapter utilisateurAdapter;
+
     @Value("${token.signing.key}")
     private String jwtSigningKey;
+
     @Override
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -27,7 +35,10 @@ public class JwtServiceImpl implements JwtService {
 
     @Override
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        HashMap<String, Object> extraClaims = new HashMap<>();
+        UtilisateurDto utilisateurDto = utilisateurAdapter.toDto((UtilisateurModel) userDetails);
+        extraClaims.put("utilisateur", utilisateurDto);
+        return generateToken(extraClaims, userDetails);
     }
 
     @Override

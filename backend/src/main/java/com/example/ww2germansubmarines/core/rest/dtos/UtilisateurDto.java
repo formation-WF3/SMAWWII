@@ -1,5 +1,8 @@
 package com.example.ww2germansubmarines.core.rest.dtos;
 
+import com.example.ww2germansubmarines.core.domain.enums.RoleEnum;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,12 +15,16 @@ import java.time.LocalDateTime;
 public class UtilisateurDto {
     private long id;
     private String nomUtilisateur;
-    private String motDePasse;
     private String email;
     private boolean emailVerifiee;
     private String cleActivation;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime dateActivation;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime dateEnregistrement;
+
     private boolean actif;
-    private RoleDto role;
+    private RoleEnum role;
 }

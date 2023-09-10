@@ -6,11 +6,11 @@ import {NgForm} from "@angular/forms";
 import {filter} from "rxjs";
 
 @Component({
-  selector: 'app-connexion-form',
-  templateUrl: './connexion-form.component.html',
-  styleUrls: ['./connexion-form.component.scss']
+  selector: 'app-page-connexion',
+  templateUrl: './page-connexion.component.html',
+  styleUrls: ['./page-connexion.component.scss']
 })
-export class ConnexionFormComponent implements OnInit {
+export class PageConnexionComponent implements OnInit {
   utilisateur = {
     nomUtilisateur: '',
     motDePasse: ''
@@ -21,7 +21,7 @@ export class ConnexionFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {
   }
 
@@ -40,8 +40,13 @@ export class ConnexionFormComponent implements OnInit {
     };
 
     this.authService.connexionUtilisateur(connexionChargementRequete).subscribe({
-        next: (connecte) => {
-          if (connecte) {
+        next: (jwtAuthReponse) => {
+          if (jwtAuthReponse.token) {
+            let tokenDecode = this.authService.decodeToken(jwtAuthReponse.token);
+            console.log(tokenDecode);
+
+            this.authService.sauvegarderToken(jwtAuthReponse.token);
+
             this.router.navigate(['/articles']);
           } else {
             this.router.navigate(['/connexion'], {
