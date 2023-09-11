@@ -17,6 +17,7 @@ export class PageConnexionComponent implements OnInit {
   };
   erreur = false;
   erreurMessage?: String;
+  loggedIn = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,14 +40,13 @@ export class PageConnexionComponent implements OnInit {
       motDePasse: form.value.motDePasse
     };
 
-    this.authService.connexionUtilisateur(connexionChargementRequete).subscribe({
+    this.authService.connecter(connexionChargementRequete).subscribe({
         next: (jwtAuthReponse) => {
           if (jwtAuthReponse.token) {
-            let tokenDecode = this.authService.decodeToken(jwtAuthReponse.token);
-            console.log(tokenDecode);
-
+            console.log(this.authService.decodeToken(jwtAuthReponse.token));
             this.authService.sauvegarderToken(jwtAuthReponse.token);
 
+            this.loggedIn = true;
             this.router.navigate(['/articles']);
           } else {
             this.router.navigate(['/connexion'], {
@@ -59,6 +59,7 @@ export class PageConnexionComponent implements OnInit {
         error: (error) => (this.erreurMessage = error)
       }
     );
+
   }
 
   reinitialisationForm(form: NgForm): void {

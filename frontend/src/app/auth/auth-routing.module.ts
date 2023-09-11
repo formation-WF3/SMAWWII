@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PageEnregistrementComponent} from "./pages/page-enregistrement/page-enregistrement.component";
+import {PageInscriptionComponent} from "./pages/page-inscription/page-inscription.component";
 import {PageConnexionComponent} from "./pages/page-connexion/page-connexion.component";
 
 const routes: Routes = [
-  {path: 'enregistrement', component: PageEnregistrementComponent},
+  {path: 'inscription', component: PageInscriptionComponent},
   {path: 'connexion', component: PageConnexionComponent},
-  {path: '', redirectTo: 'enregistrement', pathMatch: 'full'},
+  {path: 'deconnexion', redirectTo: '/accueil', pathMatch: 'full'},
+  {path: '', redirectTo: 'inscription', pathMatch: 'full'},
   {path: '**', redirectTo: ''}
 ];
 

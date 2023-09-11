@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
   token = '';
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
   }
 
@@ -29,4 +31,10 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+  deconnexion() {
+    this.authService.deconnecter();
+    this.router.navigate(['/accueil'])
+  }
+
 }

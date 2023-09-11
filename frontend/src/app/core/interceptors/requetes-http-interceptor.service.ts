@@ -14,7 +14,13 @@ export class RequetesHttpInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.endsWith('/auth/connexion')) {
-      return next.handle(req);
+      return next.handle(req).pipe(
+        retry(1),
+        catchError((erreur: HttpErrorResponse) => {
+          let messageErreur = formatDate(new Date, 'dd/MM/yyyy HH:mm', 'fr') + `, ${erreur.error.message}`;
+          return throwError(() => messageErreur);
+        })
+      );
     }
 
     const token = this.authService.getToken();

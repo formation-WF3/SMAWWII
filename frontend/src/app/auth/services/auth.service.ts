@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable, Subject} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {EnregistrementChargementRequete} from "../models/enregistrement-chargement-requete";
+import {InscriptionChargementRequete} from "../models/inscription-chargement-requete";
 import {ConnexionChargementRequete} from "../models/connexion-chargement-requete";
 import {JwtAuthReponse} from "../models/jwtAuthReponse";
 import jwt_decode from 'jwt-decode';
@@ -9,7 +9,7 @@ import jwt_decode from 'jwt-decode';
 @Injectable()
 export class AuthService {
   API_URL: string = 'http://localhost:8080/api/auth';
-  private logger = new Subject<boolean>();
+  private _logger = new Subject<boolean>();
 
   constructor(
     private httpClient: HttpClient
@@ -17,20 +17,25 @@ export class AuthService {
   }
 
   get loggedIn$(): Observable<boolean> {
-    return this.logger.asObservable();
+    return this._logger.asObservable();
   }
 
-  enregistrementUtilisateur(valeursForm: EnregistrementChargementRequete): Observable<JwtAuthReponse> {
-    return this.httpClient.post(`${this.API_URL}/enregistrement`, valeursForm);
+  inscrire(valeursForm: InscriptionChargementRequete): Observable<JwtAuthReponse> {
+    return this.httpClient.post(`${this.API_URL}/inscription`, valeursForm);
   }
 
-  connexionUtilisateur(valeursForm: ConnexionChargementRequete): Observable<JwtAuthReponse> {
+  connecter(valeursForm: ConnexionChargementRequete): Observable<JwtAuthReponse> {
     return this.httpClient.post(`${this.API_URL}/connexion`, valeursForm);
+  }
+
+  deconnecter() {
+    localStorage.clear();
+    this._logger.next(false);
   }
 
   sauvegarderToken(token: string) {
     localStorage.setItem('token', token);
-    this.logger.next(true);
+    this._logger.next(true);
   }
 
   isLogged(): boolean {

@@ -1,4 +1,4 @@
-# Projet WW2 German Submarines
+# Projet Sous-marins allemands WW2
 
 ### Backend
 

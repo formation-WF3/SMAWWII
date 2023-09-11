@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {AuthRoutingModule} from './auth-routing.module';
-import {PageEnregistrementComponent} from "./pages/page-enregistrement/page-enregistrement.component";
+import {PageInscriptionComponent} from "./pages/page-inscription/page-inscription.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./services/auth.service";
 import {PageConnexionComponent} from './pages/page-connexion/page-connexion.component';
@@ -10,7 +10,7 @@ import {PageConnexionComponent} from './pages/page-connexion/page-connexion.comp
 
 @NgModule({
   declarations: [
-    PageEnregistrementComponent,
+    PageInscriptionComponent,
     PageConnexionComponent
   ],
   imports: [

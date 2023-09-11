@@ -11,10 +11,11 @@ header {
   color: var(--bleu-oxford);
 }
 
-.liens-auth > li:first-child {
+.liens-connecter-deconnecter {
+  cursor: pointer;
   color: var(--gris-sombre)
 }
 
-.liens-auth > li:last-child {
+.lien-inscrire {
   color: var(--gris-platine)
 }

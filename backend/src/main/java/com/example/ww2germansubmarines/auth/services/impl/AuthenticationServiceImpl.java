@@ -1,7 +1,7 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
 import com.example.ww2germansubmarines.auth.rest.dtos.ConnexionRequete;
-import com.example.ww2germansubmarines.auth.rest.dtos.EnregistrementRequete;
+import com.example.ww2germansubmarines.auth.rest.dtos.InscriptionRequete;
 import com.example.ww2germansubmarines.auth.rest.dtos.JwtAuthenticationResponse;
 import com.example.ww2germansubmarines.auth.services.AuthenticationService;
 import com.example.ww2germansubmarines.auth.services.JwtService;
@@ -33,12 +33,13 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public JwtAuthenticationResponse enregistrement(EnregistrementRequete requete) {
+    public JwtAuthenticationResponse inscription(InscriptionRequete requete) {
         verifierEligibilite(requete);
 
         UtilisateurModel nouveauMembre = creerNouveauMembre(requete);
 
-        String jwt = jwtService.generateToken(nouveauMembre);
+//        String jwt = jwtService.generateToken(nouveauMembre);
+        String jwt = "Vous êtes bien enregistrés";
 
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
@@ -56,7 +57,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 
-    private UtilisateurModel creerNouveauMembre(EnregistrementRequete requete) {
+    private UtilisateurModel creerNouveauMembre(InscriptionRequete requete) {
         RoleModel roleMembre = roleService.getByNom(RoleEnum.MEMBRE);
 
         UtilisateurModel utilisateurModel = UtilisateurModel.builder()
@@ -72,7 +73,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return utilisateurRepository.save(utilisateurModel);
     }
 
-    private void verifierEligibilite(EnregistrementRequete requete) {
+    private void verifierEligibilite(InscriptionRequete requete) {
         if (utilisateurRepository.existsByNomUtilisateur(requete.getNomUtilisateur())) {
             throw new Ww2gsException(RaisonEnum.UTILISATEUR_DEJA_EXISTANT, HttpStatus.CONFLICT);
         }

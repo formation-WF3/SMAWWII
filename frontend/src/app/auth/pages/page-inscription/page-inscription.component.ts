@@ -6,12 +6,12 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-page-enregistrement',
-  templateUrl: './page-enregistrement.component.html',
-  styleUrls: ['./page-enregistrement.component.scss']
+  selector: 'app-page-inscription',
+  templateUrl: './page-inscription.component.html',
+  styleUrls: ['./page-inscription.component.scss']
 })
-export class PageEnregistrementComponent implements OnInit {
-  formEnregistrement: FormGroup = new FormGroup({
+export class PageInscriptionComponent implements OnInit {
+  formInscription: FormGroup = new FormGroup({
     nomUtilisateur: new FormControl(''),
     motDePasse: new FormControl(''),
     confirmeMotDePasse: new FormControl(''),
@@ -29,11 +29,11 @@ export class PageEnregistrementComponent implements OnInit {
   }
 
   get f(): { [key: string]: AbstractControl } {
-    return this.formEnregistrement.controls;
+    return this.formInscription.controls;
   }
 
   ngOnInit() {
-    this.formEnregistrement = this.formBuilder.group({
+    this.formInscription = this.formBuilder.group({
       nomUtilisateur: ['',
         [Validators.required,
         Validators.minLength(4),
@@ -48,14 +48,14 @@ export class PageEnregistrementComponent implements OnInit {
     });
   }
 
-  enregistrementUtilisateurForm(): void {
+  inscriptionUtilisateurForm(): void {
     this.soumis = true;
 
-    if (this.formEnregistrement.invalid) {
+    if (this.formInscription.invalid) {
       return;
     }
 
-    this.authService.enregistrementUtilisateur({...this.formEnregistrement.value}).subscribe({
+    this.authService.inscrire({...this.formInscription.value}).subscribe({
       next: data => {
         this.reinitialisationForm();
         this.router.navigate(['/articles']);
@@ -69,7 +69,7 @@ export class PageEnregistrementComponent implements OnInit {
 
   reinitialisationForm(): void {
     this.soumis = false;
-    this.formEnregistrement.reset();
+    this.formInscription.reset();
   }
 
 }
