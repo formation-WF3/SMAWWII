@@ -1,7 +1,5 @@
-<h3 class="titre-section">{{ titre }}</h3>
+<h3 class="titre-section mb-4 text-center">{{ titre }}</h3>
 
-<div>
-
-
-
+<div class="detail-commentaires">
+  <app-detail-commentaire *ngFor="let commentaire of commentaires" [commentaire]="commentaire" class="col-12"></app-detail-commentaire>
 </div>

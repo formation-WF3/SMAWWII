@@ -1,0 +1,14 @@
+<div class="section-detail rounded-3">
+
+  <div class="header d-flex justify-content-between mb-1">
+    <p class="creation pt-2">{{ commentaire.utilisateurNom }}, le {{ commentaire.dateCreation | date: 'dd MMMM yyyy à HH:mm'}}</p>
+
+    <div class="bouton-icone">
+      <button class="btn btn-warning">Signaler</button>
+      <a class="btn btn-secondary"><span class="material-icons">more_vert</span></a>
+    </div>
+  </div>
+
+  <p class="body px-3 pb-2 text-justify">{{ commentaire.texte }}</p>
+
+</div>

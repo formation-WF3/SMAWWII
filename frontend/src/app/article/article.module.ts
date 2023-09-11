@@ -8,6 +8,7 @@ import {CarteArticleComponent} from './components/carte-article/carte-article.co
 import {ArticleService} from "./services/article.service";
 import {DetailArticleComponent} from './components/detail-article/detail-article.component';
 import {CommentaireModule} from "../commentaire/commentaire.module";
+import {CommentaireService} from "../commentaire/services/commentaire.service";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {CommentaireModule} from "../commentaire/commentaire.module";
     CommentaireModule
   ],
   providers: [
-    ArticleService
+    ArticleService,
+    CommentaireService
   ]
 })
 export class ArticleModule {

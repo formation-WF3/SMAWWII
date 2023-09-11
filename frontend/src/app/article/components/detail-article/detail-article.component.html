@@ -3,14 +3,14 @@
   <header>
     <h2 class="titre-page">{{ article?.titre }}</h2>
 
-    <p class="mb-1">
+    <p class="creation mb-1">
       Créé par {{ article?.utilisateurNom }}, le <time>{{ article?.dateCreation | date: 'dd MMMM yyyy à HH:mm' }}</time>
     </p>
 
     <img alt="{{ article?.imageSrc }}" src="./assets/images/articles/{{ article?.imageSrc }}">
   </header>
 
-  <p>{{ article?.texte }}</p>
+  <p class="texte text-justify mb-4">{{ article?.texte }}</p>
 
   <app-liste-commentaire [commentaires]="commentaires"></app-liste-commentaire>
 

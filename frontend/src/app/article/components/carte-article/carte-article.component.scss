@@ -2,6 +2,22 @@
   height: 135px !important;
 }
 
+.card-header {
+  //background-color: var(--gris-clair);
+  //background-color: var(--gris-platine);
+  background-color: var(--blanc-fantome);
+}
+
+.card-title {
+  //color: var(--bleu-oxford);
+  color: var(--bleu-airsup);
+}
+
 .card ul {
   margin-bottom: 0.4rem;
+  color: var(--gris-fonce);
+}
+
+.card-body {
+  color: var(--gris-sombre);
 }

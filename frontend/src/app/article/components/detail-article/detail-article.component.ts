@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../../en-partage/models/dtos/Article";
 import {Commentaire} from "../../../en-partage/models/dtos/Commentaire";
+import {CommentaireService} from "../../../commentaire/services/commentaire.service";
 
 @Component({
   selector: 'app-detail-article',
@@ -15,7 +16,8 @@ export class DetailArticleComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private commentaireService: CommentaireService
   ) {
   }
 
@@ -24,11 +26,23 @@ export class DetailArticleComponent implements OnInit {
       const id = params.get('id') as string;
       if (id) {
         this.articleService.getById(+id).subscribe(
-          article => this.article = article
+          article => {
+            this.article = article;
+
+            this.commentaireService.getAllByArticleId(+id).subscribe(
+              commentaires => this.commentaires = commentaires
+            );
+          }
         );
       }
     });
 
-
+    /*
+    if (this.article) {
+      this.commentaireService.getAllByArticleTitre(this.article.titre).subscribe(
+        commentaires => this.commentaires = commentaires
+      );
+    }
+     */
   }
 }
