@@ -12,11 +12,13 @@ import {ArticleModule} from "./article/article.module";
 import {registerLocaleData} from "@angular/common";
 import {AuthModule} from "./auth/auth.module";
 import {EnPartageModule} from "./en-partage/en-partage.module";
+import {PageAccueilComponent} from './page-accueil/page-accueil.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageAccueilComponent
   ],
   imports: [
     BrowserModule,

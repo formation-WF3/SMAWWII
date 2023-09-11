@@ -6,10 +6,14 @@
         <h1>{{ titre }}</h1>
       </div>
 
-      <ul class="liens-auth d-flex gap-4 ms-3 mb-2 ps-0">
-        <li><a [routerLink]="['/auth/connexion']" class="nav-link" routerLinkActive="active">Se connecter</a></li>
+      <ul class="d-flex gap-4 ms-3 mb-2 ps-0">
+        <li *ngIf="loggedIn; else connexion" class="liens-connecter-deconnecter"><a (click)="deconnexion()" class="nav-link" routerLinkActive="active">Se déconnecter</a></li>
 
-        <li><a [routerLink]="['/auth/enregistrement']" class="nav-link" routerLinkActive="active">S'inscrire</a></li>
+        <ng-template #connexion>
+          <li class="liens-connecter-deconnecter"><a [routerLink]="['/auth/connexion']" class="nav-link" routerLinkActive="active">Se connecter</a></li>
+
+          <li class="lien-inscrire"><a [routerLink]="['/auth/inscription']" class="nav-link" routerLinkActive="active">S'inscrire</a></li>
+        </ng-template>
       </ul>
     </div>
 
