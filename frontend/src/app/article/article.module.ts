@@ -7,6 +7,7 @@ import {ListeArticleComponent} from './components/liste-article/liste-article.co
 import {CarteArticleComponent} from './components/carte-article/carte-article.component';
 import {ArticleService} from "./services/article.service";
 import {DetailArticleComponent} from './components/detail-article/detail-article.component';
+import {CommentaireModule} from "../commentaire/commentaire.module";
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {DetailArticleComponent} from './components/detail-article/detail-article
   ],
   imports: [
     CommonModule,
-    ArticleRoutingModule
+    ArticleRoutingModule,
+    CommentaireModule
   ],
   providers: [
     ArticleService

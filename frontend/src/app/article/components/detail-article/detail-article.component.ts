@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../../en-partage/models/dtos/Article";
+import {Commentaire} from "../../../en-partage/models/dtos/Commentaire";
 
 @Component({
   selector: 'app-detail-article',
@@ -10,6 +11,7 @@ import {Article} from "../../../en-partage/models/dtos/Article";
 })
 export class DetailArticleComponent implements OnInit {
   article!: Article;
+  commentaires: Commentaire[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,5 +28,7 @@ export class DetailArticleComponent implements OnInit {
         );
       }
     });
+
+
   }
 }
