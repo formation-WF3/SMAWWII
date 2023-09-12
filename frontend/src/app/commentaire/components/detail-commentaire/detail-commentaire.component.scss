@@ -2,23 +2,24 @@
   background-color: var(--gris-fonce);
 }
 
-.header {
+.detail-header {
   padding-left: 16px;
 }
 .creation {
   color: var(--orange-jaune);
 }
 
-.body {
+.detail-body {
   color: var(--gris-clair);
-}
-
-.btn-et-bouton-icone, .bouton-icone {
-  background-color: var(--gris-fonce);
 }
 
 .btn {
   color: var(--gris-fonce);
+}
+
+.bouton-icone {
+  background-color: var(--gris-fonce);
+  border: 2px solid var(--orange-jaune);
 }
 
 .btn:active {
@@ -28,4 +29,22 @@
 .icone-svg {
   background-color:var(--gris-fonce);
   color: var(--blanc-fantome);
+}
+
+.bouton-icone:hover {
+  background-color: var(--gris-clair);
+}
+
+.icone-svg:hover {
+  background-color: var(--gris-clair);
+  color: var(--gris-fonce);
+}
+
+.bouton-icone:active {
+  background-color: var(--orange-jaune);
+}
+
+.icone-svg:active {
+  background-color: var(--orange-jaune);
+  color: var(--gris-sombre);
 }
