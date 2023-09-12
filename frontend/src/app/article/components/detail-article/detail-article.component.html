@@ -12,7 +12,7 @@
 
   <p class="texte text-justify mb-4">{{ article?.texte }}</p>
 
-  <app-liste-commentaire [commentaires]="commentaires"></app-liste-commentaire>
+  <app-liste-commentaire *ngIf="commentaires.length != 0" [commentaires]="commentaires"></app-liste-commentaire>
 
 </article>
 

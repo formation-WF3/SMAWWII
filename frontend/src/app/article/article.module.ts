@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import {ArticleRoutingModule} from './article-routing.module';
 import {PageArticleComponent} from './pages/page-article/page-article.component';
@@ -18,11 +18,12 @@ import {CommentaireService} from "../commentaire/services/commentaire.service";
     CarteArticleComponent,
     DetailArticleComponent
   ],
-  imports: [
-    CommonModule,
-    ArticleRoutingModule,
-    CommentaireModule
-  ],
+    imports: [
+        CommonModule,
+        ArticleRoutingModule,
+        CommentaireModule,
+        NgOptimizedImage
+    ],
   providers: [
     ArticleService,
     CommentaireService

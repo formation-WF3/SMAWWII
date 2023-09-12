@@ -1,5 +1,5 @@
 .section-detail {
-  background-color: #6D707B;
+  background-color: var(--gris-fonce);
 }
 
 .header {
@@ -11,4 +11,21 @@
 
 .body {
   color: var(--gris-clair);
+}
+
+.btn-et-bouton-icone, .bouton-icone {
+  background-color: var(--gris-fonce);
+}
+
+.btn {
+  color: var(--gris-fonce);
+}
+
+.btn:active {
+  color: var(--gris-sombre);
+}
+
+.icone-svg {
+  background-color:var(--gris-fonce);
+  color: var(--blanc-fantome);
 }

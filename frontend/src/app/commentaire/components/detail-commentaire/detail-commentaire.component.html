@@ -3,9 +3,13 @@
   <div class="header d-flex justify-content-between mb-1">
     <p class="creation pt-2">{{ commentaire.utilisateurNom }}, le {{ commentaire.dateCreation | date: 'dd MMMM yyyy à HH:mm'}}</p>
 
-    <div class="bouton-icone">
-      <button class="btn btn-warning">Signaler</button>
-      <a class="btn btn-secondary"><span class="material-icons">more_vert</span></a>
+    <div class="btn-et-bouton-icone rounded-3 mt-1">
+      <button class="btn btn-warning rounded-3 me-1 px-2 py-1">Signaler</button>
+
+      <button class="bouton-icone rounded-3 me-1">
+        <svg class="icone-svg bi bi-three-dots-vertical rounded-3" fill="currentColor" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
+      </button>
     </div>
   </div>
 

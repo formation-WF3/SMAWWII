@@ -11,7 +11,7 @@ import {CommentaireService} from "../../../commentaire/services/commentaire.serv
   styleUrls: ['./detail-article.component.scss']
 })
 export class DetailArticleComponent implements OnInit {
-  article!: Article;
+  article?: Article;
   commentaires: Commentaire[] = [];
 
   constructor(
