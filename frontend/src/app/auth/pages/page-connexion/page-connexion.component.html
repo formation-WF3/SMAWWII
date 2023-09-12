@@ -18,13 +18,12 @@
               [ngClass]="{
                 'is-invalid': nomUtilisateurVar.touched && !nomUtilisateurVar.valid
               }"
-              class="form-control"
-              id="nomUtilisateur"
-              maxlength="30"
-              minlength="4" name="nomUtilisateur" placeholder="Nom d'utilisateur" required
-              type="text"
-            ><!-- is-invalid : class Bootstrap -->
-
+              class="form-control" id="nomUtilisateur"
+              maxlength="30" minlength="4"
+              name="nomUtilisateur" placeholder="Nom d'utilisateur"
+              required type="text"
+            >
+            <!-- is-invalid : class Bootstrap -->
             <div class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
               <span *ngIf="nomUtilisateurVar.errors?.['required']">Entrez votre nom d'utilisateur</span>
               <span *ngIf="nomUtilisateurVar.errors?.['minlength']">Minimum 4 caractères</span>
@@ -41,13 +40,12 @@
               [ngClass]="{
                 'is-invalid': motDePasseVar.touched && !motDePasseVar.valid
               }"
-              class="form-control"
-              id="motDePasse"
+              class="form-control" id="motDePasse"
               minlength="8"
-              name="motDePasse" placeholder="Mot de passe" required
-              type="password"
-            ><!-- is-invalid : class Bootstrap -->
-
+              name="motDePasse" placeholder="Mot de passe"
+              required type="password"
+            >
+            <!-- is-invalid : class Bootstrap -->
             <div class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
               <span *ngIf="motDePasseVar.errors?.['required']">Entrez votre mot de passe</span>
               <span *ngIf="motDePasseVar.errors?.['minlength']">Minimum 8 caractères</span>
@@ -57,8 +55,7 @@
 
         <div class="form-group text-right">
           <button [disabled]="formConnexion.form.invalid" class="btn btn-primary" type="submit">Se connecter</button>
-          <button (click)="reinitialisationForm(formConnexion)" class="btn btn-info float-end"
-                  type="button">Effacer</button>
+          <button (click)="reinitialisationForm(formConnexion)" class="btn btn-info float-end" type="button">Effacer</button>
         </div>
       </form>
     </div>

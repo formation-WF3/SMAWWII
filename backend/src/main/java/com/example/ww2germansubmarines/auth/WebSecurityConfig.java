@@ -36,6 +36,7 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests(request -> request
                 .antMatchers(ACCES_LIBRES).permitAll()
+                .antMatchers(ACCES_ADMINS).hasRole("ADMIN")
                 .anyRequest().authenticated()
         );
 
