@@ -1,0 +1,50 @@
+.section-detail {
+  background-color: var(--gris-fonce);
+}
+
+.detail-header {
+  padding-left: 16px;
+}
+.creation {
+  color: var(--orange-jaune);
+}
+
+.detail-body {
+  color: var(--gris-clair);
+}
+
+.btn {
+  color: var(--gris-fonce);
+}
+
+.bouton-icone {
+  background-color: var(--gris-fonce);
+  border: 2px solid var(--orange-jaune);
+}
+
+.btn:active {
+  color: var(--gris-sombre);
+}
+
+.icone-svg {
+  background-color:var(--gris-fonce);
+  color: var(--blanc-fantome);
+}
+
+.bouton-icone:hover {
+  background-color: var(--gris-clair);
+}
+
+.icone-svg:hover {
+  background-color: var(--gris-clair);
+  color: var(--gris-fonce);
+}
+
+.bouton-icone:active {
+  background-color: var(--orange-jaune);
+}
+
+.icone-svg:active {
+  background-color: var(--orange-jaune);
+  color: var(--gris-sombre);
+}

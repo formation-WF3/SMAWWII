@@ -25,6 +25,8 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class WebSecurityConfig {
     private final static String[] ACCES_LIBRES = {"/accueil/**", "/auth/**", "/articles/**"};
 
+    private final static String[] ACCES_ADMINS = {};
+
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
 
@@ -34,6 +36,7 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests(request -> request
                 .antMatchers(ACCES_LIBRES).permitAll()
+                .antMatchers(ACCES_ADMINS).hasRole("ADMIN")
                 .anyRequest().authenticated()
         );
 

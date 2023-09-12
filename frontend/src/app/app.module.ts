@@ -13,6 +13,7 @@ import {registerLocaleData} from "@angular/common";
 import {AuthModule} from "./auth/auth.module";
 import {EnPartageModule} from "./en-partage/en-partage.module";
 import {PageAccueilComponent} from './page-accueil/page-accueil.component';
+import {CommentaireModule} from "./commentaire/commentaire.module";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {PageAccueilComponent} from './page-accueil/page-accueil.component';
     EnPartageModule,
     HttpClientModule,
     ArticleModule,
-    AuthModule
+    AuthModule,
+    CommentaireModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'fr-FR'}

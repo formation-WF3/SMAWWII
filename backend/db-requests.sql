@@ -24,3 +24,9 @@ INSERT INTO `utilisateur` (`nom_utilisateur`, `mot_de_passe`, `email`, `email_ve
 VALUES  ('Mymy', '13111981', 'mymy@yahoo.com', true, null, null, true, 1),
         ('Gilles', '12051969', 'gillout@bbox.fr', true, null, null, true, 2),
         ('Caroline', '18022014', 'line@yahoo.fr', false, null, null, false, 1);
+
+/* Insertion de commentaires pour tests */
+INSERT INTO `commentaire` (`texte`, `date_modification`, `utilisateur_id`, `article_id`)
+VALUES  ('It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ''Content here, content here'', making it look like readable English.', null, 23, 1),
+        ('All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.', null, 23, 2),
+        ('Lorem Ipsum has been the industry''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', null, 24, 2);

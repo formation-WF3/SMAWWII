@@ -2,6 +2,13 @@ header img {
   width: 100%;
 }
 
-p {
+.creation {
+  padding: 0 10px;
+  color: var(--gris-fonce);
+}
+
+.texte {
   padding: 10px;
+  background-color: var(--blanc-fantome);
+  color: var(--gris-sombre);
 }

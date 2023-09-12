@@ -1,5 +1,5 @@
-<h2 class="titre-section">Les articles</h2>
+<h2 class="titre-page">Les articles</h2>
 
 <div class="cartes-article row row-gap-4 mb-5 col-12 align-content-center col-gap-4">
-  <app-carte-article class="col-sm-6 col-12" *ngFor="let article of articles" [article]="article"></app-carte-article>
+  <app-carte-article *ngFor="let article of articles" [article]="article" class="col-sm-6 col-12"></app-carte-article>
 </div>
