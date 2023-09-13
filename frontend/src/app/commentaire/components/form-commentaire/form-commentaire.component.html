@@ -1,0 +1,31 @@
+<div class="section-form-commentaire d-flex justify-content-center col-9 mb-4">
+
+  <div *ngIf="erreurMessage" class="mb-3 alert alert-danger">{{ erreurMessage }}</div>
+
+  <form (ngSubmit)="commentaireForm()" [formGroup]="formCommentaire" class="col-10" novalidate>
+
+    <textarea [ngClass]="{
+        'is-invalid': soumis && f['texte'].errors
+      }"
+           class="form-control align-self-center mb-2"
+           formControlName="texte"
+           placeholder="Votre texte"
+           rows="3"
+           type="text"
+    ></textarea><!-- is-invalid : class Bootstrap -->
+
+    <div *ngIf="soumis && f['texte'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
+      <span *ngIf="f['texte'].errors?.['required']">Entrez votre texte</span>
+      <span *ngIf="f['texte'].errors?.['minlength']">Minimum 10 caractères</span>
+      <span *ngIf="f['texte'].errors?.['maxlength']">Maximum 250 caractères</span>
+    </div>
+
+    <div class="form-group d-flex justify-content-end">
+      <button [disabled]="chargement" class="bouton-form py-1 px-2" type="submit">
+        <span *ngIf="chargement" class="spinner-border spinner-border-sm mr-1"></span>
+        Commenter
+      </button>
+    </div>
+
+  </form>
+</div>

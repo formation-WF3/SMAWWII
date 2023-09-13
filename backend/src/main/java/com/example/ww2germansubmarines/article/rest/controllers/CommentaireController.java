@@ -3,10 +3,7 @@ package com.example.ww2germansubmarines.article.rest.controllers;
 import com.example.ww2germansubmarines.article.rest.dtos.CommentaireDto;
 import com.example.ww2germansubmarines.article.services.CommentaireService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +26,11 @@ public class CommentaireController {
     @GetMapping("/{titre}")
     public List<CommentaireDto> getAllByArticleTitre(@PathVariable String titre) {
         return commentaireService.getAllByArticleTitre(titre);
+    }
+
+    @PostMapping
+    public CommentaireDto add(@RequestBody CommentaireDto commentaireDto) {
+        return commentaireService.add(commentaireDto);
     }
 
 }

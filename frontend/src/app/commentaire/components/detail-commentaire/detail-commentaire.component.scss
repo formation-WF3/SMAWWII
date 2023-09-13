@@ -22,7 +22,14 @@
   border: 2px solid var(--orange-jaune);
 }
 
-.btn:active {
+.btn-warning:hover {
+  background-color: var(--blanc-fantome);
+  border-color: var(--orange-jaune);
+}
+
+.btn-warning:active {
+  background-color: var(--orange-jaune);
+  border-color: var(--orange-jaune);
   color: var(--gris-sombre);
 }
 
