@@ -7,6 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -52,4 +53,6 @@ public class ArticleModel {
     @JoinColumn(name = "utilisateur_id", nullable = false)
     private UtilisateurModel utilisateur;
 
+    @OneToMany(mappedBy = "article")
+    private List<CommentaireModel> commentaires;
 }
