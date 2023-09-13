@@ -44,16 +44,20 @@ export class FormCommentaireComponent implements OnInit {
       return;
     }
 
-    this.commentaireService.commenter({...this.formCommentaire.value}).subscribe({
-      next: data => {
-        this.reinitialisationForm();
-        this.router.navigate(['/articles']);
-      },
-      error: (error) => {
-        this.erreurMessage = error;
-        this.chargement = false;
-      }
-    });
+    if (!this.formCommentaire.invalid) {
+      console.table(this.formCommentaire);
+    }
+
+    // this.commentaireService.commenter({...this.formCommentaire.value}).subscribe({
+    //   next: data => {
+    //     this.reinitialisationForm();
+    //     this.router.navigate(['/articles']);
+    //   },
+    //   error: (error) => {
+    //     this.erreurMessage = error;
+    //     this.chargement = false;
+    //   }
+    // });
   }
 
   reinitialisationForm(): void {

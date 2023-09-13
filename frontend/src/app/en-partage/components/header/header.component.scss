@@ -1,10 +1,13 @@
 header {
   max-width: 1200px;
   height: 200px;
+  color: var(--orange-jaune);
+}
+
+.header-sans-navbar {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: var(--orange-jaune);
 }
 
 .titre {

@@ -1,28 +1,9 @@
 textarea {
   resize: none;
   background-color: var(--blanc-fantome);
-  border: 2px solid var(--gris-clair);
+  border: 2px solid var(--bleu-airsup);
   border-radius: 12px;
-  color: var(--gris-fonce);
-}
-
-.bouton-form {
-  background-color: var(--blanc-fantome);
-  border: 2px solid var(--gris-clair);
-  border-radius: 15px;
-  color: var(--gris-fonce);
-}
-
-.bouton-form:hover {
-  background-color: var(--gris-fonce);
-  border-color: var(--gris-fonce);
-  color: var(--blanc-fantome);
-}
-
-.bouton-form:active {
-  background-color: var(--orange-jaune);
-  border-color: var(--orange-jaune);
-  color: var(--gris-sombre);
+  color: var(--bleu-oxford);
 }
 
 @media screen and (max-width: 771px) {

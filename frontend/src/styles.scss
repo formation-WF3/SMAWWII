@@ -40,6 +40,10 @@ body {
   width: 100%;
 }
 
+.button {
+  font-family: Bitter sans-serif !Important;
+}
+
 /* Variables de couleurs */
 :root {
   --bleu-oxford: #03224C;
@@ -53,8 +57,58 @@ body {
   --orange-jaune: #FAC86E;
 }
 
-/************************/
+/* Modifications des formulaires */
+.header-form {
+  background-color: var(--bleu-poudre) !important;
+  color: var(--bleu-oxford) !important;
+}
 
+labels-form {
+  color: var(--bleu-oxford);
+}
+
+.inputs-form {
+  border: 1px solid var(--bleu-airsup);
+}
+
+.bouton-validation-form {
+  background-color: var(-blanc-fantome-);
+  border: 2px solid var(--bleu-airsup);
+  border-radius: 15px;
+  color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--bleu-airsup);
+    border-color: var(--bleu-airsup);
+    color: var(--blanc-fantome);
+  }
+
+  &:active {
+    background-color: var(--bleu-poudre);
+    border-color: var(--bleu-oxford);
+    color: var(--bleu-oxford);
+  }
+}
+
+.bouton-effacement-form {
+  background-color: var(--orange-jaune);
+  border: 2px solid var(--orange-jaune);
+  border-radius: 15px;
+  color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--blanc-fantome);
+    border-color: var(--orange-jaune);
+  }
+
+  &:active {
+    background-color: var(--orange-jaune);
+    border-color: var(--orange-jaune);
+    color: var(--gris-sombre);
+  }
+}
+
+/************************/
 .text-justify {
   text-align: justify !important;
 }

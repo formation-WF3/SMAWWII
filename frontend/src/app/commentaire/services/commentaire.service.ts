@@ -12,20 +12,16 @@ export class CommentaireService {
   ) {
   }
 
-  getAll(): Observable<Commentaire[]> {
-    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/commentaires`);
-  }
-
   getAllByArticleId(id: number): Observable<Commentaire[]> {
-    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/commentaires/id/${id}`);
+    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/articles/${id}/commentaires`);
   }
 
-  commenter(valeursForm: Commentaire): Observable<any> {
-    return this.httpClient.post(`${this.API_URL}/commentaires`, valeursForm);
+  add(articleId: number, valeursForm: Commentaire): Observable<any> {
+    return this.httpClient.post(`${this.API_URL}/articles/${articleId}/commentaires`, valeursForm);
   }
 
-  getAllByArticleTitre(titre: string): Observable<Commentaire[]> {
-    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/commentaires/${titre}`);
+  getAllByArticleTitre(ArticleTitre: string): Observable<Commentaire[]> {
+    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/articles/${ArticleTitre}/commentaires`);
   }
 
 }
