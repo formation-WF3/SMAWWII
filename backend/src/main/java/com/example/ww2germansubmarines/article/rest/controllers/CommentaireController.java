@@ -9,21 +9,16 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/commentaires")
+@RequestMapping("/articles/{id}/commentaires")
 public class CommentaireController {
     private CommentaireService commentaireService;
 
-    @GetMapping
-    public List<CommentaireDto> getAll() {
-        return commentaireService.getAll();
-    }
-
-    @GetMapping("/id/{id}")
+    @GetMapping()
     public List<CommentaireDto> getAllByArticleId(@PathVariable long id) {
         return commentaireService.getAllByArticleId(id);
     }
 
-    @GetMapping("/{titre}")
+    @GetMapping("/{titre}/commentaires")
     public List<CommentaireDto> getAllByArticleTitre(@PathVariable String titre) {
         return commentaireService.getAllByArticleTitre(titre);
     }

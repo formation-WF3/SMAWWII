@@ -13,45 +13,50 @@
   color: var(--gris-clair);
 }
 
-.btn {
+.bouton-form-commentaire {
+  background-color: var(--orange-jaune);
   color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--blanc-fantome);
+    border-color: var(--orange-jaune);
+  }
+
+  &:active {
+    background-color: var(--orange-jaune);
+    border-color: var(--orange-jaune);
+    color: var(--gris-sombre);
+  }
 }
 
 .bouton-icone {
   background-color: var(--gris-fonce);
   border: 2px solid var(--orange-jaune);
-}
 
-.btn-warning:hover {
-  background-color: var(--blanc-fantome);
-  border-color: var(--orange-jaune);
-}
+  &:hover {
+    background-color: var(--gris-clair);
+  }
 
-.btn-warning:active {
-  background-color: var(--orange-jaune);
-  border-color: var(--orange-jaune);
-  color: var(--gris-sombre);
+  &:active {
+    background-color: var(--orange-jaune);
+  }
 }
 
 .icone-svg {
   background-color:var(--gris-fonce);
   color: var(--blanc-fantome);
+
+  &:hover {
+    background-color: var(--gris-clair);
+    color: var(--gris-fonce);
+  }
+
+  &:active {
+    background-color: var(--orange-jaune);
+    color: var(--gris-sombre);
+  }
 }
 
 .bouton-icone:hover {
   background-color: var(--gris-clair);
-}
-
-.icone-svg:hover {
-  background-color: var(--gris-clair);
-  color: var(--gris-fonce);
-}
-
-.bouton-icone:active {
-  background-color: var(--orange-jaune);
-}
-
-.icone-svg:active {
-  background-color: var(--orange-jaune);
-  color: var(--gris-sombre);
 }
