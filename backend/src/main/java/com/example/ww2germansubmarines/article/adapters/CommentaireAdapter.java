@@ -12,6 +12,10 @@ import org.springframework.stereotype.Component;
 public class CommentaireAdapter {
 
     public CommentaireDto toDto(CommentaireModel model) {
+        if (model == null) {
+            return null;
+        }
+
         return CommentaireDto.builder()
                 .id(model.getId())
                 .texte(model.getTexte())

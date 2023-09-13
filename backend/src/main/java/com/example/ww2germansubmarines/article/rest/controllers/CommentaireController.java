@@ -13,14 +13,9 @@ import java.util.List;
 public class CommentaireController {
     private CommentaireService commentaireService;
 
-    @GetMapping()
+    @GetMapping
     public List<CommentaireDto> getAllByArticleId(@PathVariable long id) {
         return commentaireService.getAllByArticleId(id);
-    }
-
-    @GetMapping("/{titre}/commentaires")
-    public List<CommentaireDto> getAllByArticleTitre(@PathVariable String titre) {
-        return commentaireService.getAllByArticleTitre(titre);
     }
 
     @PostMapping
