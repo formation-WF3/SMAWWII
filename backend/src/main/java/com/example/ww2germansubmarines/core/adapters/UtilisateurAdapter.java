@@ -1,5 +1,6 @@
-package com.example.ww2germansubmarines.core.services.adapters;
+package com.example.ww2germansubmarines.core.adapters;
 
+import com.example.ww2germansubmarines.core.domain.models.RoleModel;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
 import com.example.ww2germansubmarines.core.rest.dtos.UtilisateurDto;
 import org.springframework.stereotype.Component;
@@ -19,4 +20,23 @@ public class UtilisateurAdapter {
                 .role(model.getRole().getNom())
                 .build();
     }
+
+    public UtilisateurModel toModel(UtilisateurDto dto, RoleModel role) {
+        if (dto == null) {
+            return null;
+        }
+
+        return UtilisateurModel.builder()
+                .id(dto.getId())
+                .nomUtilisateur(dto.getNomUtilisateur())
+                .email(dto.getEmail())
+                .emailVerifiee(dto.isEmailVerifiee())
+                .cleActivation(dto.getCleActivation())
+                .dateActivation(dto.getDateActivation())
+                .dateEnregistrement(dto.getDateEnregistrement())
+                .actif(dto.isActif())
+                .role(role)
+                .build();
+    }
+
 }
