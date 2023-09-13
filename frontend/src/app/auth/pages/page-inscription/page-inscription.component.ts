@@ -55,7 +55,7 @@ export class PageInscriptionComponent implements OnInit {
       return;
     }
 
-    this.authService.inscrire({...this.formInscription.value}).subscribe({
+    this.authService.inscription({...this.formInscription.value}).subscribe({
       next: data => {
         this.reinitialisationForm();
         this.router.navigate(['/articles']);

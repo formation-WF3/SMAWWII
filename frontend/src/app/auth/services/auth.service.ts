@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {Observable, Subject, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {InscriptionChargementRequete} from "../models/inscription-chargement-requete";
 import {ConnexionChargementRequete} from "../models/connexion-chargement-requete";
@@ -20,25 +20,33 @@ export class AuthService {
     return this._logger.asObservable();
   }
 
-  inscrire(valeursForm: InscriptionChargementRequete): Observable<JwtAuthReponse> {
+  inscription(valeursForm: InscriptionChargementRequete): Observable<JwtAuthReponse> {
     return this.httpClient.post(`${this.API_URL}/inscription`, valeursForm);
   }
 
-  connecter(valeursForm: ConnexionChargementRequete): Observable<JwtAuthReponse> {
-    return this.httpClient.post(`${this.API_URL}/connexion`, valeursForm);
+  connexion(valeursForm: ConnexionChargementRequete): Observable<JwtAuthReponse> {
+    this._logger.next(true);
+    return this.httpClient.post<JwtAuthReponse>(`${this.API_URL}/connexion`, valeursForm)
+      .pipe(
+        tap(jwtAuthReponse => {
+          if (jwtAuthReponse?.token) {
+            this.sauvegarderToken(jwtAuthReponse.token);
+            this._logger.next(true);
+          }
+        }));
   }
 
-  deconnecter() {
+  deconnexion(): void {
     localStorage.clear();
     this._logger.next(false);
   }
 
-  sauvegarderToken(token: string) {
+  sauvegarderToken(token: string): void {
     localStorage.setItem('token', token);
     this._logger.next(true);
   }
 
-  isLogged(): boolean {
+  isConnecte(): boolean {
     return localStorage.getItem('token') !== null;
   }
 
