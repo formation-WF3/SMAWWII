@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   @Input()
   titre?: string;
 
-  loggedIn = false;
+  utilisateurConnecte$ = new Observable<boolean>();
   nomUtilisateur = '';
   token = '';
 

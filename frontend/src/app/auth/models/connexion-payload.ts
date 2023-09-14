@@ -1,4 +1,4 @@
-export interface ConnexionChargementRequete {
+export interface ConnexionPayload {
   nomUtilisateur?: string;
   motDePasse?: string;
 }

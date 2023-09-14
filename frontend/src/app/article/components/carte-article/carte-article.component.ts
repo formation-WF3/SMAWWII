@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Article} from "../../../en-partage/models/dtos/Article";
+import {Article} from "../../../shared/models/dtos/article";
 
 @Component({
   selector: 'app-carte-article',
