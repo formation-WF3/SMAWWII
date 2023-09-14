@@ -1,4 +1,4 @@
-export interface InscriptionChargementRequete {
+export interface InscriptionPayload {
   nomUtilisateur?: string;
   motDePasse?: string;
   confirmeMotDePasse?: string;

@@ -1,44 +1,46 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {InscriptionChargementRequete} from "../models/inscription-chargement-requete";
-import {ConnexionChargementRequete} from "../models/connexion-chargement-requete";
-import {JwtAuthReponse} from "../models/jwtAuthReponse";
+import {InscriptionPayload} from "../models/inscription-payload";
+import {ConnexionPayload} from "../models/connexion-payload";
+import {JwtAuthReponse} from "../../shared/models/dtos/jwt-auth-reponse";
 import jwt_decode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
   API_URL: string = 'http://localhost:8080/api/auth';
-  private _logger = new Subject<boolean>();
+  private _logger: BehaviorSubject<boolean>;
 
   constructor(
     private httpClient: HttpClient
   ) {
+    this._logger = new BehaviorSubject<boolean>(this.isConnecte());
   }
 
   get loggedIn$(): Observable<boolean> {
     return this._logger.asObservable();
   }
 
-  inscrire(valeursForm: InscriptionChargementRequete): Observable<JwtAuthReponse> {
+  inscription(valeursForm: InscriptionPayload): Observable<JwtAuthReponse> {
     return this.httpClient.post(`${this.API_URL}/inscription`, valeursForm);
   }
 
-  connecter(valeursForm: ConnexionChargementRequete): Observable<JwtAuthReponse> {
-    return this.httpClient.post(`${this.API_URL}/connexion`, valeursForm);
+  connexion(valeursForm: ConnexionPayload): Observable<boolean> {
+    return this.httpClient.post<JwtAuthReponse>(`${this.API_URL}/connexion`, valeursForm)
+      .pipe(
+        map(jwtAuthReponse => {
+          this.sauvegarderToken(jwtAuthReponse.token as string);
+          this._logger.next(true);
+          return true;
+          }));
   }
 
-  deconnecter() {
+  deconnexion(): void {
     localStorage.clear();
     this._logger.next(false);
   }
 
-  sauvegarderToken(token: string) {
-    localStorage.setItem('token', token);
-    this._logger.next(true);
-  }
-
-  isLogged(): boolean {
+  isConnecte(): boolean {
     return localStorage.getItem('token') !== null;
   }
 
@@ -46,7 +48,12 @@ export class AuthService {
     return localStorage.getItem('token') as string;
   }
 
-  decodeToken(token: string): string|null {
+  private sauvegarderToken(token: string): void {
+    localStorage.setItem('token', token);
+    this._logger.next(true);
+  }
+
+  private decodeToken(token: string): string|null {
     try {
       return jwt_decode(token);
     } catch(Error) {

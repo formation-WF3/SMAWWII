@@ -7,7 +7,7 @@
       </div>
 
       <ul class="d-flex gap-4 ms-3 mb-2 ps-0">
-        <li *ngIf="loggedIn; else connexion" class="liens-connecter-deconnecter"><a (click)="deconnexion()" class="nav-link" routerLinkActive="active">Se déconnecter</a></li>
+        <li *ngIf="utilisateurConnecte$ | async; else connexion" class="liens-connecter-deconnecter"><a (click)="deconnexion()" class="nav-link" routerLinkActive="active">Se déconnecter</a></li>
 
         <ng-template #connexion>
           <li class="liens-connecter-deconnecter"><a [routerLink]="['/auth/connexion']" class="nav-link" routerLinkActive="active">Se connecter</a></li>

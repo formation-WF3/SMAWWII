@@ -11,9 +11,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {ArticleModule} from "./article/article.module";
 import {registerLocaleData} from "@angular/common";
 import {AuthModule} from "./auth/auth.module";
-import {EnPartageModule} from "./en-partage/en-partage.module";
+import {EnPartageModule} from "./shared/shared-module";
 import {PageAccueilComponent} from './page-accueil/page-accueil.component';
 import {CommentaireModule} from "./commentaire/commentaire.module";
+import {AuthService} from "./auth/services/auth.service";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {CommentaireModule} from "./commentaire/commentaire.module";
     CommentaireModule
   ],
   providers: [
-    {provide: LOCALE_ID, useValue: 'fr-FR'}
+    {provide: LOCALE_ID, useValue: 'fr-FR'},
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
