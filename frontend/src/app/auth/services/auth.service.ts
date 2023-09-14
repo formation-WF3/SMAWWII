@@ -14,6 +14,8 @@ export class AuthService {
   constructor(
     private httpClient: HttpClient
   ) {
+    /* Permet de déterminer le statut de connexion au rechargement
+     de la page et de le diffuser à tous les subscribes */
     this._logger = new BehaviorSubject<boolean>(this.isConnecte());
   }
 
@@ -29,10 +31,13 @@ export class AuthService {
     return this.httpClient.post<JwtAuthReponse>(`${this.API_URL}/connexion`, valeursForm)
       .pipe(
         map(jwtAuthReponse => {
+          /* jwtAuthReponse.token sera toujours valué grace au "!".
+              Dans le cas d'une erreur HTTP (404, 401, 403, 500...),
+               c'est l'intercepteur qui prendra le relais. */
           this.sauvegarderToken(jwtAuthReponse.token as string);
           this._logger.next(true);
           return true;
-          }));
+        }));
   }
 
   deconnexion(): void {
@@ -60,5 +65,4 @@ export class AuthService {
       return null;
     }
   }
-
 }

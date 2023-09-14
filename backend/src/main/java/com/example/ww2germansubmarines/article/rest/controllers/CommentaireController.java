@@ -9,11 +9,11 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/articles/{id}/commentaires")
+@RequestMapping("/articles")
 public class CommentaireController {
     private CommentaireService commentaireService;
 
-    @GetMapping
+    @GetMapping("/{id}/commentaires")
     public List<CommentaireDto> getAllByArticleId(@PathVariable long id) {
         return commentaireService.getAllByArticleId(id);
     }

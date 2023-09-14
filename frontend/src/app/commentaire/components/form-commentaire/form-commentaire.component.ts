@@ -64,5 +64,4 @@ export class FormCommentaireComponent implements OnInit {
     this.soumis = false;
     this.formCommentaire.reset();
   }
-
 }

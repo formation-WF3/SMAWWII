@@ -12,6 +12,8 @@ public interface CommentaireRepository extends JpaRepository<CommentaireModel, L
     @Query(value = "SELECT * FROM commentaire WHERE article_id = :id", nativeQuery = true)
     List<CommentaireModel> findAllByArticleId(@Param("id") long id);
 
+    List<CommentaireModel> findByArticle_Id(long id);
+
     @Query(value = "SELECT c.*, a.titre FROM commentaire c INNER JOIN article a ON c.article_id = a.id WHERE a.titre LIKE %:titre%; ", nativeQuery = true)
     List<CommentaireModel> findAllByArticleTitre(@Param("titre") String titre);
 

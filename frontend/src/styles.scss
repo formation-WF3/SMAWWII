@@ -137,3 +137,9 @@ labels-form {
     text-align: center;
   }
 }
+
+@media screen and (max-width: 449px) {
+  .titre-page {
+    font-size: 1.2rem;
+  }
+}

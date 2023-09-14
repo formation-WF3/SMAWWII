@@ -14,11 +14,71 @@ header {
   color: var(--bleu-oxford);
 }
 
-.liens-connecter-deconnecter {
+.lien-connecter, .lien-deconnecter {
   cursor: pointer;
-  color: var(--gris-sombre)
+  color: var(--gris-sombre);
 }
 
 .lien-inscrire {
-  color: var(--gris-platine)
+  color: var(--gris-platine);
+}
+
+@media screen and (max-width: 809px) {
+  .lien-connecter, .lien-deconnecter {
+    color: var(--gris-platine);
+  }
+}
+
+@media screen and (max-width: 689px) {
+  .section-header {
+    height: 185px;
+  }
+
+  .lien-connecter, .lien-inscrire, .lien-deconnecter {
+    color: var(--orange-jaune);
+  }
+}
+
+@media screen and (max-width: 614px) {
+  .section-header {
+    height: 170px;
+  }
+
+  .titre h1 {
+    font-size: 1.8rem;
+  }
+
+  .lien-connecter, .lien-deconnecter {
+    color: var(--blanc-fantome);
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .section-header {
+    height: 155px;
+  }
+
+  .titre h1 {
+    font-size: 1.6rem;
+  }
+
+  .lien-inscrire {
+    color: var(--blanc-fantome);
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .section-header {
+    height: 140px;
+  }
+
+  .titre {
+    margin-left: 0 !important;
+  }
+
+  .titre h1 {
+    padding-left: 0;
+    text-align: center;
+    font-size: 1.4rem;
+  }
 }

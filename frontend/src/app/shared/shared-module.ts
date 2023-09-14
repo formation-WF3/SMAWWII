@@ -17,5 +17,5 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
     HeaderComponent
   ]
 })
-export class EnPartageModule {
+export class SharedModule {
 }

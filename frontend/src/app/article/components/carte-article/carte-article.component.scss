@@ -18,3 +18,9 @@
 .card-body {
   color: var(--gris-sombre);
 }
+
+@media screen and (max-width: 449px) {
+  .card-title {
+    font-size: 1.1rem !important;
+  }
+}

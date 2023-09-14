@@ -71,5 +71,4 @@ export class PageInscriptionComponent implements OnInit {
     this.soumis = false;
     this.formInscription.reset();
   }
-
 }

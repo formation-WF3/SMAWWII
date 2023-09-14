@@ -12,3 +12,9 @@ header img {
   background-color: var(--blanc-fantome);
   color: var(--gris-sombre);
 }
+
+@media screen and (max-width: 575px) {
+  .titre-section {
+    font-size: 1.2rem;
+  }
+}

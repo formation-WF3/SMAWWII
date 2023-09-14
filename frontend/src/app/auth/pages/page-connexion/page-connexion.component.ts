@@ -22,16 +22,14 @@ export class PageConnexionComponent {
   ) {
   }
 
-  connexionUtilisateurForm(form: NgForm) {
+  connexionUtilisateurForm(form: NgForm): void {
     this.authService.connexion(form.value).subscribe({
-        next: () => this.router.navigate(['/articles']),
-        error: (error) => (this.erreurMessage = error)
-      }
-    );
+      next: (jwtAuthReponse) => this.router.navigate(['/articles']),
+      error: error => this.erreurMessage = error
+    });
   }
 
   reinitialisationForm(form: NgForm): void {
     form.reset();
   }
-
 }

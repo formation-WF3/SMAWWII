@@ -36,13 +36,5 @@ export class DetailArticleComponent implements OnInit {
         );
       }
     });
-
-    /*
-    if (this.article) {
-      this.commentaireService.getAllByArticleTitre(this.article.titre).subscribe(
-        commentaires => this.commentaires = commentaires
-      );
-    }
-     */
   }
 }

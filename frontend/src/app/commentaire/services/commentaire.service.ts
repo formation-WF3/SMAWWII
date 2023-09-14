@@ -23,5 +23,4 @@ export class CommentaireService {
   getAllByArticleTitre(ArticleTitre: string): Observable<Commentaire[]> {
     return this.httpClient.get<Commentaire[]>(`${this.API_URL}/articles/${ArticleTitre}/commentaires`);
   }
-
 }

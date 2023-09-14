@@ -11,10 +11,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {ArticleModule} from "./article/article.module";
 import {registerLocaleData} from "@angular/common";
 import {AuthModule} from "./auth/auth.module";
-import {EnPartageModule} from "./shared/shared-module";
 import {PageAccueilComponent} from './page-accueil/page-accueil.component';
 import {CommentaireModule} from "./commentaire/commentaire.module";
 import {AuthService} from "./auth/services/auth.service";
+import {SharedModule} from "./shared/shared-module";
 
 
 @NgModule({
@@ -27,8 +27,8 @@ import {AuthService} from "./auth/services/auth.service";
     AppRoutingModule,
     NgbModule,
     CoreModule,
-    EnPartageModule,
     HttpClientModule,
+    SharedModule,
     ArticleModule,
     AuthModule,
     CommentaireModule
