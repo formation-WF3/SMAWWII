@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
-import {ConnexionChargementRequete} from "../../models/connexion-chargement-requete";
+import {ConnexionPayload} from "../../models/connexion-payload";
 import {NgForm} from "@angular/forms";
 import {filter} from "rxjs";
 
@@ -17,7 +17,6 @@ export class PageConnexionComponent implements OnInit {
   };
   erreur = false;
   erreurMessage?: String;
-  loggedIn = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,36 +33,20 @@ export class PageConnexionComponent implements OnInit {
     });
   }
 
-  connexionUtilisateurForm(form: NgForm) {
-    const connexionChargementRequete: ConnexionChargementRequete = {
+  connexionUtilisateurForm(form: NgForm): void {
+    const connexionChargementRequete: ConnexionPayload = {
       nomUtilisateur: form.value.nomUtilisateur,
       motDePasse: form.value.motDePasse
     };
 
-    this.authService.connecter(connexionChargementRequete).subscribe({
-        next: (jwtAuthReponse) => {
-          if (jwtAuthReponse.token) {
-            console.log(this.authService.decodeToken(jwtAuthReponse.token));
-            this.authService.sauvegarderToken(jwtAuthReponse.token);
-
-            this.loggedIn = true;
-            this.router.navigate(['/articles']);
-          } else {
-            this.router.navigate(['/connexion'], {
-              queryParams: {
-                erreur: true
-              }
-            });
-          }
-        },
-        error: (error) => (this.erreurMessage = error)
+    this.authService.connexion(connexionChargementRequete).subscribe({
+        next: (jwtAuthReponse) => this.router.navigate(['/articles']),
+        error: error => this.erreurMessage = error
       }
     );
-
   }
 
   reinitialisationForm(form: NgForm): void {
     form.reset();
   }
-
 }

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
-import {Article} from "../../../en-partage/models/dtos/Article";
-import {Commentaire} from "../../../en-partage/models/dtos/Commentaire";
+import {Article} from "../../../shared/models/dtos/article";
+import {Commentaire} from "../../../shared/models/dtos/commentaire";
 import {CommentaireService} from "../../../commentaire/services/commentaire.service";
 
 @Component({
@@ -36,13 +36,5 @@ export class DetailArticleComponent implements OnInit {
         );
       }
     });
-
-    /*
-    if (this.article) {
-      this.commentaireService.getAllByArticleTitre(this.article.titre).subscribe(
-        commentaires => this.commentaires = commentaires
-      );
-    }
-     */
   }
 }

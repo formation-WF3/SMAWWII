@@ -38,7 +38,7 @@ export class RequetesHttpInterceptor implements HttpInterceptor {
     );
   }
 
-  private ajouterToken(request: HttpRequest<unknown>, token: String) {
+  private ajouterToken(request: HttpRequest<unknown>, token: String): HttpRequest<unknown> {
     return request.clone({
       headers: request.headers.set('Authorization', `Bearer ${token}`)
     });

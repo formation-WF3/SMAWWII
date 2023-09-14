@@ -1,11 +1,18 @@
 package com.example.ww2germansubmarines.article.services;
 
 import com.example.ww2germansubmarines.article.adapters.CommentaireAdapter;
+import com.example.ww2germansubmarines.article.domain.models.ArticleModel;
+import com.example.ww2germansubmarines.article.domain.models.CommentaireModel;
 import com.example.ww2germansubmarines.article.domain.repositories.ArticleRepository;
 import com.example.ww2germansubmarines.article.domain.repositories.CommentaireRepository;
+import com.example.ww2germansubmarines.article.rest.dtos.CommentaireDto;
+import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
 import com.example.ww2germansubmarines.core.domain.repositories.UtilisateurRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -17,7 +24,7 @@ public class CommentaireService {
     private UtilisateurRepository utilisateurRepository;
 
     private ArticleRepository articleRepository;
-/*
+
     public List<CommentaireDto> getAll() {
         return commentaireRepository.findAll()
                 .stream()
@@ -26,7 +33,7 @@ public class CommentaireService {
     }
 
     public List<CommentaireDto> getAllByArticleId(long id) {
-        return commentaireRepository.findAllByArticleId(id)
+        return commentaireRepository.findByArticle_Id(id)
                 .stream()
                 .map(commentaireAdapter::toDto)
                 .collect(Collectors.toList());
@@ -58,5 +65,5 @@ public class CommentaireService {
         commentaireDto.setId(commentaireModel.getId());
         return commentaireDto;
     }
-*/
+
 }

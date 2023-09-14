@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Article} from "../../en-partage/models/dtos/Article";
+import {Article} from "../../shared/models/dtos/article";
 
 @Injectable()
 export class ArticleService {
