@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface ArticleRepository extends JpaRepository<ArticleModel, Long> {
 
+    Optional<ArticleModel> findById(long titre);
     Optional<ArticleModel> findByTitreIgnoreCase(String titre);
 }

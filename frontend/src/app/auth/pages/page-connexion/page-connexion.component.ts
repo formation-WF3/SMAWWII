@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import {ConnexionPayload} from "../../models/connexion-payload";
 
 @Component({
   selector: 'app-page-connexion',
@@ -9,27 +10,23 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./page-connexion.component.scss']
 })
 export class PageConnexionComponent {
-  utilisateur = {
-    nomUtilisateur: '',
-    motDePasse: ''
-  };
+  connexionPayload: ConnexionPayload = {};
   erreurMessage?: String;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private router: Router
   ) {
   }
 
-  connexionUtilisateurForm(form: NgForm): void {
-    this.authService.connexion(form.value).subscribe({
-      next: (jwtAuthReponse) => this.router.navigate(['/articles']),
+  soumettreFormulaire(): void {
+    this.authService.connexion(this.connexionPayload).subscribe({
+      next: () => this.router.navigate(['/articles']),
       error: error => this.erreurMessage = error
     });
   }
 
-  reinitialisationForm(form: NgForm): void {
+  reinitialiserFormulaire(form: NgForm): void {
     form.reset();
   }
 }

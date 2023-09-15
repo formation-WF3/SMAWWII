@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommentaireService} from "../../services/commentaire.service";
+import {ActivatedRoute} from "@angular/router";
+import {CommentairePayload} from "../../../shared/models/dtos/commentaire-payload";
+import {Commentaire} from "../../../shared/models/dtos/commentaire";
 
 @Component({
   selector: 'app-form-commentaire',
@@ -9,59 +10,39 @@ import {CommentaireService} from "../../services/commentaire.service";
   styleUrls: ['./form-commentaire.component.scss']
 })
 export class FormCommentaireComponent implements OnInit {
-  formCommentaire: FormGroup = new FormGroup({
-    texte: new FormControl('')
-  });
-  soumis = false;
-  chargement = false;
-  erreurMessage?: String;
+  commentairePayload: CommentairePayload = {};
+  erreurMessage?: string;
+
+  @Input()
+  succesMessage?: string;
+  @Input()
+  articleId!: number;
+
+  @Output()
+  succes = new EventEmitter<Commentaire>();
 
   constructor(
-    private formBuilder: FormBuilder,
-    private commentaireService: CommentaireService,
-    private router: Router
+    private activatedRoute: ActivatedRoute,
+    private commentaireService: CommentaireService
   ) {
   }
 
-  get f(): { [key: string]: AbstractControl } {
-    return this.formCommentaire.controls;
+  ngOnInit() {
   }
 
-  ngOnInit() {
-    this.formCommentaire = this.formBuilder.group({
-      texte: ['',
-        [Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(250)]
-      ]
+  soumettre(): void {
+    this.commentaireService.enregistrer(this.articleId, this.commentairePayload).subscribe({
+      next: commentaire => {
+        console.log("article id dans enregistrer :" + this.articleId);
+        this.succes.emit(commentaire);
+        this.reinitialiserFormulaire();
+      },
+      error: error => this.erreurMessage = error
     });
   }
 
-  commentaireForm(): void {
-    this.soumis = true;
-
-    if (this.formCommentaire.invalid) {
-      return;
-    }
-
-    if (!this.formCommentaire.invalid) {
-      console.table(this.formCommentaire);
-    }
-
-    // this.commentaireService.commenter({...this.formCommentaire.value}).subscribe({
-    //   next: data => {
-    //     this.reinitialisationForm();
-    //     this.router.navigate(['/articles']);
-    //   },
-    //   error: (error) => {
-    //     this.erreurMessage = error;
-    //     this.chargement = false;
-    //   }
-    // });
-  }
-
-  reinitialisationForm(): void {
-    this.soumis = false;
-    this.formCommentaire.reset();
+  reinitialiserFormulaire(): void {
+    this.commentairePayload.id = undefined;
+    this.commentairePayload.texte = '';
   }
 }

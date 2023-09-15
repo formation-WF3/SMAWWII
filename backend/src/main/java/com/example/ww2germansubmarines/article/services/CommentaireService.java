@@ -3,67 +3,57 @@ package com.example.ww2germansubmarines.article.services;
 import com.example.ww2germansubmarines.article.adapters.CommentaireAdapter;
 import com.example.ww2germansubmarines.article.domain.models.ArticleModel;
 import com.example.ww2germansubmarines.article.domain.models.CommentaireModel;
-import com.example.ww2germansubmarines.article.domain.repositories.ArticleRepository;
 import com.example.ww2germansubmarines.article.domain.repositories.CommentaireRepository;
 import com.example.ww2germansubmarines.article.rest.dtos.CommentaireDto;
+import com.example.ww2germansubmarines.article.rest.dtos.CommentaireRequete;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
-import com.example.ww2germansubmarines.core.domain.repositories.UtilisateurRepository;
+import com.example.ww2germansubmarines.core.exceptions.EntiteNonTrouveException;
+import com.example.ww2germansubmarines.core.exceptions.RaisonEnum;
+import com.example.ww2germansubmarines.core.services.UtilisateurService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Service
 public class CommentaireService {
-    private CommentaireRepository commentaireRepository;
+    private final CommentaireRepository commentaireRepository;
 
-    private CommentaireAdapter commentaireAdapter;
+    private final CommentaireAdapter commentaireAdapter;
 
-    private UtilisateurRepository utilisateurRepository;
+    private final UtilisateurService utilisateurService;
 
-    private ArticleRepository articleRepository;
+    private final ArticleService articleService;
 
-    public List<CommentaireDto> getAll() {
-        return commentaireRepository.findAll()
-                .stream()
-                .map(commentaireAdapter::toDto)
-                .collect(Collectors.toList());
-    }
+    public CommentaireDto enregistrer(Long articleId, String nomUtilisateur, CommentaireRequete commentaireRequete) {
+        UtilisateurModel utilisateurModel = utilisateurService.getByNomIfExists(nomUtilisateur);
 
-    public List<CommentaireDto> getAllByArticleId(long id) {
-        return commentaireRepository.findByArticle_Id(id)
-                .stream()
-                .map(commentaireAdapter::toDto)
-                .collect(Collectors.toList());
-    }
+        ArticleModel articleModel = articleService.getByIdIfExists(articleId);
 
-    public List<CommentaireDto> getAllByArticleTitre(String titre) {
-        return commentaireRepository.findAllByArticleTitre(titre)
-                .stream()
-                .map(commentaireAdapter::toDto)
-                .collect(Collectors.toList());
-    }
+        CommentaireModel commentaireModel;
+        Long commentaireId = commentaireRequete.getId();
 
-    public CommentaireDto add(CommentaireDto commentaireDto) {
-        String utilisateurNom = commentaireDto.getUtilisateurNom();
-        String articleTitre = commentaireDto.getArticleTitre();
-        UtilisateurModel utilisateurModel = null;
-        ArticleModel articleModel = null;
+        if (commentaireId != null) {
+            commentaireModel = getByIdIfExists(commentaireId);
 
-        if (utilisateurNom != null) {
-            utilisateurModel = utilisateurRepository.findByNomUtilisateur(utilisateurNom).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé !"));
+            commentaireModel.setTexte(commentaireRequete.getTexte());
+            commentaireModel.setDateModification(LocalDateTime.now());
+        } else {
+            commentaireModel = CommentaireModel.builder()
+                    .texte(commentaireRequete.getTexte())
+                    .dateCreation(LocalDateTime.now())
+                    .utilisateur(utilisateurModel)
+                    .article(articleModel)
+                    .build();
         }
 
-        if (articleTitre != null) {
-            articleModel = articleRepository.findByTitreIgnoreCase(articleTitre).orElseThrow(() -> new RuntimeException("Article non trouvé !"));
-        }
+        return commentaireAdapter.toDto(commentaireRepository.save(commentaireModel));
+    }
 
-        CommentaireModel commentaireModel = commentaireAdapter.toModel(commentaireDto, utilisateurModel, articleModel);
-        commentaireModel = commentaireRepository.save(commentaireModel);
-        commentaireDto.setId(commentaireModel.getId());
-        return commentaireDto;
+    public CommentaireModel getByIdIfExists(long id) {
+        return commentaireRepository.findById(id)
+                .orElseThrow(() -> new EntiteNonTrouveException(RaisonEnum.COMMENTAIRE_NON_TROUVE));
     }
 
 }

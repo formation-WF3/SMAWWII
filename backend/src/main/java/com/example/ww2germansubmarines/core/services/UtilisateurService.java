@@ -1,7 +1,10 @@
 package com.example.ww2germansubmarines.core.services;
 
 import com.example.ww2germansubmarines.core.adapters.UtilisateurAdapter;
+import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
 import com.example.ww2germansubmarines.core.domain.repositories.UtilisateurRepository;
+import com.example.ww2germansubmarines.core.exceptions.EntiteNonTrouveException;
+import com.example.ww2germansubmarines.core.exceptions.RaisonEnum;
 import com.example.ww2germansubmarines.core.rest.dtos.UtilisateurDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,11 @@ public class UtilisateurService {
     public UtilisateurDto getByNom(String nom) {
         return utilisateurRepository.findByNomUtilisateur(nom)
                 .map(u -> utilisateurAdapter.toDto(u))
-                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé !"));
+                .orElseThrow(() -> new EntiteNonTrouveException(RaisonEnum.UTILISATEUR_INTROUVABLE));
+    }
+
+    public UtilisateurModel getByNomIfExists(String nom) {
+        return utilisateurRepository.findByNomUtilisateur(nom)
+                .orElseThrow(() -> new EntiteNonTrouveException(RaisonEnum.UTILISATEUR_INTROUVABLE));
     }
 }

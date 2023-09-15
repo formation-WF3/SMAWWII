@@ -16,11 +16,7 @@ export class CommentaireService {
     return this.httpClient.get<Commentaire[]>(`${this.API_URL}/articles/${id}/commentaires`);
   }
 
-  add(articleId: number, valeursForm: Commentaire): Observable<any> {
+  enregistrer(articleId: number, valeursForm: Commentaire): Observable<Commentaire> {
     return this.httpClient.post(`${this.API_URL}/articles/${articleId}/commentaires`, valeursForm);
-  }
-
-  getAllByArticleTitre(ArticleTitre: string): Observable<Commentaire[]> {
-    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/articles/${ArticleTitre}/commentaires`);
   }
 }

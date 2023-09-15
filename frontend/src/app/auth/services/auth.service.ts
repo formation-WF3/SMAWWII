@@ -27,16 +27,15 @@ export class AuthService {
     return this.httpClient.post(`${this.API_URL}/inscription`, valeursForm);
   }
 
-  connexion(valeursForm: ConnexionPayload): Observable<boolean> {
+  connexion(valeursForm: ConnexionPayload): Observable<void> {
     return this.httpClient.post<JwtAuthReponse>(`${this.API_URL}/connexion`, valeursForm)
       .pipe(
         map(jwtAuthReponse => {
-          /* jwtAuthReponse.token sera toujours valué grace au "!".
-              Dans le cas d'une erreur HTTP (404, 401, 403, 500...),
+          /* jwtAuthReponse.token sera toujours valué.
+              Dans le cas d'une erreur Http (404, 401, 403, 500...),
                c'est l'intercepteur qui prendra le relais. */
           this.sauvegarderToken(jwtAuthReponse.token as string);
           this._logger.next(true);
-          return true;
         }));
   }
 

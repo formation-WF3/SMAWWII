@@ -1,31 +1,34 @@
-<div class="section-form-commentaire d-flex justify-content-center col-9 mb-4">
+<div class="section-form-commentaire d-flex flex-column justify-content-center align-items-center col-9 mb-4">
 
   <div *ngIf="erreurMessage" class="mb-3 alert alert-danger">{{ erreurMessage }}</div>
 
-  <form (ngSubmit)="commentaireForm()" [formGroup]="formCommentaire" class="col-10" novalidate>
+  <div *ngIf="succesMessage" class="mb-3 alert alert-success">{{ succesMessage }}</div>
 
-    <textarea [ngClass]="{
-        'is-invalid': soumis && f['texte'].errors
+  <form #formCommentaire="ngForm" (ngSubmit)="soumettre()" class="col-10" novalidate>
+
+    <textarea
+      #texte="ngModel"
+      [(ngModel)]="commentairePayload.texte"
+      [ngClass]="{
+        'is-invalid': texte.touched && !texte.valid
       }"
-           class="form-control align-self-center mb-2"
-           formControlName="texte"
-           placeholder="Votre texte"
-           rows="3"
-           type="text"
-    ></textarea><!-- is-invalid : class Bootstrap -->
-
-    <div *ngIf="soumis && f['texte'].errors" class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
-      <span *ngIf="f['texte'].errors?.['required']">Entrez votre texte</span>
-      <span *ngIf="f['texte'].errors?.['minlength']">Minimum 10 caractères</span>
-      <span *ngIf="f['texte'].errors?.['maxlength']">Maximum 250 caractères</span>
+      class="form-control align-self-center mb-2"
+      maxlength="250" minlength="10"
+      name="texte" placeholder="Votre texte"
+      required rows="3"
+    ></textarea>
+    <!-- invalid-feedback : class Bootstrap -->
+    <div class="invalid-feedback">
+      <span *ngIf="texte.errors?.['required']">Entrez votre texte</span>
+      <span *ngIf="texte.errors?.['minlength']">Minimum 10 caractères</span>
+      <span *ngIf="texte.errors?.['maxlength']">Maximum 250 caractères</span>
     </div>
 
     <div class="form-group d-flex justify-content-end">
-      <button [disabled]="chargement" class="bouton-validation-form py-1 px-3" type="submit">
-        <span *ngIf="chargement" class="spinner-border spinner-border-sm mr-1"></span>
+      <button [disabled]="formCommentaire.form.invalid" class="bouton-validation-form py-1 px-3" type="submit">
         Commenter
       </button>
     </div>
-
   </form>
+
 </div>

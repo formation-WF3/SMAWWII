@@ -23,7 +23,7 @@ header {
   color: var(--gris-platine);
 }
 
-@media screen and (max-width: 809px) {
+@media screen and (max-width: 919px) {
   .lien-connecter, .lien-deconnecter {
     color: var(--gris-platine);
   }
@@ -48,9 +48,9 @@ header {
     font-size: 1.8rem;
   }
 
-  .lien-connecter, .lien-deconnecter {
-    color: var(--blanc-fantome);
-  }
+  //.lien-connecter, .lien-deconnecter {
+  //  color: var(--blanc-fantome);
+  //}
 }
 
 @media screen and (max-width: 499px) {
@@ -62,7 +62,7 @@ header {
     font-size: 1.6rem;
   }
 
-  .lien-inscrire {
+  .lien-connecter, .lien-deconnecter, .lien-inscrire {
     color: var(--blanc-fantome);
   }
 }

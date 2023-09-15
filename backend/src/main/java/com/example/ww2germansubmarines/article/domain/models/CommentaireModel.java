@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class CommentaireModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String texte;

@@ -15,5 +15,4 @@ public class CommentaireDto {
     private LocalDateTime dateCreation;
     private LocalDateTime dateModification;
     private String utilisateurNom;
-    private String articleTitre;
 }

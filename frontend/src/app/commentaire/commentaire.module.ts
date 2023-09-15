@@ -5,7 +5,7 @@ import {CommentaireRoutingModule} from './commentaire-routing.module';
 import {ListeCommentaireComponent} from './components/liste-commentaire/liste-commentaire.component';
 import {DetailCommentaireComponent} from './components/detail-commentaire/detail-commentaire.component';
 import {FormCommentaireComponent} from './components/form-commentaire/form-commentaire.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommentaireService} from "./services/commentaire.service";
 
 
@@ -17,13 +17,15 @@ import {CommentaireService} from "./services/commentaire.service";
   ],
   exports: [
     ListeCommentaireComponent,
-    DetailCommentaireComponent
+    DetailCommentaireComponent,
+    FormCommentaireComponent
   ],
-  imports: [
-    CommonModule,
-    CommentaireRoutingModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        CommentaireRoutingModule,
+        ReactiveFormsModule,
+        FormsModule
+    ],
   providers: [
     CommentaireService
   ]
