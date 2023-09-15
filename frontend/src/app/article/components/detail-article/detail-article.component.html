@@ -12,7 +12,12 @@
 
   <p class="texte text-justify mb-4">{{ article?.texte }}</p>
 
-  <app-liste-commentaire *ngIf="commentaires.length != 0" [commentaires]="commentaires"></app-liste-commentaire>
+  <h3 class="titre-section ms-2 mb-3">{{ titre }}</h3>
+
+  <app-form-commentaire (succes)="recevoirCommentaire($event)" *ngIf="article.id" [articleId]="article.id" [succesMessage]="succesMessage" class="d-flex flex-column justify-content-center align-items-center"></app-form-commentaire>
+
+  <div class="detail-commentaires">
+    <app-detail-commentaire *ngFor="let commentaire of article.commentaires" [commentaire]="commentaire" class="col-12"></app-detail-commentaire>
+  </div>
 
 </article>
-

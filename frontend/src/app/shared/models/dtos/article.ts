@@ -1,3 +1,5 @@
+import {Commentaire} from "./commentaire";
+
 export interface Article {
   id?: number;
   titre?: string;
@@ -7,6 +9,7 @@ export interface Article {
   dateModification?: Date;
   actif?: boolean;
   imageSrc?: string;
+  commentaires?: Commentaire[];
   categorieNom?: string;
   utilisateurNom?: string;
 }

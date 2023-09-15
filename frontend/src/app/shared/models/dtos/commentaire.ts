@@ -4,5 +4,4 @@ export interface Commentaire {
   dateCreation?: Date;
   dateModification?: Date;
   utilisateurNom?: string;
-  articleTitre?: string;
 }

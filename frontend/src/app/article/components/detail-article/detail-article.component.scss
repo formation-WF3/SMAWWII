@@ -12,3 +12,31 @@ header img {
   background-color: var(--blanc-fantome);
   color: var(--gris-sombre);
 }
+
+.titre-section {
+  color: var(--bleu-oxford);
+}
+
+@media screen and (max-width: 767px) {
+  .titre-section {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .titre-section {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .titre-section {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .titre-section {
+    font-size: 1.2rem;
+  }
+}

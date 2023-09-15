@@ -9,5 +9,4 @@ import {Commentaire} from "../../../shared/models/dtos/commentaire";
 export class DetailCommentaireComponent {
   @Input()
   commentaire!: Commentaire;
-
 }

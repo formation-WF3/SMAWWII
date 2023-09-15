@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Commentaire} from "../../../shared/models/dtos/commentaire";
 
 @Component({
@@ -6,15 +6,9 @@ import {Commentaire} from "../../../shared/models/dtos/commentaire";
   templateUrl: './liste-commentaire.component.html',
   styleUrls: ['./liste-commentaire.component.scss']
 })
-export class ListeCommentaireComponent implements OnInit {
+export class ListeCommentaireComponent {
   titre: string = "Commentaires";
 
   @Input()
   commentaires: Commentaire[] = [];
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 }

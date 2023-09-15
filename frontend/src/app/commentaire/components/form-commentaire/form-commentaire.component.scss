@@ -1,0 +1,17 @@
+textarea {
+  resize: none;
+  background-color: var(--blanc-fantome);
+  border: 2px solid var(--bleu-airsup);
+  border-radius: 12px;
+  color: var(--bleu-oxford);
+}
+
+@media screen and (max-width: 771px) {
+  .section-form-commentaire {
+    text-align: center;
+  }
+
+  form {
+    width: 90%;
+  }
+}

@@ -3,7 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../../shared/models/dtos/article";
 import {Commentaire} from "../../../shared/models/dtos/commentaire";
-import {CommentaireService} from "../../../commentaire/services/commentaire.service";
 
 @Component({
   selector: 'app-detail-article',
@@ -11,38 +10,34 @@ import {CommentaireService} from "../../../commentaire/services/commentaire.serv
   styleUrls: ['./detail-article.component.scss']
 })
 export class DetailArticleComponent implements OnInit {
-  article?: Article;
-  commentaires: Commentaire[] = [];
+  titre: string = "Commentaires";
+  article: Article = {};
+  succesMessage?: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private articleService: ArticleService,
-    private commentaireService: CommentaireService
+    private articleService: ArticleService
   ) {
   }
 
-  ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
-      const id = params.get('id') as string;
-      if (id) {
-        this.articleService.getById(+id).subscribe(
-          article => {
-            this.article = article;
-
-            this.commentaireService.getAllByArticleId(+id).subscribe(
-              commentaires => this.commentaires = commentaires
-            );
-          }
-        );
+  ngOnInit(): void {
+    this.activatedRoute.paramMap
+      .subscribe(params => {
+        const id = params.get('id') as string;
+        if (id) {
+          this.articleService.getById(+id).subscribe(article => this.article = article);
+        }
       }
-    });
-
-    /*
-    if (this.article) {
-      this.commentaireService.getAllByArticleTitre(this.article.titre).subscribe(
-        commentaires => this.commentaires = commentaires
-      );
-    }
-     */
+    );
   }
+
+  recevoirCommentaire(commentaire: Commentaire): void {
+    if (this.article.commentaires?.length) {
+      this.article.commentaires.push(commentaire);
+    } else {
+      this.article.commentaires = [commentaire];
+    }
+    this.succesMessage = 'Commentaire ajouté avec succès';
+  }
+
 }

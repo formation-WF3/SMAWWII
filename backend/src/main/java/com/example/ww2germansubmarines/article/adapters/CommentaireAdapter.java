@@ -10,13 +10,17 @@ import org.springframework.stereotype.Component;
 public class CommentaireAdapter {
 
     public CommentaireDto toDto(CommentaireModel model) {
+        if (model == null) {
+            return null;
+        }
+
         return CommentaireDto.builder()
                 .id(model.getId())
                 .texte(model.getTexte())
                 .dateCreation(model.getDateCreation())
                 .dateModification(model.getDateModification())
-                .utilisateurNom(model.getUtilisateur().getNomUtilisateur())
-                .articleTitre(model.getArticle().getTitre())
+                .utilisateurNom(model.getUtilisateur() != null ? model.getUtilisateur().getNomUtilisateur() : null)
                 .build();
     }
+
 }

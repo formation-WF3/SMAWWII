@@ -19,5 +19,4 @@ export class ArticleService {
   getById(id: number): Observable<Article> {
     return this.httpClient.get<Article>(`${this.API_URL}/articles/${id}`);
   }
-
 }

@@ -1,63 +1,66 @@
 <div class="section-connexion row justify-content-center pt-5">
 
   <div class="card col-md-6 px-0">
-    <div class="card-header text-white bg-info">Connexion</div>
+    <div class="header-form card-header text-white bg-info">Connexion</div>
 
     <div class="card-body">
 
       <div *ngIf="erreurMessage" class="mb-3 alert alert-danger">{{ erreurMessage }}</div>
 
-      <form #formConnexion="ngForm" (ngSubmit)="connexionUtilisateurForm(formConnexion)" novalidate>
+      <form #formConnexion="ngForm" (ngSubmit)="soumettreFormulaire()" novalidate>
 
         <div class="form-row">
           <div class="col-md-6 col-sm-9 mb-3">
-            <label for="nomUtilisateur">Nom d'utilisateur</label>
+            <label class="labels-form" for="nomUtilisateur">Nom d'utilisateur</label>
             <input
-              #nomUtilisateurVar="ngModel"
-              [(ngModel)]="utilisateur.nomUtilisateur"
+              #nomUtilisateur="ngModel"
+              [(ngModel)]="connexionPayload.nomUtilisateur"
               [ngClass]="{
-                'is-invalid': nomUtilisateurVar.touched && !nomUtilisateurVar.valid
+                'is-invalid': nomUtilisateur.touched && !nomUtilisateur.valid
               }"
-              class="form-control" id="nomUtilisateur"
+              class="inputs-form form-control" id="nomUtilisateur"
               maxlength="30" minlength="4"
               name="nomUtilisateur" placeholder="Nom d'utilisateur"
               required type="text"
             >
             <!-- is-invalid : class Bootstrap -->
             <div class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
-              <span *ngIf="nomUtilisateurVar.errors?.['required']">Entrez votre nom d'utilisateur</span>
-              <span *ngIf="nomUtilisateurVar.errors?.['minlength']">Minimum 4 caractères</span>
+              <span *ngIf="nomUtilisateur.errors?.['required']">Entrez votre nom d'utilisateur</span>
+              <span *ngIf="nomUtilisateur.errors?.['minlength']">Minimum 4 caractères</span>
             </div>
           </div>
         </div>
 
         <div class="form-row">
           <div class="col-md-6 col-sm-9 mb-3">
-            <label for="motDePasse">Mot de passe</label>
+            <label class="labels-form" for="motDePasse">Mot de passe</label>
             <input
-              #motDePasseVar="ngModel"
-              [(ngModel)]="utilisateur.motDePasse"
+              #motDePasse="ngModel"
+              [(ngModel)]="connexionPayload.motDePasse"
               [ngClass]="{
-                'is-invalid': motDePasseVar.touched && !motDePasseVar.valid
+                'is-invalid': motDePasse.touched && !motDePasse.valid
               }"
-              class="form-control" id="motDePasse"
+              class="inputs-form form-control" id="motDePasse"
               minlength="8"
               name="motDePasse" placeholder="Mot de passe"
               required type="password"
             >
             <!-- is-invalid : class Bootstrap -->
             <div class="invalid-feedback"><!-- invalid-feedback : class Bootstrap -->
-              <span *ngIf="motDePasseVar.errors?.['required']">Entrez votre mot de passe</span>
-              <span *ngIf="motDePasseVar.errors?.['minlength']">Minimum 8 caractères</span>
+              <span *ngIf="motDePasse.errors?.['required']">Entrez votre mot de passe</span>
+              <span *ngIf="motDePasse.errors?.['minlength']">Minimum 8 caractères</span>
             </div>
           </div>
         </div>
 
         <div class="form-group text-right">
-          <button [disabled]="formConnexion.form.invalid" class="btn btn-primary" type="submit">Se connecter</button>
-          <button (click)="reinitialisationForm(formConnexion)" class="btn btn-info float-end" type="button">Effacer</button>
+          <button [disabled]="formConnexion.form.invalid" class="bouton-validation-form py-1 px-3" type="submit">
+            Se connecter
+          </button>
+          <button (click)="reinitialiserFormulaire(formConnexion)" class="bouton-effacement-form px-2 py-1 float-end" type="button">Effacer</button>
         </div>
       </form>
+
     </div>
   </div>
 </div>

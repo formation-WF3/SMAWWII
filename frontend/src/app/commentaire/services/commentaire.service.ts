@@ -3,9 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Commentaire} from "../../shared/models/dtos/commentaire";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CommentaireService {
   API_URL: string = 'http://localhost:8080/api';
 
@@ -14,16 +12,11 @@ export class CommentaireService {
   ) {
   }
 
-  getAll(): Observable<Commentaire[]> {
-    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/commentaires`);
-  }
-
   getAllByArticleId(id: number): Observable<Commentaire[]> {
-    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/commentaires/id/${id}`);
+    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/articles/${id}/commentaires`);
   }
 
-  getAllByArticleTitre(titre: string): Observable<Commentaire[]> {
-    return this.httpClient.get<Commentaire[]>(`${this.API_URL}/commentaires/${titre}`);
+  enregistrer(articleId: number, valeursForm: Commentaire): Observable<Commentaire> {
+    return this.httpClient.post(`${this.API_URL}/articles/${articleId}/commentaires`, valeursForm);
   }
-
 }

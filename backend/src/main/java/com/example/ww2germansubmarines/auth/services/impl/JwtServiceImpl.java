@@ -1,9 +1,9 @@
 package com.example.ww2germansubmarines.auth.services.impl;
 
 import com.example.ww2germansubmarines.auth.services.JwtService;
+import com.example.ww2germansubmarines.core.adapters.UtilisateurAdapter;
 import com.example.ww2germansubmarines.core.domain.models.UtilisateurModel;
 import com.example.ww2germansubmarines.core.rest.dtos.UtilisateurDto;
-import com.example.ww2germansubmarines.core.services.adapters.UtilisateurAdapter;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

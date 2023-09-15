@@ -1,22 +1,23 @@
-<header [style.background-image]="'url(assets/images/type-XB.png)'" class="section-header vw-100 mb-4">
+<header class="section-header vw-100 mb-4">
 
-  <div class="row justify-content-between h-100">
+  <div [style.background-image]="'url(assets/images/type-XB.png)'" class="header-sans-navbar row justify-content-between h-100">
     <div class="d-flex flex-column justify-content-between col-sm-9 pt-2">
       <div class="titre ms-3">
         <h1>{{ titre }}</h1>
       </div>
 
       <ul class="d-flex gap-4 ms-3 mb-2 ps-0">
-        <li *ngIf="utilisateurConnecte$ | async; else connexion" class="liens-connecter-deconnecter"><a (click)="deconnexion()" class="nav-link" routerLinkActive="active">Se déconnecter</a></li>
+        <li *ngIf="utilisateurConnecte$ | async; else connexion" class="lien-deconnecter"><a (click)="deconnexion()" class="nav-link" routerLinkActive="active">Se déconnecter</a></li>
 
         <ng-template #connexion>
-          <li class="liens-connecter-deconnecter"><a [routerLink]="['/auth/connexion']" class="nav-link" routerLinkActive="active">Se connecter</a></li>
+          <li class="lien-connecter"><a [routerLink]="['/auth/connexion']" class="nav-link" routerLinkActive="active">Se connecter</a></li>
 
           <li class="lien-inscrire"><a [routerLink]="['/auth/inscription']" class="nav-link" routerLinkActive="active">S'inscrire</a></li>
         </ng-template>
       </ul>
     </div>
-
   </div>
+
+  <!-- navbar ici -->
 
 </header>

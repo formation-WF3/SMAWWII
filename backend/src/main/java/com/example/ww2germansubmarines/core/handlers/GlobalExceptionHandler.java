@@ -28,17 +28,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .body(ErreurReponse.builder().message(ex.getMessage()).build());
     }
 
-    @ExceptionHandler(value = IllegalArgumentException.class)
-    public ResponseEntity<ErreurReponse> handleIllegalArgumentException(IllegalArgumentException ex) {
-        return ResponseEntity
-                .status(401)
-                .body(ErreurReponse.builder().message(ex.getMessage()).build());
-    }
-
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErreurReponse> handleException(Exception ex) {
         return ResponseEntity
-                .status(200)
+                .status(500)
                 .body(ErreurReponse.builder().message(ex.getMessage()).build());
     }
 }
