@@ -15,7 +15,7 @@ public class CommentaireController {
     private CommentaireService commentaireService;
 
     @PostMapping
-    public CommentaireDto enregistrer(@PathVariable long articleId, @AuthenticationPrincipal UserDetails utilisateurCourant, @RequestBody CommentaireRequete commentaireRequete) {
+    public CommentaireDto enregistrer(@PathVariable Long articleId, @AuthenticationPrincipal UserDetails utilisateurCourant, @RequestBody CommentaireRequete commentaireRequete) {
         return commentaireService.enregistrer(articleId, utilisateurCourant.getUsername(), commentaireRequete);
     }
 }

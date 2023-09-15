@@ -33,7 +33,6 @@ export class FormCommentaireComponent implements OnInit {
   soumettre(): void {
     this.commentaireService.enregistrer(this.articleId, this.commentairePayload).subscribe({
       next: commentaire => {
-        console.log("article id dans enregistrer :" + this.articleId);
         this.succes.emit(commentaire);
         this.reinitialiserFormulaire();
       },
