@@ -14,6 +14,10 @@ header {
   color: var(--bleu-oxford);
 }
 
+.lien-connecter, .lien-deconnecter, .lien-inscrire {
+  text-transform: uppercase;
+}
+
 .lien-connecter, .lien-deconnecter {
   cursor: pointer;
   color: var(--gris-sombre);
@@ -60,6 +64,12 @@ header {
 
   .titre h1 {
     font-size: 1.6rem;
+  }
+
+  ul {
+    margin-left: 16px;
+    margin-right: 16px;
+    justify-content: space-between;
   }
 
   .lien-connecter, .lien-deconnecter, .lien-inscrire {

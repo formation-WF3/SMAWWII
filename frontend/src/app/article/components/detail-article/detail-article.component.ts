@@ -13,6 +13,7 @@ export class DetailArticleComponent implements OnInit {
   titre: string = "Commentaires";
   article: Article = {};
   succesMessage?: string;
+  receptionCommentaire!: Commentaire;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,7 +38,12 @@ export class DetailArticleComponent implements OnInit {
     } else {
       this.article.commentaires = [commentaire];
     }
-    this.succesMessage = 'Commentaire ajouté avec succès';
+    // Commentaire ajouté ou modifié
+    this.succesMessage = 'Commentaire ajouté/modifié avec succès';
   }
 
+  commentaireATransmettre(commentaire: Commentaire): void {
+    this.receptionCommentaire = commentaire;
+    console.log(this.receptionCommentaire.id);
+  }
 }

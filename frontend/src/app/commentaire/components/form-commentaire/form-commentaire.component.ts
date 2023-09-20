@@ -17,6 +17,8 @@ export class FormCommentaireComponent implements OnInit {
   succesMessage?: string;
   @Input()
   articleId!: number;
+  @Input()
+  commentaireRecu!: Commentaire;
 
   @Output()
   succes = new EventEmitter<Commentaire>();
@@ -27,7 +29,12 @@ export class FormCommentaireComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    if (this.commentaireRecu) {
+      this.commentairePayload.id = this.commentaireRecu.id;
+      this.commentairePayload.texte = this.commentaireRecu.texte;
+      console.log(this.commentaireRecu);
+    }
   }
 
   soumettre(): void {

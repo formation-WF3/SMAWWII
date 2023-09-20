@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   ) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Permet de vérifier, lors d'un raffraichissement, si un utilisateur est connecté
     this.utilisateurConnecte$ = this.authService.loggedIn$;
   }

@@ -14,21 +14,23 @@ export class RequetesHttpInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.url.endsWith('/auth/connexion')) {
-      return next.handle(req).pipe(
-        retry(1),
-        catchError((erreur: HttpErrorResponse) => {
-          let messageErreur = formatDate(new Date, 'dd/MM/yyyy HH:mm', 'fr') + `, ${erreur.error.message}`;
-          return throwError(() => messageErreur);
-        })
-      );
+      return this.requestHandler(req, next);
     }
 
     const token = this.authService.getToken();
-
     if (token) {
       req = this.ajouterToken(req, token);
     }
+    return this.requestHandler(req, next);
+  }
 
+  private ajouterToken(request: HttpRequest<unknown>, token: String): HttpRequest<unknown> {
+    return request.clone({
+      headers: request.headers.set('Authorization', `Bearer ${token}`)
+    });
+  }
+
+  private requestHandler(req: HttpRequest<any>, next: HttpHandler) {
     return next.handle(req).pipe(
       retry(1),
       catchError((erreur: HttpErrorResponse) => {
@@ -36,11 +38,5 @@ export class RequetesHttpInterceptor implements HttpInterceptor {
         return throwError(() => messageErreur);
       })
     );
-  }
-
-  private ajouterToken(request: HttpRequest<unknown>, token: String): HttpRequest<unknown> {
-    return request.clone({
-      headers: request.headers.set('Authorization', `Bearer ${token}`)
-    });
   }
 }

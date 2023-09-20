@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Commentaire} from "../../../shared/models/dtos/commentaire";
 
 @Component({
@@ -9,4 +9,14 @@ import {Commentaire} from "../../../shared/models/dtos/commentaire";
 export class DetailCommentaireComponent {
   @Input()
   commentaire!: Commentaire;
+
+  @Output()
+  commentaireEnvoye: EventEmitter<Commentaire> = new EventEmitter<Commentaire>();
+  // commentaireATransmettre = new Subject<Commentaire>();
+
+  envoyerCommentaire(commentaire: Commentaire): void {
+    this.commentaireEnvoye.emit(commentaire);
+    console.log(commentaire.id);
+    // this.commentaireATransmettre.next(commentaire);
+  }
 }
