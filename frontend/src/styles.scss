@@ -108,6 +108,11 @@ labels-form {
   }
 }
 
+/* Suppression de la flèche des dropdown-toggle */
+.dropdown-toggle::after {
+    display:none;
+}
+
 /************************/
 .text-justify {
   text-align: justify !important;

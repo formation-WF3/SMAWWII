@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ww2-german-submarines": {
+    "sous-marins-allemands-wwii": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ww2-german-submarines",
+            "outputPath": "dist/sous-marins-allemands-wwii",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ww2-german-submarines:build:production"
+              "browserTarget": "sous-marins-allemands-wwii:build:production"
             },
             "development": {
-              "browserTarget": "ww2-german-submarines:build:development"
+              "browserTarget": "sous-marins-allemands-wwii:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ww2-german-submarines:build"
+            "browserTarget": "sous-marins-allemands-wwii:build"
           }
         },
         "test": {

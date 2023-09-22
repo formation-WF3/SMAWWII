@@ -1,4 +1,4 @@
-# Projet Sous-marins allemands WW2
+# Projet Sous-marins allemands WWII
 
 ### Backend
 
@@ -6,7 +6,7 @@ Généré avec spring initializr :
 
 Maven, Spring 2.7.13, Java 11.0.19, et les dépendances Spring Web, MySQL Driver, Spring Data JPA, Lombok, et Spring Boot DevTools.
 
-Spring Security sera ajouté probablement par la suite.
+Spring Security sera ajouté par la suite.
 
 ### Frontend
 

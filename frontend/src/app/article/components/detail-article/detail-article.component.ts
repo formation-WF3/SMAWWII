@@ -33,17 +33,21 @@ export class DetailArticleComponent implements OnInit {
   }
 
   recevoirCommentaire(commentaire: Commentaire): void {
-    if (this.article.commentaires?.length) {
-      this.article.commentaires.push(commentaire);
+    if (this.receptionCommentaire && this.article.commentaires) {
+      const index= this.article.commentaires.indexOf(this.receptionCommentaire);
+      this.article.commentaires[index] = this.receptionCommentaire;
+      this.succesMessage = 'Commentaire modifié avec succès';
     } else {
-      this.article.commentaires = [commentaire];
+      if (this.article.commentaires?.length) {
+        this.article.commentaires.push(commentaire);
+      } else {
+        this.article.commentaires = [commentaire];
+      }
+      this.succesMessage = 'Commentaire ajouté avec succès';
     }
-    // Commentaire ajouté ou modifié
-    this.succesMessage = 'Commentaire ajouté/modifié avec succès';
   }
 
   commentaireATransmettre(commentaire: Commentaire): void {
     this.receptionCommentaire = commentaire;
-    console.log(this.receptionCommentaire.id);
   }
 }

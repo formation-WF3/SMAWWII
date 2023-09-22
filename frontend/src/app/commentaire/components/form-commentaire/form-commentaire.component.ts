@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {CommentaireService} from "../../services/commentaire.service";
-import {ActivatedRoute} from "@angular/router";
 import {CommentairePayload} from "../../../shared/models/dtos/commentaire-payload";
 import {Commentaire} from "../../../shared/models/dtos/commentaire";
 
@@ -9,7 +8,7 @@ import {Commentaire} from "../../../shared/models/dtos/commentaire";
   templateUrl: './form-commentaire.component.html',
   styleUrls: ['./form-commentaire.component.scss']
 })
-export class FormCommentaireComponent implements OnInit {
+export class FormCommentaireComponent implements OnChanges {
   commentairePayload: CommentairePayload = {};
   erreurMessage?: string;
 
@@ -24,16 +23,14 @@ export class FormCommentaireComponent implements OnInit {
   succes = new EventEmitter<Commentaire>();
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private commentaireService: CommentaireService
   ) {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     if (this.commentaireRecu) {
       this.commentairePayload.id = this.commentaireRecu.id;
       this.commentairePayload.texte = this.commentaireRecu.texte;
-      console.log(this.commentaireRecu);
     }
   }
 
@@ -48,6 +45,9 @@ export class FormCommentaireComponent implements OnInit {
   }
 
   reinitialiserFormulaire(): void {
+    if (this.commentaireRecu) {
+      this.commentaireRecu = {};
+    }
     this.commentairePayload.id = undefined;
     this.commentairePayload.texte = '';
   }

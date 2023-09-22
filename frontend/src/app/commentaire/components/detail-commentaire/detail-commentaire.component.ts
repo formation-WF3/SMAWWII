@@ -12,11 +12,8 @@ export class DetailCommentaireComponent {
 
   @Output()
   commentaireEnvoye: EventEmitter<Commentaire> = new EventEmitter<Commentaire>();
-  // commentaireATransmettre = new Subject<Commentaire>();
 
   envoyerCommentaire(commentaire: Commentaire): void {
     this.commentaireEnvoye.emit(commentaire);
-    console.log(commentaire.id);
-    // this.commentaireATransmettre.next(commentaire);
   }
 }

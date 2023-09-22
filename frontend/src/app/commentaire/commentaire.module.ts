@@ -6,6 +6,7 @@ import {DetailCommentaireComponent} from './components/detail-commentaire/detail
 import {FormCommentaireComponent} from './components/form-commentaire/form-commentaire.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommentaireService} from "./services/commentaire.service";
+import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -17,12 +18,16 @@ import {CommentaireService} from "./services/commentaire.service";
     DetailCommentaireComponent,
     FormCommentaireComponent
   ],
-    imports: [
-        CommonModule,
-        CommentaireRoutingModule,
-        ReactiveFormsModule,
-        FormsModule
-    ],
+  imports: [
+    CommonModule,
+    CommentaireRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NgbDropdownItem,
+    NgbDropdownMenu,
+    NgbDropdownToggle,
+    NgbDropdown
+  ],
   providers: [
     CommentaireService
   ]
