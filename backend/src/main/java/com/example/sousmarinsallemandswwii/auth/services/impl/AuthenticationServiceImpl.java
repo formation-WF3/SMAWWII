@@ -10,7 +10,7 @@ import com.example.sousmarinsallemandswwii.core.domain.models.RoleModel;
 import com.example.sousmarinsallemandswwii.core.domain.models.UtilisateurModel;
 import com.example.sousmarinsallemandswwii.core.domain.repositories.UtilisateurRepository;
 import com.example.sousmarinsallemandswwii.core.exceptions.RaisonEnum;
-import com.example.sousmarinsallemandswwii.core.exceptions.Ww2gsException;
+import com.example.sousmarinsallemandswwii.core.exceptions.SmawwiiException;
 import com.example.sousmarinsallemandswwii.core.services.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
@@ -75,26 +75,26 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private void verifierEligibilite(InscriptionRequete requete) {
         if (utilisateurRepository.existsByNomUtilisateur(requete.getNomUtilisateur())) {
-            throw new Ww2gsException(RaisonEnum.UTILISATEUR_DEJA_EXISTANT, HttpStatus.CONFLICT);
+            throw new SmawwiiException(RaisonEnum.UTILISATEUR_DEJA_EXISTANT, HttpStatus.CONFLICT);
         }
 
         if (utilisateurRepository.existsByEmail(requete.getEmail())) {
-            throw new Ww2gsException(RaisonEnum.EMAIL_DEJA_EXISTANTE, HttpStatus.CONFLICT);
+            throw new SmawwiiException(RaisonEnum.EMAIL_DEJA_EXISTANTE, HttpStatus.CONFLICT);
         }
 
         if (!StringUtils.equals(requete.getMotDePasse(), requete.getConfirmeMotDePasse())) {
-            throw new Ww2gsException(RaisonEnum.CORRESPONDANCE_MOTS_DE_PASSE_INCORRECTE, HttpStatus.CONFLICT);
+            throw new SmawwiiException(RaisonEnum.CORRESPONDANCE_MOTS_DE_PASSE_INCORRECTE, HttpStatus.CONFLICT);
         }
     }
 
     private UtilisateurModel verifierUtilisateur(String nomUtilisateur) {
         return utilisateurRepository.findByNomUtilisateur(nomUtilisateur)
-                .orElseThrow(() -> new Ww2gsException(RaisonEnum.IDENTIFICATION_INCORRECTE, HttpStatus.UNAUTHORIZED));
+                .orElseThrow(() -> new SmawwiiException(RaisonEnum.IDENTIFICATION_INCORRECTE, HttpStatus.UNAUTHORIZED));
     }
 
     private void verifierMotDePasse(String motDePasse, String motDePasseHash) {
         if (!passwordEncoder.matches(motDePasse, motDePasseHash)) {
-            throw new Ww2gsException(RaisonEnum.AUTHENTIFICATION_INCORRECTE, HttpStatus.FORBIDDEN);
+            throw new SmawwiiException(RaisonEnum.AUTHENTIFICATION_INCORRECTE, HttpStatus.FORBIDDEN);
         }
     }
 

@@ -1,7 +1,8 @@
 <article class="card">
 
   <a [routerLink]="['/articles', article.id]">
-    <img src="./assets/images/articles/{{ article.imageSrc }}" class="card-img-top" alt="{{ article.imageSrc }}">
+    <img alt="{{ article.imageSrc }}"
+         class="card-img-top" src="./assets/images/articles/{{ article.imageSrc }}">
   </a>
 
   <div class="card-header">

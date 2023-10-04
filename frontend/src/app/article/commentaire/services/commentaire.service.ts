@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Commentaire} from "../../shared/models/dtos/commentaire";
+import {Commentaire} from "../../../shared/models/dtos/commentaire";
 
 @Injectable()
 export class CommentaireService {

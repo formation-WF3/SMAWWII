@@ -4,7 +4,7 @@
     <h2 class="titre-page">{{ article.titre }}</h2>
 
     <p class="creation mb-1">
-      Créé par {{ article.utilisateurNom }}, le <time>{{ article?.dateCreation | date: 'dd MMMM yyyy à HH:mm' }}</time>
+      Créé par {{ article.utilisateurNom }}, le <time>{{ article.dateCreation | date: 'dd MMMM yyyy à HH:mm' }}</time>
     </p>
 
     <img alt="{{ article.imageSrc }}" src="./assets/images/articles/{{ article.imageSrc }}">

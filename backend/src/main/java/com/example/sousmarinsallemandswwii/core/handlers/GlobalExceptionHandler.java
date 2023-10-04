@@ -1,6 +1,6 @@
 package com.example.sousmarinsallemandswwii.core.handlers;
 
-import com.example.sousmarinsallemandswwii.core.exceptions.Ww2gsException;
+import com.example.sousmarinsallemandswwii.core.exceptions.SmawwiiException;
 import com.example.sousmarinsallemandswwii.core.rest.dtos.ErreurReponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,8 @@ import javax.security.sasl.AuthenticationException;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = Ww2gsException.class)
-    public ResponseEntity<ErreurReponse> handleWw2gsException(Ww2gsException ex) {
+    @ExceptionHandler(value = SmawwiiException.class)
+    public ResponseEntity<ErreurReponse> handleSmawwiiException(SmawwiiException ex) {
         return ResponseEntity
                 .status(ex.getHttpStatus())
                 .body(ErreurReponse.builder().message(ex.getMessage()).build());

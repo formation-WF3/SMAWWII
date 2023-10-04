@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {CommentaireService} from "../../services/commentaire.service";
-import {CommentairePayload} from "../../../shared/models/dtos/commentaire-payload";
-import {Commentaire} from "../../../shared/models/dtos/commentaire";
+import {CommentairePayload} from "../../../../shared/models/dtos/commentaire-payload";
+import {Commentaire} from "../../../../shared/models/dtos/commentaire";
 
 @Component({
   selector: 'app-form-commentaire',

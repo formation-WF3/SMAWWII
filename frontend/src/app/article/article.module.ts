@@ -7,9 +7,9 @@ import {ListeArticleComponent} from './components/liste-article/liste-article.co
 import {CarteArticleComponent} from './components/carte-article/carte-article.component';
 import {ArticleService} from "./services/article.service";
 import {DetailArticleComponent} from './components/detail-article/detail-article.component';
-import {CommentaireModule} from "../commentaire/commentaire.module";
-import {CommentaireService} from "../commentaire/services/commentaire.service";
-import {FormCommentaireComponent} from "../commentaire/components/form-commentaire/form-commentaire.component";
+import {CommentaireModule} from "./commentaire/commentaire.module";
+import {CommentaireService} from "./commentaire/services/commentaire.service";
+import {FormCommentaireComponent} from "./commentaire/components/form-commentaire/form-commentaire.component";
 
 
 @NgModule({

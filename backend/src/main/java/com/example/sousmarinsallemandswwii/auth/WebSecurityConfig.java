@@ -25,7 +25,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class WebSecurityConfig {
     private final static String[] ACCES_LIBRES = {"/accueil/**", "/auth/**", "/articles/**"};
 
-    private final static String[] ACCES_ADMINS = {};
+    private final static String[] ACCES_ADMINS = {"/admin/**"};
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Commentaire} from "../../../shared/models/dtos/commentaire";
+import {Commentaire} from "../../../../shared/models/dtos/commentaire";
 
 @Component({
   selector: 'app-liste-commentaire',
