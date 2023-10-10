@@ -32,7 +32,7 @@ export class PageInscriptionComponent implements OnInit {
     return this.formInscription.controls;
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.formInscription = this.formBuilder.group({
       nomUtilisateur: ['',
         [Validators.required,

@@ -1,0 +1,91 @@
+.section-detail {
+  background-color: var(--gris-fonce);
+}
+
+.detail-header {
+  padding-left: 16px;
+}
+
+.creation {
+  color: var(--orange-jaune);
+}
+
+.detail-body {
+  color: var(--gris-clair);
+}
+
+.bouton-signaler-commentaire {
+  background-color: var(--orange-jaune);
+  color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--blanc-fantome);
+    border-color: var(--orange-jaune);
+  }
+
+  &:active {
+    background-color: var(--orange-jaune);
+    border-color: var(--orange-jaune);
+    color: var(--gris-sombre);
+  }
+}
+
+.bouton-icone {
+  background-color: var(--gris-fonce);
+  border: 2px solid var(--orange-jaune);
+
+  &:hover {
+    background-color: var(--gris-clair);
+  }
+
+  &:active {
+    background-color: var(--orange-jaune);
+  }
+}
+
+.icone-svg {
+  background-color:var(--gris-fonce);
+  color: var(--blanc-fantome);
+
+  &:hover {
+    background-color: var(--gris-clair);
+    color: var(--gris-fonce);
+  }
+
+  &:active {
+    background-color: var(--orange-jaune);
+    color: var(--gris-sombre);
+  }
+}
+
+.bouton-modifier-commentaire {
+  background-color: var(--bleu-poudre);
+  color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--blanc-fantome);
+    border-color: var(--bleu-poudre);
+  }
+
+  &:active {
+    background-color: var(--bleu-poudre);
+    border-color: var(--bleu-poudre);
+    color: var(--gris-sombre);
+  }
+}
+
+.bouton-supprimer-commentaire {
+  background-color: var(--bleu-airsup);
+  color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--blanc-fantome);
+    border-color: var(--bleu-airsup);
+  }
+
+  &:active {
+    background-color: var(--bleu-airsup);
+    border-color: var(--bleu-airsup);
+    color: var(--gris-sombre);
+  }
+}

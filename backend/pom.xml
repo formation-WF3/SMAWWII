@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>ww2-german-submarines</artifactId>
+	<artifactId>sous-marins-allemands-wwii</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ww2-german-submarines</name>
-	<description>WW2 German Submarines project for Spring Boot</description>
+	<name>sous-marins-allemands-wwii</name>
+	<description>Sous-marins Allemands WWII projet pour Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 		<io.jsonwebtoken.version>0.11.2</io.jsonwebtoken.version>

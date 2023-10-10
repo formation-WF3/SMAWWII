@@ -1,0 +1,24 @@
+<div class="section-detail rounded-3">
+
+  <div class="detail-header d-flex justify-content-between mb-1">
+    <p class="creation pt-2">{{ commentaire.utilisateurNom }}, le {{ commentaire.dateCreation | date: 'dd MMMM yyyy à HH:mm'}}</p>
+
+    <div class="dropdown btn-et-bouton-icone rounded-3 mt-1" ngbDropdown>
+
+      <button class="btn bouton-signaler-commentaire rounded-3 me-1 px-2 py-1">Signaler</button>
+
+      <button *ngIf="utilisateurEstConnecte" aria-expanded="false" class="bouton-icone rounded-3 me-1" id="dropdownMenuButton" ngbDropdownToggle type="button">
+        <svg class="icone-svg bi bi-three-dots-vertical rounded-2" fill="currentColor" height="30" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>
+      </button>
+
+      <ul aria-labelledby="dropdownMenuButton" class="text-center px-2" ngbDropdownMenu>
+        <li><button (click)="emettreEdition()" class="btn bouton-modifier-commentaire rounded-3 mb-2" ngbDropdownItem>Modifier</button>
+        </li>
+        <li><button class="btn bouton-supprimer-commentaire rounded-3 me-1 px-2 py-1" ngbDropdownItem>Supprimer</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="detail-body px-3 pb-2 text-justify">{{ commentaire.texte }}</p>
+</div>
