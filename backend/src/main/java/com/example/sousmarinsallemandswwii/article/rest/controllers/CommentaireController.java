@@ -23,4 +23,11 @@ public class CommentaireController {
     public CommentaireDto modifier(@PathVariable Long articleId, @AuthenticationPrincipal UserDetails utilisateurCourant, @RequestBody CommentaireRequete commentaireRequete) {
         return commentaireService.enregistrer(articleId, utilisateurCourant.getUsername(), commentaireRequete);
     }
+
+    @DeleteMapping("/${id}")
+    public String supprimer(@PathVariable Long articleId, @PathVariable Long id) {
+        return commentaireService.supprimer(articleId, id);
+    }
+
+
 }

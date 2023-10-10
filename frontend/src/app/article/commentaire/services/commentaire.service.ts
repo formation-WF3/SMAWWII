@@ -20,4 +20,8 @@ export class CommentaireService {
   enregistrer(articleId: number, valeursForm: CommentairePayload): Observable<Commentaire> {
     return this.httpClient.post(`${this.API_URL}/articles/${articleId}/commentaires`, valeursForm);
   }
+
+  // supprimer(articleId: number, commentaireId: number): Observable<Commentaire> {
+  //   return this.httpClient.delete(`${this.API_URL}/articles/${articleId}/commentaires/${commentaireId}`)
+  // }
 }

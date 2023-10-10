@@ -40,11 +40,14 @@ export class DetailArticleComponent implements OnInit {
 
   enregistrerCommentaire(commentairePayload: CommentairePayload): void {
     const isEdition = !!commentairePayload.id;
+
     this.commentaireService.enregistrer(this.article.id!, commentairePayload).subscribe({
       next: commentaireRecu => {
         if (isEdition) {
+
           if (this.article.commentaires?.length) {
-            const index = this.article.commentaires.findIndex((commentaire) => commentaire.id === commentaireRecu.id);
+            const index = this.article.commentaires.findIndex(commentaire => commentaireRecu.id === commentaire.id);
+
             if (index >= 0) {
               this.article.commentaires[index] = commentaireRecu;
               this.idCommentaireEnEdition = undefined;
@@ -58,9 +61,14 @@ export class DetailArticleComponent implements OnInit {
             this.article.commentaires = [commentaireRecu];
           }
         }
+
         this.succesMessage = 'Commentaire enregistré avec succès';
       }
     });
+  }
+
+  supprimerCommentaire(): void {
+    console.log("Commentaire supprimé !");
   }
 
 }
