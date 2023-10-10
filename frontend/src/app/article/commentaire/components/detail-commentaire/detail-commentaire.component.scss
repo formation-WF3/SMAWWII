@@ -14,7 +14,7 @@
   color: var(--gris-clair);
 }
 
-.bouton-form-commentaire {
+.bouton-signaler-commentaire {
   background-color: var(--orange-jaune);
   color: var(--gris-fonce);
 
@@ -58,7 +58,34 @@
   }
 }
 
-.bouton-icone:hover {
-  background-color: var(--gris-clair);
+.bouton-modifier-commentaire {
+  background-color: var(--bleu-poudre);
+  color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--blanc-fantome);
+    border-color: var(--bleu-poudre);
+  }
+
+  &:active {
+    background-color: var(--bleu-poudre);
+    border-color: var(--bleu-poudre);
+    color: var(--gris-sombre);
+  }
 }
 
+.bouton-supprimer-commentaire {
+  background-color: var(--bleu-airsup);
+  color: var(--gris-fonce);
+
+  &:hover {
+    background-color: var(--blanc-fantome);
+    border-color: var(--bleu-airsup);
+  }
+
+  &:active {
+    background-color: var(--bleu-airsup);
+    border-color: var(--bleu-airsup);
+    color: var(--gris-sombre);
+  }
+}

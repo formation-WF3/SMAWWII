@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ArticleService} from "../../services/article.service";
 import {Article} from "../../../shared/models/dtos/article";
-import {Commentaire} from "../../../shared/models/dtos/commentaire";
+import {AuthService} from "../../../auth/services/auth.service";
+import {CommentairePayload} from "../../../shared/models/dtos/commentaire-payload";
+import {CommentaireService} from "../../commentaire/services/commentaire.service";
 
 @Component({
   selector: 'app-detail-article',
@@ -13,11 +15,14 @@ export class DetailArticleComponent implements OnInit {
   titre: string = "Commentaires";
   article: Article = {};
   succesMessage?: string;
-  receptionCommentaire!: Commentaire;
+  utilisateurEstConnecte = false;
+  idCommentaireEnEdition?: number;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private articleService: ArticleService
+    private articleService: ArticleService,
+    private commentaireService: CommentaireService,
+    private authService: AuthService
   ) {
   }
 
@@ -30,24 +35,32 @@ export class DetailArticleComponent implements OnInit {
         }
       }
     );
+    this.utilisateurEstConnecte = this.authService.isConnecte();
   }
 
-  recevoirCommentaire(commentaire: Commentaire): void {
-    if (this.receptionCommentaire && this.article.commentaires) {
-      const index= this.article.commentaires.indexOf(this.receptionCommentaire);
-      this.article.commentaires[index] = this.receptionCommentaire;
-      this.succesMessage = 'Commentaire modifié avec succès';
-    } else {
-      if (this.article.commentaires?.length) {
-        this.article.commentaires.push(commentaire);
-      } else {
-        this.article.commentaires = [commentaire];
+  enregistrerCommentaire(commentairePayload: CommentairePayload): void {
+    const isEdition = !!commentairePayload.id;
+    this.commentaireService.enregistrer(this.article.id!, commentairePayload).subscribe({
+      next: commentaireRecu => {
+        if (isEdition) {
+          if (this.article.commentaires?.length) {
+            const index = this.article.commentaires.findIndex((commentaire) => commentaire.id === commentaireRecu.id);
+            if (index >= 0) {
+              this.article.commentaires[index] = commentaireRecu;
+              this.idCommentaireEnEdition = undefined;
+            }
+          }
+
+        } else {
+          if (this.article.commentaires?.length) {
+            this.article.commentaires.push(commentaireRecu);
+          } else {
+            this.article.commentaires = [commentaireRecu];
+          }
+        }
+        this.succesMessage = 'Commentaire enregistré avec succès';
       }
-      this.succesMessage = 'Commentaire ajouté avec succès';
-    }
+    });
   }
 
-  commentaireATransmettre(commentaire: Commentaire): void {
-    this.receptionCommentaire = commentaire;
-  }
 }

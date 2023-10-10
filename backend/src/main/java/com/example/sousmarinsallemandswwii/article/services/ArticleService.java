@@ -39,5 +39,4 @@ public class ArticleService {
         return articleRepository.findById(articleId)
                 .orElseThrow(() -> new EntiteNonTrouveException(RaisonEnum.ARTICLE_NON_TROUVE));
     }
-
 }

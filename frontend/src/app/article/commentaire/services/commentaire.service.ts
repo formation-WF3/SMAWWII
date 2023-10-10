@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Commentaire} from "../../../shared/models/dtos/commentaire";
+import {CommentairePayload} from "../../../shared/models/dtos/commentaire-payload";
 
 @Injectable()
 export class CommentaireService {
@@ -16,7 +17,7 @@ export class CommentaireService {
     return this.httpClient.get<Commentaire[]>(`${this.API_URL}/articles/${id}/commentaires`);
   }
 
-  enregistrer(articleId: number, valeursForm: Commentaire): Observable<Commentaire> {
+  enregistrer(articleId: number, valeursForm: CommentairePayload): Observable<Commentaire> {
     return this.httpClient.post(`${this.API_URL}/articles/${articleId}/commentaires`, valeursForm);
   }
 }

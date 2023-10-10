@@ -7,7 +7,7 @@
 
     <textarea
       #texte="ngModel"
-      [(ngModel)]="commentairePayload.texte"
+      [(ngModel)]="commentairePayloadCopie.texte"
       [ngClass]="{'is-invalid': texte.touched && !texte.valid}"
       class="form-control align-self-center mb-2"
       maxlength="250" minlength="10"

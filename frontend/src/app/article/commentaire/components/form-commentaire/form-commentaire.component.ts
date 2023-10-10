@@ -1,54 +1,34 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {CommentaireService} from "../../services/commentaire.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommentairePayload} from "../../../../shared/models/dtos/commentaire-payload";
-import {Commentaire} from "../../../../shared/models/dtos/commentaire";
 
 @Component({
   selector: 'app-form-commentaire',
   templateUrl: './form-commentaire.component.html',
   styleUrls: ['./form-commentaire.component.scss']
 })
-export class FormCommentaireComponent implements OnChanges {
-  commentairePayload: CommentairePayload = {};
-  erreurMessage?: string;
-
+export class FormCommentaireComponent implements OnInit {
+  @Input()
+  commentaire: CommentairePayload = {};
   @Input()
   succesMessage?: string;
   @Input()
   articleId!: number;
-  @Input()
-  commentaireRecu!: Commentaire;
 
   @Output()
-  succes = new EventEmitter<Commentaire>();
+  succes= new EventEmitter<CommentairePayload>();
 
-  constructor(
-    private commentaireService: CommentaireService
-  ) {
-  }
+  erreurMessage?: string;
+  commentairePayloadCopie: CommentairePayload = {};
 
-  ngOnChanges(): void {
-    if (this.commentaireRecu) {
-      this.commentairePayload.id = this.commentaireRecu.id;
-      this.commentairePayload.texte = this.commentaireRecu.texte;
-    }
+  ngOnInit() {
+    this.reinitialiserFormulaire();
   }
 
   soumettre(): void {
-    this.commentaireService.enregistrer(this.articleId, this.commentairePayload).subscribe({
-      next: commentaire => {
-        this.succes.emit(commentaire);
-        this.reinitialiserFormulaire();
-      },
-      error: error => this.erreurMessage = error
-    });
+    this.succes.emit(this.commentairePayloadCopie);
   }
 
   reinitialiserFormulaire(): void {
-    if (this.commentaireRecu) {
-      this.commentaireRecu = {};
-    }
-    this.commentairePayload.id = undefined;
-    this.commentairePayload.texte = '';
+    this.commentairePayloadCopie =  {...this.commentaire};
   }
 }

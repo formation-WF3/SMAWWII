@@ -11,5 +11,4 @@ public class SmawwiiException extends RuntimeException {
         super(raison.getMessage());
         this.httpStatus = httpStatus;
     }
-
 }

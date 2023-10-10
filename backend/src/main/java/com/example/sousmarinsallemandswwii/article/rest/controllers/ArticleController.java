@@ -24,5 +24,4 @@ public class ArticleController {
     public ArticleDto getById(@PathVariable long id) {
         return articleService.getById(id);
     }
-
 }

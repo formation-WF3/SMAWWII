@@ -18,5 +18,4 @@ public enum RaisonEnum {
     COMMENTAIRE_NON_TROUVE("Commentaire non trouvé !");
 
     private final String message;
-
 }

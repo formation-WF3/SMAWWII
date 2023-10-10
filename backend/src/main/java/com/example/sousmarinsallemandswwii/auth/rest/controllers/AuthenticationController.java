@@ -28,5 +28,4 @@ public class AuthenticationController {
     public ResponseEntity<JwtAuthenticationResponse> connexion(@Valid @RequestBody ConnexionRequete requete) {
         return ResponseEntity.ok(authenticationService.connexion(requete));
     }
-
 }

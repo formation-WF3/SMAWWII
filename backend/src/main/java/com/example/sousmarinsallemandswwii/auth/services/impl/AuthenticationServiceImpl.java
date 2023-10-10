@@ -97,5 +97,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new SmawwiiException(RaisonEnum.AUTHENTIFICATION_INCORRECTE, HttpStatus.FORBIDDEN);
         }
     }
-
 }

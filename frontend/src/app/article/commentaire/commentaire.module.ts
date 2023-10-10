@@ -18,16 +18,16 @@ import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "
     DetailCommentaireComponent,
     FormCommentaireComponent
   ],
-  imports: [
-    CommonModule,
-    CommentaireRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    NgbDropdownItem,
-    NgbDropdownMenu,
-    NgbDropdownToggle,
-    NgbDropdown
-  ],
+    imports: [
+        CommonModule,
+        CommentaireRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NgbDropdownItem,
+        NgbDropdownMenu,
+        NgbDropdownToggle,
+        NgbDropdown
+    ],
   providers: [
     CommentaireService
   ]

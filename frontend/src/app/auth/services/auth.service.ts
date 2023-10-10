@@ -52,16 +52,16 @@ export class AuthService {
     return localStorage.getItem('token') as string;
   }
 
-  private sauvegarderToken(token: string): void {
-    localStorage.setItem('token', token);
-    this._logger.next(true);
-  }
-
-  private decodeToken(token: string): string|null {
+  decodeToken(token: string): string|null {
     try {
       return jwt_decode(token);
     } catch(Error) {
       return null;
     }
+  }
+
+  private sauvegarderToken(token: string): void {
+    localStorage.setItem('token', token);
+    this._logger.next(true);
   }
 }
