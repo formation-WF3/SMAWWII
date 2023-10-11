@@ -70,12 +70,12 @@ export class DetailArticleComponent implements OnInit {
   supprimerCommentaire(idCommentaire: number): void {
     console.log(idCommentaire);
     this.commentaireService.supprimer(this.article.id!, idCommentaire).subscribe({
-      next: commentaireASupprimer => {
+      next: () => {
         if (this.article.commentaires!.length > 1) {
-          const index = this.article.commentaires!.findIndex(commentaire => commentaireASupprimer.id === commentaire.id);
+          const index = this.article.commentaires!.findIndex(commentaire => idCommentaire === commentaire.id);
 
           if (index != -1) {
-            this.article.commentaires = this.article.commentaires!.splice(index, 1);
+            this.article.commentaires!.splice(index, 1);
           }
         } else {
           this.article.commentaires = [];

@@ -26,6 +26,7 @@ export class FormCommentaireComponent implements OnInit {
 
   soumettre(): void {
     this.succes.emit(this.commentairePayloadCopie);
+    this.reinitialiserFormulaire();
   }
 
   reinitialiserFormulaire(): void {

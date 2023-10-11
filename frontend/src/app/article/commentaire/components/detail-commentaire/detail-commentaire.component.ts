@@ -8,7 +8,7 @@ import {CommentaireService} from '../../services/commentaire.service';
   templateUrl: './detail-commentaire.component.html',
   styleUrls: ['./detail-commentaire.component.scss']
 })
-export class DetailCommentaireComponent implements OnInit {
+export class DetailCommentaireComponent {
   @Input()
   commentaire!: Commentaire;
   @Input()
@@ -26,12 +26,6 @@ export class DetailCommentaireComponent implements OnInit {
     private authService: AuthService,
     private commentaireService: CommentaireService
   ) {
-  }
-
-  ngOnInit(): void {
-    if (this.utilisateurEstConnecte) {
-      console.log("Quel utilisateur ?");
-    }
   }
 
   // Emission vers l'extérieur (@Output) de $event créé par emit

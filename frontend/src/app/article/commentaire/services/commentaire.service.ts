@@ -21,8 +21,7 @@ export class CommentaireService {
     return this.httpClient.post(`${this.API_URL}/articles/${articleId}/commentaires`, valeursForm);
   }
 
-  supprimer(articleId: number, commentaireId: number): Observable<Commentaire> {
-    console.log("Article : " + articleId + ", Commentaire : " + commentaireId);
-    return this.httpClient.delete(`${this.API_URL}/articles/${articleId}/commentaires/${commentaireId}`)
+  supprimer(articleId: number, commentaireId: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.API_URL}/articles/${articleId}/commentaires/${commentaireId}`)
   }
 }
