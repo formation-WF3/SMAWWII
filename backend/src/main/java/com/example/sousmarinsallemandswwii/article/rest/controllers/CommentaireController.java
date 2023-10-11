@@ -24,9 +24,9 @@ public class CommentaireController {
         return commentaireService.enregistrer(articleId, utilisateurCourant.getUsername(), commentaireRequete);
     }
 
-    @DeleteMapping("/${id}")
+    @DeleteMapping("/{id}")
     public String supprimer(@PathVariable Long articleId, @PathVariable Long id) {
-        return commentaireService.supprimer(articleId, id);
+        return commentaireService.supprimer(id);
     }
 
 

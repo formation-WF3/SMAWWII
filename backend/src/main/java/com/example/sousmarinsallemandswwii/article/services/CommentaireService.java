@@ -51,7 +51,7 @@ public class CommentaireService {
         return commentaireAdapter.toDto(commentaireRepository.save(commentaireModel));
     }
 
-    public String supprimer(Long articleId, Long id) {
+    public String supprimer(Long id) {
         if (commentaireRepository.findById(id).isEmpty()) {
             throw new EntiteNonTrouveException(RaisonEnum.COMMENTAIRE_NON_TROUVE);
         } else {

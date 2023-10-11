@@ -9,20 +9,18 @@ import {CommentaireService} from '../../services/commentaire.service';
   styleUrls: ['./detail-commentaire.component.scss']
 })
 export class DetailCommentaireComponent implements OnInit {
-  succesMessage?: string;
-
   @Input()
   commentaire!: Commentaire;
   @Input()
   utilisateurEstConnecte!: boolean;
-  @Input()
-  idCommentaireEnEdition?: number;
 
-  // Variable émise plus bas
+  // Variables émisent plus bas
   @Output()
   edition = new EventEmitter<number>();
   @Output()
   suppression = new EventEmitter<number>();
+
+  succesMessage?: string;
 
   constructor(
     private authService: AuthService,
@@ -39,7 +37,6 @@ export class DetailCommentaireComponent implements OnInit {
   // Emission vers l'extérieur (@Output) de $event créé par emit
   emettreEdition(): void {
     this.edition.emit(this.commentaire.id);
-    this.idCommentaireEnEdition = this.commentaire.id;
   }
 
   supprimerCommentaire(): void {

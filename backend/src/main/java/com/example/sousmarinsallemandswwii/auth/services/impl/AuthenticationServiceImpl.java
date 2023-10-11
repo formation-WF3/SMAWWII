@@ -38,8 +38,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         UtilisateurModel nouveauMembre = creerNouveauMembre(requete);
 
-//        String jwt = jwtService.generateToken(nouveauMembre);
-        String jwt = "Vous êtes bien enregistrés";
+        String jwt = jwtService.generateToken(nouveauMembre);
 
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
