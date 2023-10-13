@@ -80,6 +80,7 @@ export class DetailArticleComponent implements OnInit {
         } else {
           this.article.commentaires = [];
         }
+        this.succesMessage = 'Commentaire supprimé avec succès';
       }
     });
   }
