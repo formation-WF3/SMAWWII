@@ -40,11 +40,14 @@ export class DetailArticleComponent implements OnInit {
 
   enregistrerCommentaire(commentairePayload: CommentairePayload): void {
     const isEdition = !!commentairePayload.id;
+
     this.commentaireService.enregistrer(this.article.id!, commentairePayload).subscribe({
       next: commentaireRecu => {
         if (isEdition) {
+
           if (this.article.commentaires?.length) {
-            const index = this.article.commentaires.findIndex((commentaire) => commentaire.id === commentaireRecu.id);
+            const index = this.article.commentaires.findIndex(commentaire => commentaireRecu.id === commentaire.id);
+
             if (index >= 0) {
               this.article.commentaires[index] = commentaireRecu;
               this.idCommentaireEnEdition = undefined;
@@ -58,9 +61,29 @@ export class DetailArticleComponent implements OnInit {
             this.article.commentaires = [commentaireRecu];
           }
         }
+
         this.succesMessage = 'Commentaire enregistré avec succès';
       }
     });
+  }
+
+  supprimerCommentaire(idCommentaire: number): void {
+    console.log(idCommentaire);
+    this.commentaireService.supprimer(this.article.id!, idCommentaire).subscribe({
+      next: () => {
+        if (this.article.commentaires!.length > 1) {
+          const index = this.article.commentaires!.findIndex(commentaire => idCommentaire === commentaire.id);
+
+          if (index != -1) {
+            this.article.commentaires!.splice(index, 1);
+          }
+        } else {
+          this.article.commentaires = [];
+        }
+      }
+    });
+
+    console.log("Commentaire supprimé !");
   }
 
 }

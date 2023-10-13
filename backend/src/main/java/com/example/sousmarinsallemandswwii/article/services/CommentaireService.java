@@ -51,6 +51,15 @@ public class CommentaireService {
         return commentaireAdapter.toDto(commentaireRepository.save(commentaireModel));
     }
 
+    public String supprimer(Long id) {
+        if (commentaireRepository.findById(id).isEmpty()) {
+            throw new EntiteNonTrouveException(RaisonEnum.COMMENTAIRE_NON_TROUVE);
+        } else {
+            commentaireRepository.deleteById(id);
+            return "Commentaire supprimé !";
+        }
+    }
+
     public CommentaireModel getByIdIfExists(long id) {
         return commentaireRepository.findById(id)
                 .orElseThrow(() -> new EntiteNonTrouveException(RaisonEnum.COMMENTAIRE_NON_TROUVE));
