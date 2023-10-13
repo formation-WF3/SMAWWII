@@ -1,5 +1,5 @@
 version: '3.8'
-# lancer avec : docker compose -f docker-compose.dev.yml --env-file .env up
+
 services:
   backend:
     container_name: backend-smawwii
@@ -52,7 +52,6 @@ services:
       - ${MYSQL_PORT}:3306
     volumes:
       - ./mysql-data:/var/lib/mysql
-      #- ./init-db:/docker-entrypoint-initdb.d
 
   adminer:
     container_name: adminer-smawwii
