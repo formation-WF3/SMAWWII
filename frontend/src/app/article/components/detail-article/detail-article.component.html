@@ -14,7 +14,7 @@
 
   <h3 class="titre-section ms-2 mb-3">{{ titre }}</h3>
 
-  <app-form-commentaire (succes)="enregistrerCommentaire($event)" *ngIf="utilisateurEstConnecte && article.id" [articleId]="article.id" class="d-flex flex-column justify-content-center align-items-center"></app-form-commentaire>
+  <app-form-commentaire (succes)="enregistrerCommentaire($event)" *ngIf="utilisateurEstConnecte && article.id" [articleId]="article.id" [succesMessage]="succesMessage" class="d-flex flex-column justify-content-center align-items-center"></app-form-commentaire>
 
   <div class="detail-commentaires">
     <ng-container *ngFor="let commentaire of article.commentaires">

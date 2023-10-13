@@ -82,8 +82,6 @@ export class DetailArticleComponent implements OnInit {
         }
       }
     });
-
-    console.log("Commentaire supprimé !");
   }
 
 }
