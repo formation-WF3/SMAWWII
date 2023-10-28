@@ -3,6 +3,9 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 
+/* Importing ngx-toastr */
+@import 'ngx-toastr/toastr';
+
 /* Base de styles généraux */
 * {
   margin: 0;

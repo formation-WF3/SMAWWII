@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {NgForm} from '@angular/forms';
 import {CommentairePayload} from "../../../../shared/models/dtos/commentaire-payload";
 
 @Component({
@@ -16,13 +16,13 @@ export class FormCommentaireComponent implements OnInit {
   articleId!: number;
 
   @Output()
-  succes= new EventEmitter<CommentairePayload>();
-
+  succes = new EventEmitter<CommentairePayload>();
   erreurMessage?: string;
   commentairePayloadCopie: CommentairePayload = {};
 
   ngOnInit() {
     this.reinitialiserFormulaire();
+
   }
 
   soumettre(): void {
@@ -31,6 +31,6 @@ export class FormCommentaireComponent implements OnInit {
   }
 
   reinitialiserFormulaire(): void {
-    this.commentairePayloadCopie =  {...this.commentaire};
+    this.commentairePayloadCopie = {...this.commentaire};
   }
 }

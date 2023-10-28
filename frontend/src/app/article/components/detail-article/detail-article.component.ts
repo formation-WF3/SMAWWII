@@ -5,6 +5,7 @@ import {Article} from "../../../shared/models/dtos/article";
 import {AuthService} from "../../../auth/services/auth.service";
 import {CommentairePayload} from "../../../shared/models/dtos/commentaire-payload";
 import {CommentaireService} from "../../commentaire/services/commentaire.service";
+import {NotificationService} from "../../../core/services/notification.service";
 
 @Component({
   selector: 'app-detail-article',
@@ -22,7 +23,8 @@ export class DetailArticleComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
     private commentaireService: CommentaireService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notifyService: NotificationService
   ) {
   }
 
@@ -62,7 +64,9 @@ export class DetailArticleComponent implements OnInit {
           }
         }
 
-        this.succesMessage = 'Commentaire enregistré avec succès';
+        this.notifyService.showSuccess('Commentaire enregistré avec succès');
+
+        // this.succesMessage = 'Commentaire enregistré avec succès';
       }
     });
   }
@@ -80,7 +84,10 @@ export class DetailArticleComponent implements OnInit {
         } else {
           this.article.commentaires = [];
         }
-        this.succesMessage = 'Commentaire supprimé avec succès';
+
+        this.notifyService.showWarning('Commentaire supprimé avec succès');
+
+        // this.succesMessage = 'Commentaire supprimé avec succès';
       }
     });
   }
