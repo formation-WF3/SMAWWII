@@ -15,6 +15,8 @@ import {PageAccueilComponent} from './page-accueil/page-accueil.component';
 import {CommentaireModule} from "./article/commentaire/commentaire.module";
 import {AuthService} from "./auth/services/auth.service";
 import {SharedModule} from "./shared/shared-module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import {SharedModule} from "./shared/shared-module";
     NgbModule,
     CoreModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     SharedModule,
     ArticleModule,
     AuthModule,

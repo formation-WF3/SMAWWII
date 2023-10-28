@@ -10,6 +10,7 @@ import {DetailArticleComponent} from './components/detail-article/detail-article
 import {CommentaireModule} from "./commentaire/commentaire.module";
 import {CommentaireService} from "./commentaire/services/commentaire.service";
 import {FormCommentaireComponent} from "./commentaire/components/form-commentaire/form-commentaire.component";
+import { CoreModule } from '../core/core.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {FormCommentaireComponent} from "./commentaire/components/form-commentair
         CommonModule,
         ArticleRoutingModule,
         CommentaireModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        CoreModule
     ],
   providers: [
     ArticleService,

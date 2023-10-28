@@ -7,6 +7,7 @@ import {FormCommentaireComponent} from './components/form-commentaire/form-comme
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommentaireService} from "./services/commentaire.service";
 import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "
         NgbDropdownItem,
         NgbDropdownMenu,
         NgbDropdownToggle,
-        NgbDropdown
+        NgbDropdown,
+        CoreModule
     ],
   providers: [
     CommentaireService
