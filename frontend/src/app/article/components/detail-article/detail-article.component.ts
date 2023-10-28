@@ -65,8 +65,6 @@ export class DetailArticleComponent implements OnInit {
         }
 
         this.notifyService.showSuccess('Commentaire enregistré avec succès');
-
-        // this.succesMessage = 'Commentaire enregistré avec succès';
       }
     });
   }
@@ -86,8 +84,6 @@ export class DetailArticleComponent implements OnInit {
         }
 
         this.notifyService.showWarning('Commentaire supprimé avec succès');
-
-        // this.succesMessage = 'Commentaire supprimé avec succès';
       }
     });
   }
