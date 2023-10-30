@@ -1,0 +1,18 @@
+.sidebar {
+  height: 500px;
+  min-width: 300px;
+  max-width: 360px;
+}
+
+.page {
+  height: 800px;
+}
+
+@media screen and (max-width: 1078px) {
+  .page {
+    justify-content: center;
+  }
+  .section-admin {
+    width: 100%;
+  }
+}

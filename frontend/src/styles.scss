@@ -125,8 +125,14 @@ labels-form {
   margin-bottom: 26px;
   padding-left: 80px;
   text-transform: uppercase;
-  color: var(--bleu-oxford)
+  color: var(--bleu-oxford);
+}
 
+.titre-page-admin {
+  margin-bottom: 26px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--bleu-oxford);
 }
 
 @media screen and (max-width: 767px) {
